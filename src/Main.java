@@ -78,7 +78,7 @@ public class Main {
         }
     }
 
-    public void start() {
+    public void start( ) {
         praia_A = new Sombrinha[3][3];
         max2_A = new Sombrinha[praiaASombrinhas2];
         max3_A = new Sombrinha[praiaASombrinhas3];
