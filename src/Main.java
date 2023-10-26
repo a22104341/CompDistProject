@@ -19,6 +19,7 @@ public class Main {
     static final int praiaBSombrinhas4 = 1;
     static final int praiaCSombrinhas2 = 10;
 
+    /* Sombrinha Lists */
     static Sombrinha[][] praia_A = new Sombrinha[3][3];
     static Sombrinha[] max2_A;
     static Sombrinha[] max3_A;
