@@ -9,6 +9,8 @@ public class Sombrinha {
         this.praia = praia;
     }
 
+
+    /* Getters */
     public int getId() {
         return id;
     }
