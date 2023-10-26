@@ -7,7 +7,7 @@ import java.io.IOException;
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
-
+    /* Define variables that won't change */
     static final int max2 = 0;
     static final int max3 = 1;
     static final int max4 = 2;
@@ -18,6 +18,7 @@ public class Main {
     static final int praiaBSombrinhas3 = 5;
     static final int praiaBSombrinhas4 = 1;
     static final int praiaCSombrinhas2 = 10;
+
     static Sombrinha[][] praia_A = new Sombrinha[3][3];
     static Sombrinha[] max2_A;
     static Sombrinha[] max3_A;
@@ -79,14 +80,19 @@ public class Main {
     }
 
     public void start() {
+        /* Praia A */
         praia_A = new Sombrinha[3][3];
         max2_A = new Sombrinha[praiaASombrinhas2];
         max3_A = new Sombrinha[praiaASombrinhas3];
         max4_A = new Sombrinha[praiaASombrinhas4];
+
+        /* Praia B */
         praia_B = new Sombrinha[3][3];
         max2_B = new Sombrinha[praiaBSombrinhas2];
         max3_B = new Sombrinha[praiaBSombrinhas3];
         max4_B = new Sombrinha[praiaBSombrinhas4];
+
+        /* Praia C */
         praia_C = new Sombrinha[1][1];
         max2_C = new Sombrinha[praiaCSombrinhas2];
 
