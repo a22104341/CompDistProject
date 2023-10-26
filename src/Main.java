@@ -20,7 +20,7 @@ public class Main {
     static final int praiaCSombrinhas2 = 10;
 
     /* Sombrinha Lists */
-    static Sombrinha[][] praia_A = new Sombrinha[3][3];
+    static Sombrinha[][] praia_A;
     static Sombrinha[] max2_A;
     static Sombrinha[] max3_A;
     static Sombrinha[] max4_A;
@@ -33,6 +33,9 @@ public class Main {
 
 
     public static void main(String[] args) {
+        /* Initiialize all the Variables and Lists */
+        start();
+
 
         try {
             BufferedReader in = new BufferedReader(new FileReader(new File("praia.txt")));
@@ -87,16 +90,59 @@ public class Main {
         max3_A = new Sombrinha[praiaASombrinhas3];
         max4_A = new Sombrinha[praiaASombrinhas4];
 
+        char beachA = 'A';
+
+        /* Create Sombrinhas and Save them into the Arrays */
+        for (int i = 0; i < praiaASombrinhas2; i++){
+            max2_A[i] = new Sombrinha(i, max2, beachA);
+        }
+        for (int i = 0; i < praiaASombrinhas3; i++){
+            max3_A[i] = new Sombrinha(i, max3, beachA);
+        }
+        for (int i = 0; i < praiaASombrinhas4; i++){
+            max4_A[i] = new Sombrinha(i, max4, beachA);
+        }
+        /* Save arrays of sombrinhas into the beach */
+        praia_A[max2] = max2_A;
+        praia_A[max3] = max3_A;
+        praia_A[max4] = max4_A;
+
+
         /* Praia B */
         praia_B = new Sombrinha[3][3];
         max2_B = new Sombrinha[praiaBSombrinhas2];
         max3_B = new Sombrinha[praiaBSombrinhas3];
         max4_B = new Sombrinha[praiaBSombrinhas4];
 
+        char beachB = 'B';
+
+        /* Create Sombrinhas and Save them into the Arrays */
+        for (int i = 0; i < praiaBSombrinhas2; i++){
+            max2_B[i] = new Sombrinha(i, max2, beachB);
+        }
+        for (int i = 0; i < praiaBSombrinhas3; i++){
+            max3_B[i] = new Sombrinha(i, max3, beachB);
+        }
+        for (int i = 0; i < praiaBSombrinhas4; i++){
+            max4_B[i] = new Sombrinha(i, max4, beachB);
+        }
+        /* Save arrays of sombrinhas into the beach */
+        praia_B[max2] = max2_B;
+        praia_B[max3] = max3_B;
+        praia_B[max4] = max4_B;
+
+
         /* Praia C */
         praia_C = new Sombrinha[1][1];
         max2_C = new Sombrinha[praiaCSombrinhas2];
 
+        char beachC = 'C';
+
+        /* Create Sombrinhas and Save them into the Arrays */
+        for (int i = 0; i < praiaCSombrinhas2; i++){
+            max2_C[i] = new Sombrinha(i, max2, beachC);
+        }
+        praia_C[max2] = max2_C;
     }
 
     public void lerUser(String nomeDoFicheiro) {
