@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.List;
 
 public class Functions {
     /* Define variables that won't change */
@@ -6,6 +7,14 @@ public class Functions {
     static final int max3 = 1;
     static final int max4 = 2;
     static final int praiaASombrinhas2 = 10;
+
+    static final int day = 0;
+    static final int month = 1;
+    static final int year = 3;
+    static final int startHour = 4;
+    static final int endHour = 5;
+    static final int idSombra = 6;
+    static final int email = 6;
 
     static int used2_A=0;
     static final int praiaASombrinhas3 = 5;
@@ -33,68 +42,6 @@ public class Functions {
     static String idSombrinha="";
 
     static int duracao;
-
-    public static void start() {
-        /* Praia A */
-        praia_A = new Sombrinha[3][3];
-        max2_A = new Sombrinha[praiaASombrinhas2];
-        max3_A = new Sombrinha[praiaASombrinhas3];
-        max4_A = new Sombrinha[praiaASombrinhas4];
-
-        char beachA = 'A';
-
-        /* Create Sombrinhas and Save them into the Arrays */
-        for (int i = 1; i <= praiaASombrinhas2; i++){
-            max2_A[i] = new Sombrinha(i, max2, beachA);
-        }
-        for (int i = 1; i <= praiaASombrinhas3; i++){
-            max3_A[i] = new Sombrinha(i, max3, beachA);
-        }
-        for (int i = 1; i <= praiaASombrinhas4; i++){
-            max4_A[i] = new Sombrinha(i, max4, beachA);
-        }
-        /* Save arrays of sombrinhas into the beach */
-        praia_A[max2] = max2_A;
-        praia_A[max3] = max3_A;
-        praia_A[max4] = max4_A;
-
-
-        /* Praia B */
-        praia_B = new Sombrinha[3][3];
-        max2_B = new Sombrinha[praiaBSombrinhas2];
-        max3_B = new Sombrinha[praiaBSombrinhas3];
-        max4_B = new Sombrinha[praiaBSombrinhas4];
-
-        char beachB = 'B';
-
-        /* Create Sombrinhas and Save them into the Arrays */
-        for (int i = 1; i <= praiaBSombrinhas2; i++){
-            max2_B[i] = new Sombrinha(i, max2, beachB);
-        }
-        for (int i = 1; i <= praiaBSombrinhas3; i++){
-            max3_B[i] = new Sombrinha(i, max3, beachB);
-        }
-        for (int i = 1; i <= praiaBSombrinhas4; i++){
-            max4_B[i] = new Sombrinha(i, max4, beachB);
-        }
-        /* Save arrays of sombrinhas into the beach */
-        praia_B[max2] = max2_B;
-        praia_B[max3] = max3_B;
-        praia_B[max4] = max4_B;
-
-
-        /* Praia C */
-        praia_C = new Sombrinha[1][1];
-        max2_C = new Sombrinha[praiaCSombrinhas2];
-
-        char beachC = 'C';
-
-        /* Create Sombrinhas and Save them into the Arrays */
-        for (int i = 1; i <= praiaCSombrinhas2; i++){
-            max2_C[i] = new Sombrinha(i, max2, beachC);
-        }
-        praia_C[max2] = max2_C;
-    }
 
     public static void reservar(String user,int duracao,int numeroPessoas,char praia){
         String fileName = user+".txt";
@@ -222,7 +169,99 @@ public class Functions {
         }
     }
 
+    /*                                               ACTUAL CODE STARTS HERE */
 
+    public static void start() {
+        /* Praia A */
+        praia_A = new Sombrinha[3][3];
+        max2_A = new Sombrinha[praiaASombrinhas2];
+        max3_A = new Sombrinha[praiaASombrinhas3];
+        max4_A = new Sombrinha[praiaASombrinhas4];
+
+        char beachA = 'A';
+
+        /* Create Sombrinhas and Save them into the Arrays */
+        for (int i = 1; i <= praiaASombrinhas2; i++){
+            max2_A[i] = new Sombrinha(i, max2, beachA);
+        }
+        for (int i = 1; i <= praiaASombrinhas3; i++){
+            max3_A[i] = new Sombrinha(i, max3, beachA);
+        }
+        for (int i = 1; i <= praiaASombrinhas4; i++){
+            max4_A[i] = new Sombrinha(i, max4, beachA);
+        }
+        /* Save arrays of sombrinhas into the beach */
+        praia_A[max2] = max2_A;
+        praia_A[max3] = max3_A;
+        praia_A[max4] = max4_A;
+
+
+        /* Praia B */
+        praia_B = new Sombrinha[3][3];
+        max2_B = new Sombrinha[praiaBSombrinhas2];
+        max3_B = new Sombrinha[praiaBSombrinhas3];
+        max4_B = new Sombrinha[praiaBSombrinhas4];
+
+        char beachB = 'B';
+
+        /* Create Sombrinhas and Save them into the Arrays */
+        for (int i = 1; i <= praiaBSombrinhas2; i++){
+            max2_B[i] = new Sombrinha(i, max2, beachB);
+        }
+        for (int i = 1; i <= praiaBSombrinhas3; i++){
+            max3_B[i] = new Sombrinha(i, max3, beachB);
+        }
+        for (int i = 1; i <= praiaBSombrinhas4; i++){
+            max4_B[i] = new Sombrinha(i, max4, beachB);
+        }
+        /* Save arrays of sombrinhas into the beach */
+        praia_B[max2] = max2_B;
+        praia_B[max3] = max3_B;
+        praia_B[max4] = max4_B;
+
+
+        /* Praia C */
+        praia_C = new Sombrinha[1][1];
+        max2_C = new Sombrinha[praiaCSombrinhas2];
+
+        char beachC = 'C';
+
+        /* Create Sombrinhas and Save them into the Arrays */
+        for (int i = 1; i <= praiaCSombrinhas2; i++){
+            max2_C[i] = new Sombrinha(i, max2, beachC);
+        }
+        praia_C[max2] = max2_C;
+    }
+
+    public static String pathGetter(String filename){
+        /* We need to verify the input of the user, before it gets here */
+        String path = "";
+        if (filename != null && filename.length()>0){
+
+            switch (filename.charAt(0)){
+                case 'A':
+                    path = "../FolderDeTudo/BeachA/" + filename;
+                    return path;
+
+                case 'B':
+                    path = "../FolderDeTudo/BeachB/" + filename;
+                    return path;
+
+                case 'C':
+                    path = "../FolderDeTudo/BeachC/" + filename;
+                    return path;
+
+                default:
+                    path = "../FolderDeTudo/Users/" + filename;
+                    return path;
+            }
+        }
+        return path;
+    }
+
+    public static void eachHour(){
+        // (Passa por cada Praia e sombrinha, para ver a horaFim, se a hora fim for igual à hora atual, usa cancelarSombrinha(praia + user))
+    }
 
 
     /*
