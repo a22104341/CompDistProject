@@ -6,6 +6,8 @@ public class Functions {
     static final int max3 = 1;
     static final int max4 = 2;
     static final int praiaASombrinhas2 = 10;
+
+    static int used2_A=0;
     static final int praiaASombrinhas3 = 5;
     static final int praiaASombrinhas4 = 5;
     static final int praiaBSombrinhas2 = 5;
@@ -24,6 +26,13 @@ public class Functions {
     static Sombrinha[] max4_B;
     static Sombrinha[][] praia_C;
     static Sombrinha[] max2_C;
+    static int dia=0;
+    static int mes=0;
+    static int ano=0;
+    static String horadeInicio="";
+    static String idSombrinha="";
+
+    static int duracao;
 
     public static void start() {
         /* Praia A */
@@ -87,67 +96,121 @@ public class Functions {
         praia_C[max2] = max2_C;
     }
 
-    public static void lerUser(String nomeDoFicheiro) {
+    public static void reservar(String user,int duracao,int numeroPessoas,char praia){
+        String fileName = user+".txt";
+        guardarPraias(fileName,duracao,user,numeroPessoas,praia,dia,mes,ano,horadeInicio);
+       // public static void guardarPraias(String nomeDoFicheiro,int duracao,String user,int numeroPessoas,char praia)
+    }
+    public static void lerUser(String nomeDoFicheiro,String user) {
         try {
-            BufferedReader in = new BufferedReader(new FileReader(new File("praia.txt")));
+            BufferedReader reader = new BufferedReader(new FileReader(new File("praia.txt")));
             System.out.println("File open successful!");
 
-            int line = 0;
-            for (String x = in.readLine(); x != null; x = in.readLine()) {
-                line++;
-                System.out.println(x);
-                //colocarate ao fim
-                if (line <= 5) {
-                    String[] divisao = x.split(",");
-                    //VER O TXT EXEMPLO DO A QUE O DIOGO DEU
+            int lines = 0;
+            String line =null;
+            line=reader.readLine();
+            while(line!=null){
+          if (lines>=1){
 
-                    System.out.println(divisao[1]);
-                }
+                    String[] divisao = line.split("/");
+              // rethinking
+                    dia = Integer.parseInt(divisao[0].trim());
+                    mes = Integer.parseInt(divisao[1].trim());
+                    ano = Integer.parseInt(divisao[2].trim());
+                    idSombrinha=String.valueOf(divisao[3]);
 
+          }
+                lines++;
+          line=reader.readLine();
             }
         } catch (IOException e) {
             System.out.println("File I/O error!");
         }
     }
 
-    public static void lerPraias(String nomeDoFicheiro) {
+    public void lerPraias(String nomeDoFicheiro) {
         try {
-            BufferedReader in = new BufferedReader(new FileReader(new File("praia.txt")));
+            BufferedReader reader = new BufferedReader(new FileReader(new File("praia.txt")));
             System.out.println("File open successful!");
 
-            int line = 0;
-            for (String x = in.readLine(); x != null; x = in.readLine()) {
-                line++;
-                System.out.println(x);
-                //colocarate ao fim
-                if (line <= 5) {
-                    String[] divisao = x.split(",");
-                    //VER O TXT EXEMPLO DO A QUE O DIOGO DEU
+            int lines = 0;
+            String line =null;
+            line=reader.readLine();
+            while(line!=null){
 
-                    System.out.println(divisao[1]);
+                if (lines>=0){
+
+
+                    String[] divisao = line.split("/");
+                    // so a guardar need to guardar em variaveis globais
+                    dia = Integer.parseInt(divisao[0].trim());
+                    mes = Integer.parseInt(divisao[1].trim());
+                    ano = Integer.parseInt(divisao[2].trim());
+                    horadeInicio=String.valueOf(divisao[3]);
+                    duracao = Integer.parseInt(divisao[4].trim());
+                    idSombrinha=String.valueOf(divisao[5]);
+
+
                 }
-
+                lines++;
+                line=reader.readLine();
             }
         } catch (IOException e) {
             System.out.println("File I/O error!");
         }
     }
 
-    public static void guardarPraias(String nomeDoFicheiro) {
+    public static void guardarPraias(String nomeDoFicheiro,int duracao,String user,int numeroPessoas,char praia,int dia,int mes,int ano,String horaInicio) {
         try {
-            File file = new File("praia.txt");
-            BufferedReader in = new BufferedReader(new FileReader(new File("praia.txt")));
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+
+            BufferedReader in = new BufferedReader(new FileReader(new File(nomeDoFicheiro)));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(nomeDoFicheiro));
 
 
             int line1 = 0;
             int line2 = 0;
-            for (String x = in.readLine(); x != null; x = in.readLine()) {
-                line1++;
+           /* static final int max2 = 0;
+            static final int max3 = 1;
+            static final int max4 = 2;
+            static final int praiaASombrinhas2 = 10;
+            static final int praiaASombrinhas3 = 5;
+            static final int praiaASombrinhas4 = 5;
+            static final int praiaBSombrinhas2 = 5;
+            static final int praiaBSombrinhas3 = 5;
+            static final int praiaBSombrinhas4 = 1;
+            static final int praiaCSombrinhas2 = 10;
+*/
+            /* Sombrinha Lists */
+          /*  static Sombrinha[][] praia_A;
+            static Sombrinha[] max2_A;
+            static Sombrinha[] max3_A;
+            static Sombrinha[] max4_A;
+            static Sombrinha[][] praia_B;
+            static Sombrinha[] max2_B;
+            static Sombrinha[] max3_B;
+            static Sombrinha[] max4_B;
+            static Sombrinha[][] praia_C;
+            static Sombrinha[] max2_C;
+            */
+            if (praia=='A'){
+                if(numeroPessoas==2){
+                if (used2_A<10) {
+                    used2_A++;
+                    //ciclo rescreve o que ja la esta dentro
+                    for (String x = in.readLine(); x != null; x = in.readLine()) {
+                        line1++;
+                        writer.write(x);
 
-                writer.write(x);
-                writer.newLine();
-                //colocarate ao fim
+                        }
+                    //escreve no fim
+                    writer.write(dia+"/"+mes+"/"+ano+"/"+horaInicio+"/"+duracao+"/"+user+"/"+praia+used2_A+"\n");
+                }
+                }
+            }
+            if (praia=='B'){
+
+            }
+            if (praia=='C'){
 
             }
         } catch (FileNotFoundException e) {
