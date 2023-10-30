@@ -44,13 +44,13 @@ public class Functions {
         char beachA = 'A';
 
         /* Create Sombrinhas and Save them into the Arrays */
-        for (int i = 0; i < praiaASombrinhas2; i++){
+        for (int i = 1; i <= praiaASombrinhas2; i++){
             max2_A[i] = new Sombrinha(i, max2, beachA);
         }
-        for (int i = 0; i < praiaASombrinhas3; i++){
+        for (int i = 1; i <= praiaASombrinhas3; i++){
             max3_A[i] = new Sombrinha(i, max3, beachA);
         }
-        for (int i = 0; i < praiaASombrinhas4; i++){
+        for (int i = 1; i <= praiaASombrinhas4; i++){
             max4_A[i] = new Sombrinha(i, max4, beachA);
         }
         /* Save arrays of sombrinhas into the beach */
@@ -68,13 +68,13 @@ public class Functions {
         char beachB = 'B';
 
         /* Create Sombrinhas and Save them into the Arrays */
-        for (int i = 0; i < praiaBSombrinhas2; i++){
+        for (int i = 1; i <= praiaBSombrinhas2; i++){
             max2_B[i] = new Sombrinha(i, max2, beachB);
         }
-        for (int i = 0; i < praiaBSombrinhas3; i++){
+        for (int i = 1; i <= praiaBSombrinhas3; i++){
             max3_B[i] = new Sombrinha(i, max3, beachB);
         }
-        for (int i = 0; i < praiaBSombrinhas4; i++){
+        for (int i = 1; i <= praiaBSombrinhas4; i++){
             max4_B[i] = new Sombrinha(i, max4, beachB);
         }
         /* Save arrays of sombrinhas into the beach */
@@ -90,7 +90,7 @@ public class Functions {
         char beachC = 'C';
 
         /* Create Sombrinhas and Save them into the Arrays */
-        for (int i = 0; i < praiaCSombrinhas2; i++){
+        for (int i = 1; i <= praiaCSombrinhas2; i++){
             max2_C[i] = new Sombrinha(i, max2, beachC);
         }
         praia_C[max2] = max2_C;
@@ -225,7 +225,35 @@ public class Functions {
 
 
 
-
+    /*
+     * start()                  (starts everything just like before)
+     *
+     * praia_read_splitter()        (tem a String como input, retorna uma Matrix com tudo separado [][] 1st is the lines, 2nd is split by / etc.)
+     * user_read_splitter()
+     * praia_write_combiner()       (gets all the inputs, writes them with the +"/"+ in the middle etc.)
+     * user_write_combiner()
+     *
+     * praia_verificarDisponibilidade()       (vai ao ficheiro da sombrinha, verifica se já existe algum registo a esta hora/data)
+     * praia_listarSombrinhas()             (passa pelo array desta praia e chama verificarDisponibilidade, às horas/data que o utilizador introduziu)
+     * praia_reservarSombrinha()           (guarda dentro da sombrinha newLine: -Dia/Mes/Ano/HoraIncio/HoraFim/email)
+     * praia_cancelarSombrinha()       (Vai a essa combrinha, procura o email, verifica se a data/horas são as msmas, apaga as reservas)
+     * praia_quantidadePessoasSombrinha()   (qual das sombrinhas a mais apropriada?)
+     *
+     * user_verificarDisponibilidade()   (email already being used?)
+     * user_verifyLogin()              (emailExiste?PasswordCorreta?)
+     * user_register()             (criar novo ficheiro - Filename: "email", conteúdo:"Password")
+     * user_listarSombrinhas()    (Listar as sombrinhas q ele tem no ficheiro)
+     * user_verificarSombrinha()     (é uma das sombrinhas dele?)
+     * user_reservarSombrinha()           (guarda no user newLine:-Dia/Mes/Ano/HoraInicio/HoraFim/IDSOMBRINHA         GOES WITH PRAIA ONE)
+     * user_cancelarSombrinha()   (GOES WITH PRAIA ONE)
+     *
+     * pathGetter(fileName)           (Switch Case, que vê o nome do ficheiro, e dá o caminho + nome do ficheiro como return SE EXISTIR)
+     *
+     * eachHour()          (Passa por cada Praia e sombrinha, para ver a horaFim, se a hora fim for igual à hora atual, usa cancelarSombrinha(praia + user))
+     *
+     * Temos q fzr dps ainda um sombrinhasValidas, etc. (mas isso é tdo só validações q adicionamos a seguir como função, é mais facil fzr essas mais tarde)
+     * Mas isso é mais tipo verificar se os inputs do user são corretos etc.
+     */
 
 
 }
