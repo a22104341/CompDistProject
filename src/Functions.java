@@ -6,17 +6,17 @@ public class Functions {
     static final int max2 = 0;
     static final int max3 = 1;
     static final int max4 = 2;
-    static final int praiaASombrinhas2 = 10;
+
 
     static final int day = 0;
     static final int month = 1;
-    static final int year = 3;
-    static final int startHour = 4;
-    static final int endHour = 5;
-    static final int idSombra = 6;
-    static final int email = 6;
+    static final int year = 2;
+    static final int startHour = 3;
+    static final int endHour = 4;
+    static final int idSombra = 5;
+    static final int email = 5;
 
-    static int used2_A=0;
+    static final int praiaASombrinhas2 = 10;
     static final int praiaASombrinhas3 = 5;
     static final int praiaASombrinhas4 = 5;
     static final int praiaBSombrinhas2 = 5;
@@ -35,19 +35,21 @@ public class Functions {
     static Sombrinha[] max4_B;
     static Sombrinha[][] praia_C;
     static Sombrinha[] max2_C;
+
+    static int used=0;
+    static String user="";
     static int dia=0;
     static int mes=0;
     static int ano=0;
-    static String horadeInicio="";
+    static int  horadeInicio=0;
+    static int horaFim=0;
     static String idSombrinha="";
+    static String praia="";
+    static int maxPessoas=0;
 
-    static int duracao;
 
-    public static void reservar(String user,int duracao,int numeroPessoas,char praia){
-        String fileName = user+".txt";
-        guardarPraias(fileName,duracao,user,numeroPessoas,praia,dia,mes,ano,horadeInicio);
-       // public static void guardarPraias(String nomeDoFicheiro,int duracao,String user,int numeroPessoas,char praia)
-    }
+
+
     public static void lerUser(String nomeDoFicheiro,String user) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(new File("praia.txt")));
@@ -75,7 +77,7 @@ public class Functions {
         }
     }
 
-    public void lerPraias(String nomeDoFicheiro) {
+    public static void lerPraias(String nomeDoFicheiro) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(new File("praia.txt")));
             System.out.println("File open successful!");
@@ -85,19 +87,17 @@ public class Functions {
             line=reader.readLine();
             while(line!=null){
 
-                if (lines>=0){
+                if (lines>=0) {
 
 
                     String[] divisao = line.split("/");
-                    // so a guardar need to guardar em variaveis globais
-                    dia = Integer.parseInt(divisao[0].trim());
-                    mes = Integer.parseInt(divisao[1].trim());
-                    ano = Integer.parseInt(divisao[2].trim());
-                    horadeInicio=String.valueOf(divisao[3]);
-                    duracao = Integer.parseInt(divisao[4].trim());
-                    idSombrinha=String.valueOf(divisao[5]);
-
-
+                    // guardar para descobrir se ja existe
+                    int dia1 = Integer.parseInt(divisao[0].trim());
+                    int mes1 = Integer.parseInt(divisao[1].trim());
+                    int ano1 = Integer.parseInt(divisao[2].trim());
+                    int horadeInicio1=Integer.parseInt(divisao[3].trim());
+                    int horaFim1 = Integer.parseInt(divisao[4].trim());
+                    String user1 = String.valueOf(divisao[5]);
                 }
                 lines++;
                 line=reader.readLine();
@@ -116,33 +116,11 @@ public class Functions {
 
             int line1 = 0;
             int line2 = 0;
-           /* static final int max2 = 0;
-            static final int max3 = 1;
-            static final int max4 = 2;
-            static final int praiaASombrinhas2 = 10;
-            static final int praiaASombrinhas3 = 5;
-            static final int praiaASombrinhas4 = 5;
-            static final int praiaBSombrinhas2 = 5;
-            static final int praiaBSombrinhas3 = 5;
-            static final int praiaBSombrinhas4 = 1;
-            static final int praiaCSombrinhas2 = 10;
-*/
-            /* Sombrinha Lists */
-          /*  static Sombrinha[][] praia_A;
-            static Sombrinha[] max2_A;
-            static Sombrinha[] max3_A;
-            static Sombrinha[] max4_A;
-            static Sombrinha[][] praia_B;
-            static Sombrinha[] max2_B;
-            static Sombrinha[] max3_B;
-            static Sombrinha[] max4_B;
-            static Sombrinha[][] praia_C;
-            static Sombrinha[] max2_C;
-            */
+
             if (praia=='A'){
                 if(numeroPessoas==2){
-                if (used2_A<10) {
-                    used2_A++;
+                if (used<10) {
+                    used++;
                     //ciclo rescreve o que ja la esta dentro
                     for (String x = in.readLine(); x != null; x = in.readLine()) {
                         line1++;
@@ -150,7 +128,7 @@ public class Functions {
 
                         }
                     //escreve no fim
-                    writer.write(dia+"/"+mes+"/"+ano+"/"+horaInicio+"/"+duracao+"/"+user+"/"+praia+used2_A+"\n");
+                    writer.write(dia+"/"+mes+"/"+ano+"/"+horaInicio+"/"+duracao+"/"+user+"/"+praia+used+"\n");
                 }
                 }
             }
@@ -231,6 +209,18 @@ public class Functions {
             max2_C[i] = new Sombrinha(i, max2, beachC);
         }
         praia_C[max2] = max2_C;
+
+
+         used=0;
+         user="";
+        dia=0;
+         mes=0;
+         ano=0;
+          horadeInicio=0;
+         horaFim=0;
+         idSombrinha="";
+         praia="";
+         maxPessoas=0;
     }
 
     public static String pathGetter(String filename){
