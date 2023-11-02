@@ -2,12 +2,14 @@ public class Praia {
     public static String[][] read_splitter(String file){
         /* use the variables on top in Functions */
         // (tem a String como input, retorna uma Matrix com tudo separado [][] 1st is the lines, 2nd is split by / etc.)
+        //BufferReader shit
+        //split the read line by "/", save it into an array, that array gets added into the return string matrix, keep doing that till the file is done
         return new String[1][1];
     }
 
-    public static String write_combiner(String day, String month, String startHour, String endHour, String email){
+    public static String write_combiner(String day, String month, String year, String startHour, String endHour, String email){
         /* maybe these are not all strings? idk, if they arent, then they need a converter in here, so we don't gotta do it by hand everytime */
-        return day + "/" + month + "/" + startHour + "/" + endHour + "/" + email;
+        return day + "/" + month + "/"+ year + "/" + startHour + "/" + endHour + "/" + email;
     }
 
     public static boolean verificarDisponibilidade(String file){
