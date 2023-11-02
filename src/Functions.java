@@ -6,7 +6,7 @@ public class Functions {
     static final int max2 = 0;
     static final int max3 = 1;
     static final int max4 = 2;
-    static final int praiaASombrinhas2 = 10;
+
 
     static final int day = 0;
     static final int month = 1;
@@ -16,7 +16,7 @@ public class Functions {
     static final int idSombra = 6;
     static final int email = 6;
 
-    static int used2_A=0;
+    static final int praiaASombrinhas2 = 10;
     static final int praiaASombrinhas3 = 5;
     static final int praiaASombrinhas4 = 5;
     static final int praiaBSombrinhas2 = 5;
@@ -35,19 +35,21 @@ public class Functions {
     static Sombrinha[] max4_B;
     static Sombrinha[][] praia_C;
     static Sombrinha[] max2_C;
+
+    static int used=0;
+    static String user="";
     static int dia=0;
     static int mes=0;
     static int ano=0;
-    static String horadeInicio="";
+    static int  horadeInicio=0;
+    static int horaFim=0;
     static String idSombrinha="";
+    static String praia="";
+    static int maxPessoas=0;
 
-    static int duracao;
 
-    public static void reservar(String user,int duracao,int numeroPessoas,char praia){
-        String fileName = user+".txt";
-        guardarPraias(fileName,duracao,user,numeroPessoas,praia,dia,mes,ano,horadeInicio);
-       // public static void guardarPraias(String nomeDoFicheiro,int duracao,String user,int numeroPessoas,char praia)
-    }
+
+
     public static void lerUser(String nomeDoFicheiro,String user) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(new File("praia.txt")));
@@ -75,7 +77,7 @@ public class Functions {
         }
     }
 
-    public void lerPraias(String nomeDoFicheiro) {
+    public static void lerPraias(String nomeDoFicheiro) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(new File("praia.txt")));
             System.out.println("File open successful!");
@@ -86,16 +88,36 @@ public class Functions {
             while(line!=null){
 
                 if (lines>=0){
+                    /*-Dia/Mes/Ano/HoraIncio/HoraFim/email
+                            -Dia/Mes/Ano/HoraIncio/HoraFim/email
+                            -Dia/Mes/Ano/HoraIncio/16/email
+
+
+                            */
+
 
 
                     String[] divisao = line.split("/");
-                    // so a guardar need to guardar em variaveis globais
-                    dia = Integer.parseInt(divisao[0].trim());
-                    mes = Integer.parseInt(divisao[1].trim());
-                    ano = Integer.parseInt(divisao[2].trim());
-                    horadeInicio=String.valueOf(divisao[3]);
-                    duracao = Integer.parseInt(divisao[4].trim());
-                    idSombrinha=String.valueOf(divisao[5]);
+                    // guardar para descobrir se ja existe
+                    int dia1 = Integer.parseInt(divisao[0].trim());
+                    int mes1 = Integer.parseInt(divisao[1].trim());
+                    int ano1 = Integer.parseInt(divisao[2].trim());
+                    int horadeInicio1=Integer.parseInt(divisao[3].trim());
+                    int horaFim1 = Integer.parseInt(divisao[4].trim());
+                    String user1 = String.valueOf(divisao[5]);
+
+                        if (ano == ano1 && mes1==mes && dia==dia1){
+                            //PRIMEIRO CASO HORA DE INICIO MENOR 12-16 para 10 - 12
+                            if (horadeInicio>=horadeInicio1){
+                                used++;
+
+                            } else if (horaFim < horaFim1 && horadeInicio1 <= horaFim) {
+                                used++;
+
+                            } else if (horaFim==horaFim1) {
+                                used++;
+                            }
+                        }
 
 
                 }
@@ -141,8 +163,8 @@ public class Functions {
             */
             if (praia=='A'){
                 if(numeroPessoas==2){
-                if (used2_A<10) {
-                    used2_A++;
+                if (used<10) {
+                    used++;
                     //ciclo rescreve o que ja la esta dentro
                     for (String x = in.readLine(); x != null; x = in.readLine()) {
                         line1++;
@@ -150,7 +172,7 @@ public class Functions {
 
                         }
                     //escreve no fim
-                    writer.write(dia+"/"+mes+"/"+ano+"/"+horaInicio+"/"+duracao+"/"+user+"/"+praia+used2_A+"\n");
+                    writer.write(dia+"/"+mes+"/"+ano+"/"+horaInicio+"/"+duracao+"/"+user+"/"+praia+used+"\n");
                 }
                 }
             }
@@ -233,14 +255,14 @@ public class Functions {
         praia_C[max2] = max2_C;
     }
 
-    public static String pathGetter(String filename){
+    public static String pathGetter(String filename,int maxPeople){
         /* We need to verify the input of the user, before it gets here */
         String path = "";
         if (filename != null && filename.length()>0){
 
             switch (filename.charAt(0)){
                 case 'A':
-                    path = "../FolderDeTudo/BeachA/" + filename;
+                    path = "../FolderDeTudo/BeachA/" +"/"+ maxPeople +"/"+ filename;
                     return path;
 
                 case 'B':
