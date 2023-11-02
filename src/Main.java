@@ -10,50 +10,14 @@ public class Main {
     public static void main(String[] args) {
         /* Initiialize all the Variables and Lists */
         Functions.start();
+        /*input
+        Functions.dia = day;
+        Functions.mes = month;
+        Functions.ano = year;
+        Functions.horadeInicio=startHour;
+        Functions.horaFim = endHour;
+        Functions.user = email;
+        */
 
-        try {
-            BufferedReader in = new BufferedReader(new FileReader(new File("praia.txt")));
-            System.out.println("File open successful!");
-
-            int line = 0;
-            for (String x = in.readLine(); x != null; x = in.readLine()) {
-                line++;
-                System.out.println(x);
-                //colocarate ao fim
-                if (line <= 5) {
-                    String[] divisao = x.split(",");
-                    //o que quiseres
-                    System.out.println(divisao[1]);
-                }
-
-            }
-        } catch (IOException e) {
-            System.out.println("File I/O error!");
-        }
-
-        //SAVING
-        try {
-            File file = new File("praia.txt");
-            BufferedReader in = new BufferedReader(new FileReader(new File("praia.txt")));
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-
-
-            int line1 = 0;
-            int line2 = 0;
-            for (String x = in.readLine(); x != null; x = in.readLine()) {
-                line1++;
-
-                writer.write(x);
-                writer.newLine();
-                //colocarate ao fim
-
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("File Not Found");
-            System.exit(1);
-        } catch (IOException e) {
-            System.out.println("something messed up");
-            System.exit(1);
-        }
     }
 }

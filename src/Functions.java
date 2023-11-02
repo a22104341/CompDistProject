@@ -10,11 +10,11 @@ public class Functions {
 
     static final int day = 0;
     static final int month = 1;
-    static final int year = 3;
-    static final int startHour = 4;
-    static final int endHour = 5;
-    static final int idSombra = 6;
-    static final int email = 6;
+    static final int year = 2;
+    static final int startHour = 3;
+    static final int endHour = 4;
+    static final int idSombra = 5;
+    static final int email = 5;
 
     static final int praiaASombrinhas2 = 10;
     static final int praiaASombrinhas3 = 5;
@@ -87,14 +87,7 @@ public class Functions {
             line=reader.readLine();
             while(line!=null){
 
-                if (lines>=0){
-                    /*-Dia/Mes/Ano/HoraIncio/HoraFim/email
-                            -Dia/Mes/Ano/HoraIncio/HoraFim/email
-                            -Dia/Mes/Ano/HoraIncio/16/email
-
-
-                            */
-
+                if (lines>=0) {
 
 
                     String[] divisao = line.split("/");
@@ -105,21 +98,6 @@ public class Functions {
                     int horadeInicio1=Integer.parseInt(divisao[3].trim());
                     int horaFim1 = Integer.parseInt(divisao[4].trim());
                     String user1 = String.valueOf(divisao[5]);
-
-                        if (ano == ano1 && mes1==mes && dia==dia1){
-                            //PRIMEIRO CASO HORA DE INICIO MENOR 12-16 para 10 - 12
-                            if (horadeInicio>=horadeInicio1){
-                                used++;
-
-                            } else if (horaFim < horaFim1 && horadeInicio1 <= horaFim) {
-                                used++;
-
-                            } else if (horaFim==horaFim1) {
-                                used++;
-                            }
-                        }
-
-
                 }
                 lines++;
                 line=reader.readLine();
@@ -138,29 +116,7 @@ public class Functions {
 
             int line1 = 0;
             int line2 = 0;
-           /* static final int max2 = 0;
-            static final int max3 = 1;
-            static final int max4 = 2;
-            static final int praiaASombrinhas2 = 10;
-            static final int praiaASombrinhas3 = 5;
-            static final int praiaASombrinhas4 = 5;
-            static final int praiaBSombrinhas2 = 5;
-            static final int praiaBSombrinhas3 = 5;
-            static final int praiaBSombrinhas4 = 1;
-            static final int praiaCSombrinhas2 = 10;
-*/
-            /* Sombrinha Lists */
-          /*  static Sombrinha[][] praia_A;
-            static Sombrinha[] max2_A;
-            static Sombrinha[] max3_A;
-            static Sombrinha[] max4_A;
-            static Sombrinha[][] praia_B;
-            static Sombrinha[] max2_B;
-            static Sombrinha[] max3_B;
-            static Sombrinha[] max4_B;
-            static Sombrinha[][] praia_C;
-            static Sombrinha[] max2_C;
-            */
+
             if (praia=='A'){
                 if(numeroPessoas==2){
                 if (used<10) {
@@ -253,16 +209,28 @@ public class Functions {
             max2_C[i] = new Sombrinha(i, max2, beachC);
         }
         praia_C[max2] = max2_C;
+
+
+         used=0;
+         user="";
+        dia=0;
+         mes=0;
+         ano=0;
+          horadeInicio=0;
+         horaFim=0;
+         idSombrinha="";
+         praia="";
+         maxPessoas=0;
     }
 
-    public static String pathGetter(String filename,int maxPeople){
+    public static String pathGetter(String filename){
         /* We need to verify the input of the user, before it gets here */
         String path = "";
         if (filename != null && filename.length()>0){
 
             switch (filename.charAt(0)){
                 case 'A':
-                    path = "../FolderDeTudo/BeachA/" +"/"+ maxPeople +"/"+ filename;
+                    path = "../FolderDeTudo/BeachA/" + filename;
                     return path;
 
                 case 'B':
