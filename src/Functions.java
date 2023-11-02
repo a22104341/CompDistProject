@@ -36,41 +36,39 @@ public class Functions {
     static Sombrinha[][] praia_C;
     static Sombrinha[] max2_C;
 
-    static int used=0;
-    static String user="";
-    static int dia=0;
-    static int mes=0;
-    static int ano=0;
-    static int  horadeInicio=0;
-    static int horaFim=0;
-    static String idSombrinha="";
-    static String praia="";
-    static int maxPessoas=0;
+    static int used = 0;
+    static String user = "";
+    static int dia = 0;
+    static int mes = 0;
+    static int ano = 0;
+    static int horadeInicio = 0;
+    static int horaFim = 0;
+    static String idSombrinha = "";
+    static String praia = "";
+    static int maxPessoas = 0;
 
 
-
-
-    public static void lerUser(String nomeDoFicheiro,String user) {
+    public static void lerUser(String nomeDoFicheiro, String user) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(new File("praia.txt")));
             System.out.println("File open successful!");
 
             int lines = 0;
-            String line =null;
-            line=reader.readLine();
-            while(line!=null){
-          if (lines>=1){
+            String line = null;
+            line = reader.readLine();
+            while (line != null) {
+                if (lines >= 1) {
 
                     String[] divisao = line.split("/");
-              // rethinking
+                    // rethinking
                     dia = Integer.parseInt(divisao[0].trim());
                     mes = Integer.parseInt(divisao[1].trim());
                     ano = Integer.parseInt(divisao[2].trim());
-                    idSombrinha=String.valueOf(divisao[3]);
+                    idSombrinha = String.valueOf(divisao[3]);
 
-          }
+                }
                 lines++;
-          line=reader.readLine();
+                line = reader.readLine();
             }
         } catch (IOException e) {
             System.out.println("File I/O error!");
@@ -83,11 +81,11 @@ public class Functions {
             System.out.println("File open successful!");
 
             int lines = 0;
-            String line =null;
-            line=reader.readLine();
-            while(line!=null){
+            String line = null;
+            line = reader.readLine();
+            while (line != null) {
 
-                if (lines>=0) {
+                if (lines >= 0) {
 
 
                     String[] divisao = line.split("/");
@@ -95,19 +93,19 @@ public class Functions {
                     int dia1 = Integer.parseInt(divisao[0].trim());
                     int mes1 = Integer.parseInt(divisao[1].trim());
                     int ano1 = Integer.parseInt(divisao[2].trim());
-                    int horadeInicio1=Integer.parseInt(divisao[3].trim());
+                    int horadeInicio1 = Integer.parseInt(divisao[3].trim());
                     int horaFim1 = Integer.parseInt(divisao[4].trim());
                     String user1 = String.valueOf(divisao[5]);
                 }
                 lines++;
-                line=reader.readLine();
+                line = reader.readLine();
             }
         } catch (IOException e) {
             System.out.println("File I/O error!");
         }
     }
 
-    public static void guardarPraias(String nomeDoFicheiro,int duracao,String user,int numeroPessoas,char praia,int dia,int mes,int ano,String horaInicio) {
+    public static void guardarPraias(String nomeDoFicheiro, int duracao, String user, int numeroPessoas, char praia, int dia, int mes, int ano, String horaInicio) {
         try {
 
             BufferedReader in = new BufferedReader(new FileReader(new File(nomeDoFicheiro)));
@@ -117,25 +115,25 @@ public class Functions {
             int line1 = 0;
             int line2 = 0;
 
-            if (praia=='A'){
-                if(numeroPessoas==2){
-                if (used<10) {
-                    used++;
-                    //ciclo rescreve o que ja la esta dentro
-                    for (String x = in.readLine(); x != null; x = in.readLine()) {
-                        line1++;
-                        writer.write(x);
+            if (praia == 'A') {
+                if (numeroPessoas == 2) {
+                    if (used < 10) {
+                        used++;
+                        //ciclo rescreve o que ja la esta dentro
+                        for (String x = in.readLine(); x != null; x = in.readLine()) {
+                            line1++;
+                            writer.write(x);
 
                         }
-                    //escreve no fim
-                    writer.write(dia+"/"+mes+"/"+ano+"/"+horaInicio+"/"+duracao+"/"+user+"/"+praia+used+"\n");
-                }
+                        //escreve no fim
+                        writer.write(dia + "/" + mes + "/" + ano + "/" + horaInicio + "/" + duracao + "/" + user + "/" + praia + used + "\n");
+                    }
                 }
             }
-            if (praia=='B'){
+            if (praia == 'B') {
 
             }
-            if (praia=='C'){
+            if (praia == 'C') {
 
             }
         } catch (FileNotFoundException e) {
@@ -159,13 +157,13 @@ public class Functions {
         char beachA = 'A';
 
         /* Create Sombrinhas and Save them into the Arrays */
-        for (int i = 1; i <= praiaASombrinhas2; i++){
+        for (int i = 1; i <= praiaASombrinhas2; i++) {
             max2_A[i] = new Sombrinha(i, max2, beachA);
         }
-        for (int i = 1; i <= praiaASombrinhas3; i++){
+        for (int i = 1; i <= praiaASombrinhas3; i++) {
             max3_A[i] = new Sombrinha(i, max3, beachA);
         }
-        for (int i = 1; i <= praiaASombrinhas4; i++){
+        for (int i = 1; i <= praiaASombrinhas4; i++) {
             max4_A[i] = new Sombrinha(i, max4, beachA);
         }
         /* Save arrays of sombrinhas into the beach */
@@ -183,13 +181,13 @@ public class Functions {
         char beachB = 'B';
 
         /* Create Sombrinhas and Save them into the Arrays */
-        for (int i = 1; i <= praiaBSombrinhas2; i++){
+        for (int i = 1; i <= praiaBSombrinhas2; i++) {
             max2_B[i] = new Sombrinha(i, max2, beachB);
         }
-        for (int i = 1; i <= praiaBSombrinhas3; i++){
+        for (int i = 1; i <= praiaBSombrinhas3; i++) {
             max3_B[i] = new Sombrinha(i, max3, beachB);
         }
-        for (int i = 1; i <= praiaBSombrinhas4; i++){
+        for (int i = 1; i <= praiaBSombrinhas4; i++) {
             max4_B[i] = new Sombrinha(i, max4, beachB);
         }
         /* Save arrays of sombrinhas into the beach */
@@ -205,30 +203,30 @@ public class Functions {
         char beachC = 'C';
 
         /* Create Sombrinhas and Save them into the Arrays */
-        for (int i = 1; i <= praiaCSombrinhas2; i++){
+        for (int i = 1; i <= praiaCSombrinhas2; i++) {
             max2_C[i] = new Sombrinha(i, max2, beachC);
         }
         praia_C[max2] = max2_C;
 
 
-         used=0;
-         user="";
-        dia=0;
-         mes=0;
-         ano=0;
-          horadeInicio=0;
-         horaFim=0;
-         idSombrinha="";
-         praia="";
-         maxPessoas=0;
+        used = 0;
+        user = "";
+        dia = 0;
+        mes = 0;
+        ano = 0;
+        horadeInicio = 0;
+        horaFim = 0;
+        idSombrinha = "";
+        praia = "";
+        maxPessoas = 0;
     }
 
-    public static String pathGetter(String filename){
+    public static String pathGetter(String filename) {
         /* We need to verify the input of the user, before it gets here */
         String path = "";
-        if (filename != null && filename.length()>0){
+        if (filename != null && filename.length() > 0) {
 
-            switch (filename.charAt(0)){
+            switch (filename.charAt(0)) {
                 case 'A':
                     path = "../FolderDeTudo/BeachA/" + filename;
                     return path;
@@ -249,7 +247,7 @@ public class Functions {
         return path;
     }
 
-    public static void eachHour(){
+    public static void eachHour() {
         // (Passa por cada Praia e sombrinha, para ver a horaFim, se a hora fim for igual à hora atual, usa cancelarSombrinha(praia + user))
     }
 
