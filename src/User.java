@@ -40,6 +40,7 @@ public class User {
 
     public static boolean user_verificarDisponibilidade(String email){
         // (email already being used?)
+        /* go into the user Folder and then do this */
         try {
             BufferedReader reader = new BufferedReader(new FileReader(new File(email + ".txt")));
             return false;
@@ -51,6 +52,7 @@ public class User {
 
     public static boolean verifyLogin(String email, String password){
         // (emailExiste?PasswordCorreta?)
+        /* go into the user Folder and then do this */
         try {
             BufferedReader reader = new BufferedReader(new FileReader(new File(email + ".txt")));
             System.out.println("File open successful!");
@@ -70,6 +72,7 @@ public class User {
 
     public static void register(String email, String password){
         // (criar novo ficheiro - Filename: "email", conteúdo:"Password")
+        /* go into the user Folder and then do this */
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(email + ".txt"));
             writer.write(password + "\n");
@@ -82,19 +85,23 @@ public class User {
 
     public static void listarSombrinhas(){
         // (Listar as sombrinhas q ele tem no ficheiro)
+        /* go into the user Folder and then do this */
     }
 
     public static boolean verificarSombrinha(){
         // (é uma das sombrinhas dele?)
+        /* go into the user Folder and then do this */
         return false;
     }
 
     public static void reservarSombrinha(String input){
         // (guarda no user newLine:-Dia/Mes/Ano/HoraInicio/HoraFim/IDSOMBRINHA   input = call write_combiner()      Esse chama o mesmo mas das funcoes da praia)
+        /* go into the user Folder and then do this */
     }
 
     public static void cancelarSombrinha(String email, String date, String endHour){
         // (GOES WITH PRAIA ONE)
+        /* go into the user Folder and then do this */
     }
 }
 
