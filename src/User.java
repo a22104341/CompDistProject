@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.Locale;
 
 public class User {
     public static String[][] read_splitter(String file){
@@ -54,7 +55,7 @@ public class User {
         // (emailExiste?PasswordCorreta?)
         /* go into the user Folder and then do this */
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File(email + ".txt")));
+            BufferedReader reader = new BufferedReader(new FileReader(new File(email.toLowerCase(Locale.ROOT) + ".txt")));
             System.out.println("File open successful!");
             /* Check if password is correct */
             if(password.equals(reader.readLine().trim())){
@@ -62,6 +63,9 @@ public class User {
                 return true;
             }
             /* print that the password is wrong */
+            return false;
+        } catch (FileNotFoundException e) {
+            System.out.println("File Not Found");
             return false;
         } catch (IOException e) {
             System.out.println("File I/O error!");
@@ -74,7 +78,8 @@ public class User {
         // (criar novo ficheiro - Filename: "email", conteúdo:"Password")
         /* go into the user Folder and then do this */
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(email + ".txt"));
+            /* Need to turn the email lowercase */
+            BufferedWriter writer = new BufferedWriter(new FileWriter(email.toLowerCase(Locale.ROOT) + ".txt"));
             writer.write(password + "\n");
             /* print user has been registered */
         } catch (IOException e) {
