@@ -46,6 +46,8 @@ public class Functions {
     static String idSombrinha = "";
     static String praia = "";
     static int maxPessoas = 0;
+    static boolean loggedIn = false;
+
 
 
     public static void lerUser(String nomeDoFicheiro, String user) {
@@ -219,6 +221,8 @@ public class Functions {
         idSombrinha = "";
         praia = "";
         maxPessoas = 0;
+        loggedIn = false;
+
     }
 
     public static String pathGetter(String filename) {

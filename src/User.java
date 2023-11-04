@@ -44,8 +44,8 @@ public class User {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(new File(email + ".txt")));
             return false;
-        } catch (IOException e) {
-            System.out.println("File I/O error!");
+        } catch (FileNotFoundException e) {
+            System.out.println("File Not Found");
             return true;
         }
     }
