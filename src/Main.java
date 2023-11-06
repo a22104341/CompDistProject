@@ -192,5 +192,19 @@ public class Main {
         }
 
         /* After Login Steps */
+        /* which operation? */
+        System.out.println("Which operation do you wish to do? \n" +
+                "Pick the correct number for the related operation:\n" +
+                "1 - Reserve Umbrella\n" +
+                "2 - Cancel Umbrella\n" +
+                "3 - List Umbrellas\n" +
+                "4 - Logout\n" +
+                "Exit - If you type in exit at any stage of the process, you will be redirected to this question.");
+
+        /* 1 - Needs to know amnt of people */
+        /* 2 - Just list the umbrellas from that user */
+        /* 1 & 3 - ask for day/Hour... + which beach */
+        /* 4 - Ask: Are you sure you wish to logout? */
+
     }
 }
