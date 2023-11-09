@@ -88,9 +88,14 @@ public class User {
         }
     }
 
-    public static void listarSombrinhas(){
+    public static String[][] listarSombrinhas(String file){
         // (Listar as sombrinhas q ele tem no ficheiro)
         /* go into the user Folder and then do this */
+        System.out.println("These are your Umbrella reservations:");
+        /* Call ReadSplitter and print em out*/
+        String[][] readsplitter = read_splitter(file);
+        /* Beach: X  Date: X  StartHour: X  EndHour: X */
+        return readsplitter;
     }
 
     public static boolean verificarSombrinha(){

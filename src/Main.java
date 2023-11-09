@@ -202,39 +202,89 @@ public class Main {
                 "4 - Logout\n" +
                 "Exit - If you type in exit at any stage of the process, you will be redirected to this question.");
 
+        /* 1 - Needs to know amnt of people */
+        /* 2 - Just list the umbrellas from that user */
+        /* 1 & 3 - ask for day/Hour... + which beach */
+        /* 4 - Ask: Are you sure you wish to logout? */
+
         input = reader.readLine().trim();
-        String day,month,year,startingHour,endingHour;
+        String day,month,year,startHour,endHour;
+        int amntPpl;
         switch (input){
             case "1":
+                System.out.println("How many people will be going to the beach with you?");
+                input = reader.readLine().trim();
+                if (Character.isDigit(input.charAt(0))){
+                    Praia.quantidadePessoasSombrinha(Integer.parseInt(input));
+                }else {
+                    System.out.println("Invalid Input");
+                }
 
+                System.out.println("What is the beach you want to go to?\n A\nB\nC");
+                input = reader.readLine().trim();
+                switch (input){
+                    case "A","B","C":
+                        break;
+                    default:
+                        System.out.println("Invalid Input");
+                }
+                Functions.praia = input;
 
-                System.out.println("What day you want? Day/Month/Year/StartingHour/EndingHour/email/WhichBeach");
+                System.out.println("Which day do you want to go to the beach?");
                 day = reader.readLine().trim();
-                System.out.println("What month you want?");
+                System.out.println("What month you want to go to the beach?");
                 month = reader.readLine().trim();
-                System.out.println("What year you want?");
+                System.out.println("What year you want to go to the beach?");
                 year = reader.readLine().trim();
-                System.out.println("What is your starting hour?");
-                startingHour = reader.readLine().trim();
-                System.out.println("What is your ending hour?");
-                endingHour = reader.readLine().trim();
-                System.out.println("What is the beach you want?");
-                Functions.praia = reader.readLine().trim();
-                System.out.println("How many people?");
-                Praia.quantidadePessoasSombrinha(Integer.parseInt(reader.readLine()));
+
+                System.out.println("At what time do you wish to go? Opening times: 8-20");
+                startHour = reader.readLine().trim();
+                int start = Integer.parseInt(startHour);
+                if (!(start >= 8 && start < 20)){
+                    System.out.println("Invalid Option");
+                }
+
+                System.out.println("When do you want to leave the beach? 8-20");
+                endHour = reader.readLine().trim();
+                int end = Integer.parseInt(endHour);
+                if (!(end > 8 && end <= 20)){
+                    System.out.println("Invalid Option");
+                }
+
+                /* Now we need to check, which umbrella's are valid options for the amount of people */
+                /* We need a function, that returns an Array, with only UmbrellaNrs, that are valid for this user */
+                /* thisArray = CallsTheFunction */
+                int theFileNr = -1;
+                for (int i = 0; i < thisArray.size();i++){
+                    if (Praia.verificarDisponibilidade(Functions.praia + thisArray[i])){
+                        theFileNr = thisArray[i];
+                        break;
+                    }
+                }
+                if (theFileNr != -1){
+                    Functions.pathGetter(Functions.praia + theFileNr);
+                }else {
+                    System.out.println("Unfortunately, there are no Umbrellas available for your specifications");
+                }
+
                 //escreve no ficheiro praia
-                User.reservarSombrinha(Praia.write_combiner(day,month,year,startingHour,endingHour,email));
+                User.reservarSombrinha(Praia.write_combiner(day,month,year,startHour,endHour,email));
             case "2":
-                System.out.println("What day you want? ");
-                day = reader.readLine().trim();
-                System.out.println("What month you want?");
-                month = reader.readLine().trim();
-                System.out.println("What year you want?");
-                year = reader.readLine().trim();
-                System.out.println("What is your ending hour?");
-                endingHour = reader.readLine().trim();
+                String file = Functions.pathGetter(Functions.user + ".txt");
+                String[][] thisUserFile = User.listarSombrinhas(file);
+                input = reader.readLine().trim();
+
+                /* check if its a valid option */
+                if (Integer.parseInt(input) > 0 && Integer.parseInt(input) <= thisUserFile.size()){
+                    /* need to know amount of lines the file has */
+                }
+
+                day = thisUserFile[Integer.parseInt(input) - 1][Functions.day];
+                month = thisUserFile[Integer.parseInt(input) - 1][Functions.month];
+                year = thisUserFile[Integer.parseInt(input) - 1][Functions.year];
+                endHour = thisUserFile[Integer.parseInt(input) - 1][Functions.endHour];
                 String date = day+"/"+month+"/"+year;
-                User.cancelarSombrinha(date,endingHour);
+                User.cancelarSombrinha(date,endHour);
 
             case "3":
                 User.listarSombrinhas();
@@ -249,12 +299,6 @@ public class Main {
                 System.out.println("Invalid option try again!");
 
         }
-
-
-        /* 1 - Needs to know amnt of people */
-        /* 2 - Just list the umbrellas from that user */
-        /* 1 & 3 - ask for day/Hour... + which beach */
-        /* 4 - Ask: Are you sure you wish to logout? */
 
     }
 }
