@@ -104,7 +104,7 @@ public class User {
         /* go into the user Folder and then do this */
     }
 
-    public static void cancelarSombrinha(String email, String date, String endHour){
+    public static void cancelarSombrinha(String date, String endHour){
         // (GOES WITH PRAIA ONE)
         /* go into the user Folder and then do this */
     }

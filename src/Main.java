@@ -193,6 +193,7 @@ public class Main {
 
         /* After Login Steps */
         /* which operation? */
+
         System.out.println("Which operation do you wish to do? \n" +
                 "Pick the correct number for the related operation:\n" +
                 "1 - Reserve Umbrella\n" +
@@ -200,6 +201,55 @@ public class Main {
                 "3 - List Umbrellas\n" +
                 "4 - Logout\n" +
                 "Exit - If you type in exit at any stage of the process, you will be redirected to this question.");
+
+        input = reader.readLine().trim();
+        String day,month,year,startingHour,endingHour;
+        switch (input){
+            case "1":
+
+
+                System.out.println("What day you want? Day/Month/Year/StartingHour/EndingHour/email/WhichBeach");
+                day = reader.readLine().trim();
+                System.out.println("What month you want?");
+                month = reader.readLine().trim();
+                System.out.println("What year you want?");
+                year = reader.readLine().trim();
+                System.out.println("What is your starting hour?");
+                startingHour = reader.readLine().trim();
+                System.out.println("What is your ending hour?");
+                endingHour = reader.readLine().trim();
+                System.out.println("What is the beach you want?");
+                Functions.praia = reader.readLine().trim();
+                System.out.println("How many people?");
+                Praia.quantidadePessoasSombrinha(Integer.parseInt(reader.readLine()));
+                //escreve no ficheiro praia
+                User.reservarSombrinha(Praia.write_combiner(day,month,year,startingHour,endingHour,email));
+            case "2":
+                System.out.println("What day you want? ");
+                day = reader.readLine().trim();
+                System.out.println("What month you want?");
+                month = reader.readLine().trim();
+                System.out.println("What year you want?");
+                year = reader.readLine().trim();
+                System.out.println("What is your ending hour?");
+                endingHour = reader.readLine().trim();
+                String date = day+"/"+month+"/"+year;
+                User.cancelarSombrinha(date,endingHour);
+
+            case "3":
+                User.listarSombrinhas();
+
+
+            case "4":
+                break;
+
+            case "Exit":
+                break;
+            default:
+                System.out.println("Invalid option try again!");
+
+        }
+
 
         /* 1 - Needs to know amnt of people */
         /* 2 - Just list the umbrellas from that user */

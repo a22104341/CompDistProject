@@ -36,7 +36,7 @@ public class Praia {
         return new String[1][1];
     }
 
-    public static String write_combiner(int day, int month, int year, int startHour, int endHour, String email) {
+    public static String write_combiner(String day, String month, String year, String startHour, String endHour, String email) {
         /* maybe these are not all strings? idk, if they arent, then they need a converter in here, so we don't gotta do it by hand everytime */
         return day + "/" + month + "/" + year + "/" + startHour + "/" + endHour + "/" + email;
     }
@@ -79,6 +79,7 @@ public class Praia {
 
     public static void cancelarSombrinha(String email, String date, String endHour) {
         // (Vai a essa sombrinha, procura o email, verifica se a data/horasFim são as msmas, apaga as reservas)
+
 
     }
 
