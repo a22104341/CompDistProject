@@ -255,27 +255,40 @@ public class Main {
                 /* We need a function, that returns an Array, with only UmbrellaNrs, that are valid for this user */
                 /* thisArray = CallsTheFunction */
                 int theFileNr = -1;
-                for (int i = 0; i < thisArray.size();i++){
-                    if (Praia.verificarDisponibilidade(Functions.praia + thisArray[i])){
-                        theFileNr = thisArray[i];
-                        break;
+                int[] thisArray=Praia.umbrellasNr();
+                if(thisArray!=null) {
+                    for (int i = 0; i < thisArray.length; i++) {
+                        if (Praia.verificarDisponibilidade(Functions.praia + thisArray[i])) {
+                            theFileNr = thisArray[i];
+
+                            //-----------------------------------------------SANTOS------------------------
+                            //-----------------------------------------------SANTOS------------------------
+                            //-----------------------------------------------SANTOS------------------------
+
+                            //MUDA O INGLES DIOGO
+                            System.out.println("A umbrella "+Functions.praia + thisArray[i]+"esta livre");
+
+                            break;
+                        }
                     }
+
                 }
                 if (theFileNr != -1){
-                    Functions.pathGetter(Functions.praia + theFileNr);
+                    //escreve no ficheiro praia
+                    Praia.reservarSombrinha(Functions.pathGetter(Functions.praia + theFileNr),Functions.write_combiner(day,month,year,startHour,endHour,email));
+                    User.reservarSombrinha(email,Functions.write_combiner(day,month,year,startHour,endHour,Functions.praia + theFileNr));
                 }else {
                     System.out.println("Unfortunately, there are no Umbrellas available for your specifications");
                 }
 
-                //escreve no ficheiro praia
-                User.reservarSombrinha(Praia.write_combiner(day,month,year,startHour,endHour,email));
+
             case "2":
                 String file = Functions.pathGetter(Functions.user + ".txt");
                 String[][] thisUserFile = User.listarSombrinhas(file);
                 input = reader.readLine().trim();
 
                 /* check if its a valid option */
-                if (Integer.parseInt(input) > 0 && Integer.parseInt(input) <= thisUserFile.size()){
+                if (Integer.parseInt(input) > 0 && Integer.parseInt(input) <= thisUserFile.length){
                     /* need to know amount of lines the file has */
                 }
 
@@ -283,7 +296,9 @@ public class Main {
                 month = thisUserFile[Integer.parseInt(input) - 1][Functions.month];
                 year = thisUserFile[Integer.parseInt(input) - 1][Functions.year];
                 endHour = thisUserFile[Integer.parseInt(input) - 1][Functions.endHour];
+                id = thisUserFile[Integer.parseInt(input) - 1][Functions.endHour];
                 String date = day+"/"+month+"/"+year;
+
                 User.cancelarSombrinha(date,endHour);
 
             case "3":

@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class Praia {
     public static String[][] read_splitter(String file) {
@@ -36,10 +33,7 @@ public class Praia {
         return new String[1][1];
     }
 
-    public static String write_combiner(String day, String month, String year, String startHour, String endHour, String email) {
-        /* maybe these are not all strings? idk, if they arent, then they need a converter in here, so we don't gotta do it by hand everytime */
-        return day + "/" + month + "/" + year + "/" + startHour + "/" + endHour + "/" + email;
-    }
+
 
     public static boolean verificarDisponibilidade(String file) {
         // (vai ao ficheiro da sombrinha, verifica se já existe algum registo a esta hora/data)
@@ -68,13 +62,26 @@ public class Praia {
         // (passa pelo array desta praia e chama verificarDisponibilidade, às horas/data que o utilizador introduziu)
     }
 
-    public static void reservarSombrinha(String input) {
+    public static void reservarSombrinha(String file,String input) {
         // (guarda dentro da sombrinha newLine: -Dia/Mes/Ano/HoraIncio/HoraFim/email) input = call write_combiner()
 
-        String[] divisao = input.split("/");
-        // so a guardar need to guardar em variaveis globais
+        try {
 
-        verificarDisponibilidade(Functions.pathGetter(Functions.praia));
+            BufferedReader in = new BufferedReader(new FileReader(file+"txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file+"txt"));
+
+            //ciclo rescreve o que ja la esta dentro
+            for (String x = in.readLine(); x != null; x = in.readLine()) {
+                writer.write(x);
+            }
+            //escreve no fim
+
+            writer.write(input+ "\n");
+
+        } catch (IOException e) {
+            System.out.println("File I/O error!");
+        }
+
     }
 
     public static void cancelarSombrinha(String email, String date, String endHour) {
@@ -86,5 +93,37 @@ public class Praia {
     public static void quantidadePessoasSombrinha(int maxPeople) {
         // (qual das sombrinhas a mais apropriada?)
         Functions.maxPessoas = maxPeople;
+    }
+
+    public static int[] umbrellasNr(){
+        if(Functions.praia.equals("A")){
+            if (Functions.maxPessoas<=2){
+                return Functions.max2A;
+            }
+            if (Functions.maxPessoas<=3){
+                return Functions.max3A ;
+            }
+            if (Functions.maxPessoas<=4){
+                return Functions.max4A;
+            }
+
+        } else if (Functions.praia.equals("B")) {
+            if (Functions.maxPessoas<=2){
+                return Functions.max2B;
+            }
+            if (Functions.maxPessoas<=3){
+                return Functions.max3B;
+            }
+            if (Functions.maxPessoas<=4){
+                return Functions.max4B;
+            }
+        }else {
+            if (Functions.maxPessoas<=2){
+                return Functions.max2C;
+
+
+            }
+        }
+        return null;
     }
 }

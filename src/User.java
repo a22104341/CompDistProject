@@ -34,10 +34,7 @@ public class User {
         return new String[1][1];
     }
 
-    public static String write_combiner(String day, String month,String year, String startHour, String endHour, String idSombrinha){
-        /* maybe these are not all strings? idk, if they arent, then they need a converter in here, so we don't gotta do it by hand everytime */
-        return day + "/" + month + "/" + year + "/" + startHour + "/" + endHour + "/" + idSombrinha;
-    }
+
 
     public static boolean user_verificarDisponibilidade(String email){
         // (email already being used?)
@@ -104,12 +101,31 @@ public class User {
         return false;
     }
 
-    public static void reservarSombrinha(String input){
+    public static void reservarSombrinha(String file,String input) {
         // (guarda no user newLine:-Dia/Mes/Ano/HoraInicio/HoraFim/IDSOMBRINHA   input = call write_combiner()      Esse chama o mesmo mas das funcoes da praia)
         /* go into the user Folder and then do this */
+
+
+        try {
+
+            BufferedReader in = new BufferedReader(new FileReader(file+"txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file+"txt"));
+
+            //ciclo rescreve o que ja la esta dentro
+            for (String x = in.readLine(); x != null; x = in.readLine()) {
+                writer.write(x);
+            }
+            //escreve no fim
+
+            writer.write(input+ "\n");
+
+        } catch (IOException e) {
+            System.out.println("File I/O error!");
+        }
+
     }
 
-    public static void cancelarSombrinha(String date, String endHour){
+        public static void cancelarSombrinha(String date, String endHour){
         // (GOES WITH PRAIA ONE)
         /* go into the user Folder and then do this */
     }

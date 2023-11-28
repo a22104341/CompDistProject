@@ -24,6 +24,24 @@ public class Functions {
     static final int praiaBSombrinhas4 = 1;
     static final int praiaCSombrinhas2 = 10;
 
+    /* Array com os numeros das sombrinhas */
+
+    static final int[] max2A=new int[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+
+    static final int[] max3A=new int[]{11,12,13,14,15,16,17,18,19,20};
+
+    static final int[] max4A=new int[]{16,17,18,19,20};
+
+    static final int[] max2B=new int[]{1,2,3,4,5,6,7,8,9,10,11};
+
+    static final int[] max3B=new int[]{6,7,8,9,10,11};
+
+    static final int[] max4B=new int[]{11};
+
+    static final int[] max2C=new int[]{1,2,3,4,5,6,7,8,9,10};
+
+
+
     /* Sombrinha Lists */
     static Sombrinha[][] praia_A;
     static Sombrinha[] max2_A;
@@ -50,6 +68,10 @@ public class Functions {
 
 
 
+    public static String write_combiner(String day, String month, String year, String startHour, String endHour, String lastVariable) {
+        /* maybe these are not all strings? idk, if they arent, then they need a converter in here, so we don't gotta do it by hand everytime */
+        return day + "/" + month + "/" + year + "/" + startHour + "/" + endHour + "/" + lastVariable;
+    }
     public static void lerUser(String nomeDoFicheiro, String user) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(new File("praia.txt")));
@@ -76,6 +98,7 @@ public class Functions {
             System.out.println("File I/O error!");
         }
     }
+
 
     public static void lerPraias(String nomeDoFicheiro) {
         try {
@@ -225,6 +248,7 @@ public class Functions {
 
     }
 
+
     public static String pathGetter(String filename) {
         /* We need to verify the input of the user, before it gets here */
         String path = "";
@@ -254,7 +278,29 @@ public class Functions {
     public static void eachHour() {
         // (Passa por cada Praia e sombrinha, para ver a horaFim, se a hora fim for igual à hora atual, usa cancelarSombrinha(praia + user))
     }
+    public static void reservarSombrinha(String file,String input) {
+        // (guarda no user newLine:-Dia/Mes/Ano/HoraInicio/HoraFim/IDSOMBRINHA   input = call write_combiner()      Esse chama o mesmo mas das funcoes da praia)
+        /* go into the user Folder and then do this */
 
+
+        try {
+
+            BufferedReader in = new BufferedReader(new FileReader(file+"txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file+"txt"));
+
+            //ciclo rescreve o que ja la esta dentro
+            for (String x = in.readLine(); x != null; x = in.readLine()) {
+                writer.write(x);
+            }
+            //escreve no fim
+
+            writer.write(input+ "\n");
+
+        } catch (IOException e) {
+            System.out.println("File I/O error!");
+        }
+
+    }
 
     /*
      * start()                  (starts everything just like before)
