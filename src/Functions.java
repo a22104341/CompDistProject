@@ -16,30 +16,30 @@ public class Functions {
     static final int idSombra = 5;
     static final int email = 5;
 
+    /*
     static final int praiaASombrinhas2 = 10;
     static final int praiaASombrinhas3 = 5;
     static final int praiaASombrinhas4 = 5;
     static final int praiaBSombrinhas2 = 5;
     static final int praiaBSombrinhas3 = 5;
     static final int praiaBSombrinhas4 = 1;
-    static final int praiaCSombrinhas2 = 10;
+    static final int praiaCSombrinhas2 = 10;*/
 
     /* Array com os numeros das sombrinhas */
 
-    static final int[] max2A=new int[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+    static final int[] max2A = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
 
-    static final int[] max3A=new int[]{11,12,13,14,15,16,17,18,19,20};
+    static final int[] max3A = new int[]{11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
 
-    static final int[] max4A=new int[]{16,17,18,19,20};
+    static final int[] max4A = new int[]{16, 17, 18, 19, 20};
 
-    static final int[] max2B=new int[]{1,2,3,4,5,6,7,8,9,10,11};
+    static final int[] max2B = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
 
-    static final int[] max3B=new int[]{6,7,8,9,10,11};
+    static final int[] max3B = new int[]{6, 7, 8, 9, 10, 11};
 
-    static final int[] max4B=new int[]{11};
+    static final int[] max4B = new int[]{11};
 
-    static final int[] max2C=new int[]{1,2,3,4,5,6,7,8,9,10};
-
+    static final int[] max2C = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
 
     /* Sombrinha Lists */
@@ -67,11 +67,11 @@ public class Functions {
     static boolean loggedIn = false;
 
 
-
     public static String write_combiner(String day, String month, String year, String startHour, String endHour, String lastVariable) {
         /* maybe these are not all strings? idk, if they arent, then they need a converter in here, so we don't gotta do it by hand everytime */
         return day + "/" + month + "/" + year + "/" + startHour + "/" + endHour + "/" + lastVariable;
     }
+
     public static void lerUser(String nomeDoFicheiro, String user) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(new File("praia.txt")));
@@ -173,65 +173,63 @@ public class Functions {
     /*                                               ACTUAL CODE STARTS HERE */
 
     public static void start() {
-        /* Praia A */
-        praia_A = new Sombrinha[3][3];
-        max2_A = new Sombrinha[praiaASombrinhas2];
-        max3_A = new Sombrinha[praiaASombrinhas3];
-        max4_A = new Sombrinha[praiaASombrinhas4];
+        ///* Praia A */
+        //praia_A = new Sombrinha[3][3];
+        //max2_A = new Sombrinha[praiaASombrinhas2];
+        //max3_A = new Sombrinha[praiaASombrinhas3];
+        //max4_A = new Sombrinha[praiaASombrinhas4];
 
-        char beachA = 'A';
+        //char beachA = 'A';
 
-        /* Create Sombrinhas and Save them into the Arrays */
-        for (int i = 1; i <= praiaASombrinhas2; i++) {
-            max2_A[i] = new Sombrinha(i, max2, beachA);
-        }
-        for (int i = 1; i <= praiaASombrinhas3; i++) {
-            max3_A[i] = new Sombrinha(i, max3, beachA);
-        }
-        for (int i = 1; i <= praiaASombrinhas4; i++) {
-            max4_A[i] = new Sombrinha(i, max4, beachA);
-        }
-        /* Save arrays of sombrinhas into the beach */
-        praia_A[max2] = max2_A;
-        praia_A[max3] = max3_A;
-        praia_A[max4] = max4_A;
+        ///* Create Sombrinhas and Save them into the Arrays */
+        //for (int i = 1; i <= praiaASombrinhas2; i++) {
+        //    max2_A[i] = new Sombrinha(i, max2, beachA);
+        //}
+        //for (int i = 1; i <= praiaASombrinhas3; i++) {
+        //    max3_A[i] = new Sombrinha(i, max3, beachA);
+        //}
+        //for (int i = 1; i <= praiaASombrinhas4; i++) {
+        //    max4_A[i] = new Sombrinha(i, max4, beachA);
+        //}
+        ///* Save arrays of sombrinhas into the beach */
+        //praia_A[max2] = max2_A;
+        //praia_A[max3] = max3_A;
+        //praia_A[max4] = max4_A;
 
+        ///* Praia B */
+        //praia_B = new Sombrinha[3][3];
+        //max2_B = new Sombrinha[praiaBSombrinhas2];
+        //max3_B = new Sombrinha[praiaBSombrinhas3];
+        //max4_B = new Sombrinha[praiaBSombrinhas4];
 
-        /* Praia B */
-        praia_B = new Sombrinha[3][3];
-        max2_B = new Sombrinha[praiaBSombrinhas2];
-        max3_B = new Sombrinha[praiaBSombrinhas3];
-        max4_B = new Sombrinha[praiaBSombrinhas4];
+        //char beachB = 'B';
 
-        char beachB = 'B';
+        ///* Create Sombrinhas and Save them into the Arrays */
+        //for (int i = 1; i <= praiaBSombrinhas2; i++) {
+        //    max2_B[i] = new Sombrinha(i, max2, beachB);
+        //}
+        //for (int i = 1; i <= praiaBSombrinhas3; i++) {
+        //    max3_B[i] = new Sombrinha(i, max3, beachB);
+        //}
+        //for (int i = 1; i <= praiaBSombrinhas4; i++) {
+        //    max4_B[i] = new Sombrinha(i, max4, beachB);
+        //}
+        ///* Save arrays of sombrinhas into the beach */
+        //praia_B[max2] = max2_B;
+        //praia_B[max3] = max3_B;
+        //praia_B[max4] = max4_B;
 
-        /* Create Sombrinhas and Save them into the Arrays */
-        for (int i = 1; i <= praiaBSombrinhas2; i++) {
-            max2_B[i] = new Sombrinha(i, max2, beachB);
-        }
-        for (int i = 1; i <= praiaBSombrinhas3; i++) {
-            max3_B[i] = new Sombrinha(i, max3, beachB);
-        }
-        for (int i = 1; i <= praiaBSombrinhas4; i++) {
-            max4_B[i] = new Sombrinha(i, max4, beachB);
-        }
-        /* Save arrays of sombrinhas into the beach */
-        praia_B[max2] = max2_B;
-        praia_B[max3] = max3_B;
-        praia_B[max4] = max4_B;
+        ///* Praia C */
+        //praia_C = new Sombrinha[1][1];
+        //max2_C = new Sombrinha[praiaCSombrinhas2];
 
+        //char beachC = 'C';
 
-        /* Praia C */
-        praia_C = new Sombrinha[1][1];
-        max2_C = new Sombrinha[praiaCSombrinhas2];
-
-        char beachC = 'C';
-
-        /* Create Sombrinhas and Save them into the Arrays */
-        for (int i = 1; i <= praiaCSombrinhas2; i++) {
-            max2_C[i] = new Sombrinha(i, max2, beachC);
-        }
-        praia_C[max2] = max2_C;
+        ///* Create Sombrinhas and Save them into the Arrays */
+        //for (int i = 1; i <= praiaCSombrinhas2; i++) {
+        //    max2_C[i] = new Sombrinha(i, max2, beachC);
+        //}
+        //praia_C[max2] = max2_C;
 
 
         used = 0;
@@ -278,15 +276,16 @@ public class Functions {
     public static void eachHour() {
         // (Passa por cada Praia e sombrinha, para ver a horaFim, se a hora fim for igual à hora atual, usa cancelarSombrinha(praia + user))
     }
-    public static void reservarSombrinha(String file,String input) {
+
+    public static void reservarSombrinha(String file, String input) {
         // (guarda no user newLine:-Dia/Mes/Ano/HoraInicio/HoraFim/IDSOMBRINHA   input = call write_combiner()      Esse chama o mesmo mas das funcoes da praia)
         /* go into the user Folder and then do this */
 
 
         try {
 
-            BufferedReader in = new BufferedReader(new FileReader(file+"txt"));
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file+"txt"));
+            BufferedReader in = new BufferedReader(new FileReader(file + "txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file + "txt"));
 
             //ciclo rescreve o que ja la esta dentro
             for (String x = in.readLine(); x != null; x = in.readLine()) {
@@ -294,7 +293,7 @@ public class Functions {
             }
             //escreve no fim
 
-            writer.write(input+ "\n");
+            writer.write(input + "\n");
 
         } catch (IOException e) {
             System.out.println("File I/O error!");

@@ -2,30 +2,30 @@ import java.io.*;
 import java.util.Locale;
 
 public class User {
-    public static String[][] read_splitter(String file){
-        /* use the variables on top in Functions */
+    public static String[][] read_splitter(String file, String path) {
         // (tem a String como input, retorna uma Matrix com tudo separado [][] 1st is the lines, 2nd is split by / etc.)
-        //GUARDA OS DADOS DAS PRAIAS dentro de uma matriz
+        // 0-day, 1-month, 2-year, 3-startHour, 4-endHour, 5-idSombra;
+
         String[][] dados;
         try {
 
-            BufferedReader reader = new BufferedReader(new FileReader(new File(file)));
-            BufferedReader reader1 = new BufferedReader(new FileReader(new File(file)));
+            BufferedReader reader = new BufferedReader(new FileReader(new File(path + file)));
+            BufferedReader reader1 = new BufferedReader(new FileReader(new File(path + file)));
             System.out.println("File open successful!");
             //countLines count lines
-            int countLines=0;
+            int countLines = 0;
             for (String x = reader1.readLine(); x != null; x = reader1.readLine()) {
                 countLines++;
 
             }
-            dados =new String[countLines][6];
+            dados = new String[countLines][6];
 
-            String line =null;
-            line=reader.readLine();
-            for (int lines=0;lines<countLines;lines++){
+            String line = null;
+            line = reader.readLine();
+            for (int lines = 0; lines < countLines; lines++) {
                 String[] divisao = line.split("/");
-                dados[lines]=divisao;
-                line=reader.readLine();
+                dados[lines] = divisao;
+                line = reader.readLine();
             }
             return dados;
         } catch (IOException e) {
@@ -35,8 +35,7 @@ public class User {
     }
 
 
-
-    public static boolean user_verificarDisponibilidade(String email){
+    public static boolean user_verificarDisponibilidade(String email) {
         // (email already being used?)
         /* go into the user Folder and then do this */
         try {
@@ -48,14 +47,14 @@ public class User {
         }
     }
 
-    public static boolean verifyLogin(String email, String password){
+    public static boolean verifyLogin(String email, String password) {
         // (emailExiste?PasswordCorreta?)
         /* go into the user Folder and then do this */
         try {
             BufferedReader reader = new BufferedReader(new FileReader(new File(email.toLowerCase(Locale.ROOT) + ".txt")));
             System.out.println("File open successful!");
             /* Check if password is correct */
-            if(password.equals(reader.readLine().trim())){
+            if (password.equals(reader.readLine().trim())) {
                 /* print that the user is logged in */
                 return true;
             }
@@ -71,7 +70,7 @@ public class User {
         }
     }
 
-    public static void register(String email, String password){
+    public static void register(String email, String password) {
         // (criar novo ficheiro - Filename: "email", conteúdo:"Password")
         /* go into the user Folder and then do this */
         try {
@@ -85,31 +84,32 @@ public class User {
         }
     }
 
-    public static String[][] listarSombrinhas(String file){
+    public static String[][] listarSombrinhas(String file) {
         // (Listar as sombrinhas q ele tem no ficheiro)
         /* go into the user Folder and then do this */
         System.out.println("These are your Umbrella reservations:");
+
         /* Call ReadSplitter and print em out*/
-        String[][] readsplitter = read_splitter(file);
+        String path = Functions.pathGetter(file);
+        String[][] readsplitter = read_splitter(file, path);
+
+        // 0-day, 1-month, 2-year, 3-startHour, 4-endHour, 5-idSombra;
+        for (int i = 0; i < readsplitter.length; i++){
+            String beach = file.charAt(0) + "";
+            System.out.println((i+1) + " - Beach: " + beach + "DD/MM/YYYY" + readsplitter[0] + "/" + readsplitter[1] + "/" + readsplitter[2]
+                    + "start hour: " + readsplitter[3] + "end hour: " + readsplitter[4]);
+        }
         /* Beach: X  Date: X  StartHour: X  EndHour: X */
         return readsplitter;
     }
 
-    public static boolean verificarSombrinha(){
-        // (é uma das sombrinhas dele?)
-        /* go into the user Folder and then do this */
-        return false;
-    }
-
-    public static void reservarSombrinha(String file,String input) {
+    public static void reservarSombrinha(String file, String input) {
         // (guarda no user newLine:-Dia/Mes/Ano/HoraInicio/HoraFim/IDSOMBRINHA   input = call write_combiner()      Esse chama o mesmo mas das funcoes da praia)
         /* go into the user Folder and then do this */
-
-
         try {
 
-            BufferedReader in = new BufferedReader(new FileReader(file+"txt"));
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file+"txt"));
+            BufferedReader in = new BufferedReader(new FileReader(file + "txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file + "txt"));
 
             //ciclo rescreve o que ja la esta dentro
             for (String x = in.readLine(); x != null; x = in.readLine()) {
@@ -117,7 +117,7 @@ public class User {
             }
             //escreve no fim
 
-            writer.write(input+ "\n");
+            writer.write(input + "\n");
 
         } catch (IOException e) {
             System.out.println("File I/O error!");
@@ -125,9 +125,15 @@ public class User {
 
     }
 
-        public static void cancelarSombrinha(String date, String endHour){
+    public static void cancelarSombrinha(int line, String[][] info, String email) {
         // (GOES WITH PRAIA ONE)
         /* go into the user Folder and then do this */
+
+
+        /* Write info into a new File, except the line that was given in the params */
+        /* Overwrite stuff from old file, with stuff from new file */
+
+        Praia.cancelarSombrinha(email, info[line]);
     }
 }
 

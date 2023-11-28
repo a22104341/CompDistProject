@@ -1,15 +1,15 @@
 import java.io.*;
 
 public class Praia {
-    public static String[][] read_splitter(String file) {
+    public static String[][] read_splitter(String file, String path) {
         /* use the variables on top in Functions */
         // (tem a String como input, retorna uma Matrix com tudo separado [][] 1st is the lines, 2nd is split by / etc.)
         //GUARDA OS DADOS DAS PRAIAS dentro de uma matriz
         String[][] dados;
         try {
 
-            BufferedReader reader = new BufferedReader(new FileReader(new File(file)));
-            BufferedReader reader1 = new BufferedReader(new FileReader(new File(file)));
+            BufferedReader reader = new BufferedReader(new FileReader(new File(path + file)));
+            BufferedReader reader1 = new BufferedReader(new FileReader(new File(path + file)));
             System.out.println("File open successful!");
             //countLines count lines
             int countLines = 0;
@@ -34,11 +34,11 @@ public class Praia {
     }
 
 
-
     public static boolean verificarDisponibilidade(String file) {
         // (vai ao ficheiro da sombrinha, verifica se já existe algum registo a esta hora/data)
         Functions.lerPraias(file);
-        String[][] matriz = read_splitter(file);
+        String path = Functions.pathGetter(file);
+        String[][] matriz = read_splitter(file, path);
         // O QUE TEM O 1 E A MATRIZ
         boolean returnValue = true;
         for (int index = 0; index < matriz.length; index++) {
@@ -50,7 +50,7 @@ public class Praia {
                 } else {
                     //dps escreve no ficheiro
                     //PRINT("NO FICHEIRO A2 A VAGA ");
-                    returnValue =  true;
+                    returnValue = true;
                     break;
                 }
             }
@@ -60,15 +60,49 @@ public class Praia {
 
     public static void listarSombrinhas(String date, String startHour, String endHour) {
         // (passa pelo array desta praia e chama verificarDisponibilidade, às horas/data que o utilizador introduziu)
+
+        /* Go through each file with the file_reader , then check if the sombrinha is occupied during those times */
+        String beach = Functions.praia;
+
+        System.out.println("These are the available umbrellas on beach " + beach);
+        int amntUmbrellas = 0;
+        switch (beach){
+            case "A":
+                amntUmbrellas = 20;
+                break;
+            case "B":
+                amntUmbrellas = 11;
+                break;
+            case "C":
+                amntUmbrellas = 10;
+                break;
+        }
+
+        for (int i = 1; i <= amntUmbrellas; i++){
+            /* read with file reader*/
+
+            /* if any of the lines have a problem with this date and start/endhour go to the next line, till the matrix is over */
+            boolean isFine = true;
+
+            /* inside the new for */
+            if(!isFine){
+                break;
+            }
+
+            /* after the new for */
+            if (isFine){
+                System.out.println(beach + i);
+            }
+        }
     }
 
-    public static void reservarSombrinha(String file,String input) {
+    public static void reservarSombrinha(String file, String input) {
         // (guarda dentro da sombrinha newLine: -Dia/Mes/Ano/HoraIncio/HoraFim/email) input = call write_combiner()
 
         try {
 
-            BufferedReader in = new BufferedReader(new FileReader(file+"txt"));
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file+"txt"));
+            BufferedReader in = new BufferedReader(new FileReader(file + "txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file + "txt"));
 
             //ciclo rescreve o que ja la esta dentro
             for (String x = in.readLine(); x != null; x = in.readLine()) {
@@ -76,7 +110,7 @@ public class Praia {
             }
             //escreve no fim
 
-            writer.write(input+ "\n");
+            writer.write(input + "\n");
 
         } catch (IOException e) {
             System.out.println("File I/O error!");
@@ -84,8 +118,12 @@ public class Praia {
 
     }
 
-    public static void cancelarSombrinha(String email, String date, String endHour) {
+    public static void cancelarSombrinha(String email, String[] info) {
         // (Vai a essa sombrinha, procura o email, verifica se a data/horasFim são as msmas, apaga as reservas)
+
+        String file = Functions.pathGetter(info[Functions.idSombra]) + info[Functions.idSombra] + ".txt";
+
+        /* Get this file and do same thing as on the other cancel function, but you have to find the email and check if its the correct reservation with info[] */
 
 
     }
@@ -95,30 +133,30 @@ public class Praia {
         Functions.maxPessoas = maxPeople;
     }
 
-    public static int[] umbrellasNr(){
-        if(Functions.praia.equals("A")){
-            if (Functions.maxPessoas<=2){
+    public static int[] umbrellasNr() {
+        if (Functions.praia.equals("A")) {
+            if (Functions.maxPessoas <= 2) {
                 return Functions.max2A;
             }
-            if (Functions.maxPessoas<=3){
-                return Functions.max3A ;
+            if (Functions.maxPessoas <= 3) {
+                return Functions.max3A;
             }
-            if (Functions.maxPessoas<=4){
+            if (Functions.maxPessoas <= 4) {
                 return Functions.max4A;
             }
 
         } else if (Functions.praia.equals("B")) {
-            if (Functions.maxPessoas<=2){
+            if (Functions.maxPessoas <= 2) {
                 return Functions.max2B;
             }
-            if (Functions.maxPessoas<=3){
+            if (Functions.maxPessoas <= 3) {
                 return Functions.max3B;
             }
-            if (Functions.maxPessoas<=4){
+            if (Functions.maxPessoas <= 4) {
                 return Functions.max4B;
             }
-        }else {
-            if (Functions.maxPessoas<=2){
+        } else {
+            if (Functions.maxPessoas <= 2) {
                 return Functions.max2C;
 
 
