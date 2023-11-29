@@ -337,12 +337,11 @@ public class Main {
 
                 String date = day + "/" + month + "/" + year;
 
-
-                Praia.listarSombrinhas(date, startHour, endHour);
+                Praia.listarSombrinhas(date, start, end);
 
             case "4":
                 /* Logout */
-
+                Functions.loggedIn = false;
                 break;
 
             case "Exit":
@@ -350,6 +349,11 @@ public class Main {
             default:
                 System.out.println("Invalid option try again!");
 
+        }
+
+        // Send user back to the loginScreen
+        if (!Functions.loggedIn){
+            //break;
         }
 
     }

@@ -58,13 +58,13 @@ public class Praia {
         return returnValue;
     }
 
-    public static void listarSombrinhas(String date, String startHour, String endHour) {
+    public static void listarSombrinhas(String date, int startHour, int endHour) {
         // (passa pelo array desta praia e chama verificarDisponibilidade, às horas/data que o utilizador introduziu)
 
         /* Go through each file with the file_reader , then check if the sombrinha is occupied during those times */
         String beach = Functions.praia;
 
-        System.out.println("These are the available umbrellas on beach " + beach);
+        System.out.println("These are the available umbrellas on beach " + beach + ":");
         int amntUmbrellas = 0;
         switch (beach){
             case "A":
@@ -78,18 +78,36 @@ public class Praia {
                 break;
         }
 
+        String[] requestedDate = date.split("/");
+
         for (int i = 1; i <= amntUmbrellas; i++){
             /* read with file reader*/
+            String[][] reader = read_splitter(beach + i + ".txt", Functions.pathGetter(beach));
 
             /* if any of the lines have a problem with this date and start/endhour go to the next line, till the matrix is over */
             boolean isFine = true;
+            for (int j = 0; j < reader.length; j++){
+                String[] currentRead = reader[j];
+                String day = currentRead[Functions.day];
+                String month = currentRead[Functions.month];
+                String year = currentRead[Functions.year];
 
-            /* inside the new for */
-            if(!isFine){
-                break;
+                int start = Integer.parseInt(currentRead[Functions.startHour]);
+                int end = Integer.parseInt(currentRead[Functions.endHour]);
+
+                if (requestedDate[Functions.day].equals(day) && requestedDate[Functions.month].equals(month) && requestedDate[Functions.year].equals(year)){
+                    if ((startHour >= start && startHour < end) || (end <= endHour && endHour > start)){
+
+                        /* If any of the lines in the file, have problems with the requested date and time, this umbrella
+                        can't be used for the user, so we go to the next file */
+                        isFine = false;
+                        break;
+
+                    }
+                }
             }
 
-            /* after the new for */
+            /* if there was no problems with the date and time of the requested booking, the umbrella gets printed */
             if (isFine){
                 System.out.println(beach + i);
             }
@@ -120,12 +138,28 @@ public class Praia {
 
     public static void cancelarSombrinha(String email, String[] info) {
         // (Vai a essa sombrinha, procura o email, verifica se a data/horasFim são as msmas, apaga as reservas)
+        String file = Functions.praia + info[Functions.idSombra] + ".txt";
+        String path = Functions.pathGetter(file);
+        String[][] thisUmbrella = read_splitter(file, path);
 
-        String file = Functions.pathGetter(info[Functions.idSombra]) + info[Functions.idSombra] + ".txt";
+        int removeThisLine = -1;
+        for (int i = 0; i < thisUmbrella.length; i++){
+            String[] currentLine = thisUmbrella[i];
+            if (currentLine[Functions.email].equals(email)){
+                if (currentLine[Functions.day].equals(info[Functions.day]) && currentLine[Functions.month].equals(info[Functions.month]) &&
+                        currentLine[Functions.year].equals(info[Functions.year]) && currentLine[Functions.endHour].equals(info[Functions.endHour])){
+                    removeThisLine = i;
+                    break;
+                }
+            }
+        }
+        if (removeThisLine == -1){
+            System.out.println("Something went wrong!");
+        }
 
-        /* Get this file and do same thing as on the other cancel function, but you have to find the email and check if its the correct reservation with info[] */
-
-
+        /* Remove the line that we don't need */
+        String ogFileName = Functions.praia + ".txt";
+        Functions.replaceFileInfo(removeThisLine, ogFileName, thisUmbrella);
     }
 
     public static void quantidadePessoasSombrinha(int maxPeople) {

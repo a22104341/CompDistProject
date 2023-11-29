@@ -67,10 +67,7 @@ public class Functions {
     static boolean loggedIn = false;
 
 
-    public static String write_combiner(String day, String month, String year, String startHour, String endHour, String lastVariable) {
-        /* maybe these are not all strings? idk, if they arent, then they need a converter in here, so we don't gotta do it by hand everytime */
-        return day + "/" + month + "/" + year + "/" + startHour + "/" + endHour + "/" + lastVariable;
-    }
+
 
     public static void lerUser(String nomeDoFicheiro, String user) {
         try {
@@ -273,33 +270,57 @@ public class Functions {
         return path;
     }
 
-    public static void eachHour() {
-        // (Passa por cada Praia e sombrinha, para ver a horaFim, se a hora fim for igual à hora atual, usa cancelarSombrinha(praia + user))
+    public static String write_combiner(String day, String month, String year, String startHour, String endHour, String lastVariable) {
+        /* maybe these are not all strings? idk, if they arent, then they need a converter in here, so we don't gotta do it by hand everytime */
+        return day + "/" + month + "/" + year + "/" + startHour + "/" + endHour + "/" + lastVariable;
     }
 
-    public static void reservarSombrinha(String file, String input) {
-        // (guarda no user newLine:-Dia/Mes/Ano/HoraInicio/HoraFim/IDSOMBRINHA   input = call write_combiner()      Esse chama o mesmo mas das funcoes da praia)
-        /* go into the user Folder and then do this */
+    public static String array_combiner(String[] array){
+        StringBuilder magic = new StringBuilder();
+        for (int i = 0; i < array.length - 1; i++){
+            magic.append(array[i]).append("/");
+        }
+        return magic + array[array.length - 1];
+    }
 
-
+    public static void replaceFileInfo(int line, String originalFileName, String[][] info){
         try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("TempFile" + ".txt"));
 
-            BufferedReader in = new BufferedReader(new FileReader(file + "txt"));
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file + "txt"));
-
-            //ciclo rescreve o que ja la esta dentro
-            for (String x = in.readLine(); x != null; x = in.readLine()) {
-                writer.write(x);
+            //ciclo que escreve oq tem do outro ficheiro, para dentro de um TempFile
+            for (int i = 0; i < info.length; i++) {
+                if (i != line) {
+                    String thisLine = Functions.array_combiner(info[i]);
+                    writer.write(thisLine + "\n");
+                }
             }
-            //escreve no fim
-
-            writer.write(input + "\n");
 
         } catch (IOException e) {
             System.out.println("File I/O error!");
         }
 
+        /* Overwrite stuff from old file, with stuff from new file */
+        String sourceFileName = "TempFile.txt";
+        try (
+                BufferedReader reader = new BufferedReader(new FileReader("TempFile.txt"));
+                BufferedWriter writer = new BufferedWriter(new FileWriter(Functions.pathGetter(originalFileName) + originalFileName + ".txt"))
+        ) {
+            String line2;
+            while ((line2 = reader.readLine()) != null) {
+                // Read a line from the source file and write it to the destination file
+                writer.write(line2);
+                writer.newLine(); // Add a newline for each line if needed
+            }
+        } catch (IOException e) {
+            System.err.println("Error cloning content: " + e.getMessage());
+        }
     }
+
+    public static void eachHour() {
+        // (Passa por cada Praia e sombrinha, para ver a horaFim, se a hora fim for igual à hora atual, usa cancelarSombrinha(praia + user))
+    }
+
+
 
     /*
      * start()                  (starts everything just like before)

@@ -94,9 +94,9 @@ public class User {
         String[][] readsplitter = read_splitter(file, path);
 
         // 0-day, 1-month, 2-year, 3-startHour, 4-endHour, 5-idSombra;
-        for (int i = 0; i < readsplitter.length; i++){
+        for (int i = 0; i < readsplitter.length; i++) {
             String beach = file.charAt(0) + "";
-            System.out.println((i+1) + " - Beach: " + beach + "DD/MM/YYYY" + readsplitter[0] + "/" + readsplitter[1] + "/" + readsplitter[2]
+            System.out.println((i + 1) + " - Beach: " + beach + "DD/MM/YYYY" + readsplitter[0] + "/" + readsplitter[1] + "/" + readsplitter[2]
                     + "start hour: " + readsplitter[3] + "end hour: " + readsplitter[4]);
         }
         /* Beach: X  Date: X  StartHour: X  EndHour: X */
@@ -108,8 +108,8 @@ public class User {
         /* go into the user Folder and then do this */
         try {
 
-            BufferedReader in = new BufferedReader(new FileReader(file + "txt"));
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file + "txt"));
+            BufferedReader in = new BufferedReader(new FileReader(file + ".txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file + ".txt"));
 
             //ciclo rescreve o que ja la esta dentro
             for (String x = in.readLine(); x != null; x = in.readLine()) {
@@ -128,11 +128,11 @@ public class User {
     public static void cancelarSombrinha(int line, String[][] info, String email) {
         // (GOES WITH PRAIA ONE)
         /* go into the user Folder and then do this */
+        String originalFileName = email + ".txt";
 
+        Functions.replaceFileInfo(line, originalFileName, info);
 
-        /* Write info into a new File, except the line that was given in the params */
-        /* Overwrite stuff from old file, with stuff from new file */
-
+        /* Also delete this reservation, inside the umbrella file */
         Praia.cancelarSombrinha(email, info[line]);
     }
 }
