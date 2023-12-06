@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.Locale;
 
 public class User {
-    public static String[][] read_splitter(String file, String path) {
+    public static String[][] user_read_splitter(String file, String path) {
         // (tem a String como input, retorna uma Matrix com tudo separado [][] 1st is the lines, 2nd is split by / etc.)
         // 0-day, 1-month, 2-year, 3-startHour, 4-endHour, 5-idSombra;
 
@@ -47,7 +47,7 @@ public class User {
         }
     }
 
-    public static boolean verifyLogin(String email, String password) {
+    public static boolean user_verifyLogin(String email, String password) {
         // (emailExiste?PasswordCorreta?)
         /* go into the user Folder and then do this */
         try {
@@ -70,7 +70,7 @@ public class User {
         }
     }
 
-    public static void register(String email, String password) {
+    public static void user_register(String email, String password) {
         // (criar novo ficheiro - Filename: "email", conteúdo:"Password")
         /* go into the user Folder and then do this */
         try {
@@ -84,14 +84,14 @@ public class User {
         }
     }
 
-    public static String[][] listarSombrinhas(String file) {
+    public static String[][] user_listarSombrinhas(String file) {
         // (Listar as sombrinhas q ele tem no ficheiro)
         /* go into the user Folder and then do this */
         System.out.println("These are your Umbrella reservations:");
 
         /* Call ReadSplitter and print em out*/
         String path = Functions.pathGetter(file);
-        String[][] readsplitter = read_splitter(file, path);
+        String[][] readsplitter = user_read_splitter(file, path);
 
         // 0-day, 1-month, 2-year, 3-startHour, 4-endHour, 5-idSombra;
         for (int i = 0; i < readsplitter.length; i++) {
@@ -103,7 +103,7 @@ public class User {
         return readsplitter;
     }
 
-    public static void reservarSombrinha(String file, String input) {
+    public static void user_reservarSombrinha(String file, String input) {
         // (guarda no user newLine:-Dia/Mes/Ano/HoraInicio/HoraFim/IDSOMBRINHA   input = call write_combiner()      Esse chama o mesmo mas das funcoes da praia)
         /* go into the user Folder and then do this */
         try {
@@ -125,7 +125,7 @@ public class User {
 
     }
 
-    public static void cancelarSombrinha(int line, String[][] info, String email) {
+    public static void user_cancelarSombrinha(int line, String[][] info, String email) {
         // (GOES WITH PRAIA ONE)
         /* go into the user Folder and then do this */
         String originalFileName = email + ".txt";

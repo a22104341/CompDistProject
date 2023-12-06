@@ -8,7 +8,79 @@ import java.util.Locale;
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
+    //variaveis do Functions
+
+    /* Define variables that won't change */
+    static final int max2 = 0;
+    static final int max3 = 1;
+    static final int max4 = 2;
+
+
+    static final int day = 0;
+    static final int month = 1;
+    static final int year = 2;
+    static final int startHour = 3;
+    static final int endHour = 4;
+    static final int idSombra = 5;
+    static final int email = 5;
+
+    /*
+    static final int praiaASombrinhas2 = 10;
+    static final int praiaASombrinhas3 = 5;
+    static final int praiaASombrinhas4 = 5;
+    static final int praiaBSombrinhas2 = 5;
+    static final int praiaBSombrinhas3 = 5;
+    static final int praiaBSombrinhas4 = 1;
+    static final int praiaCSombrinhas2 = 10;*/
+
+    /* Array com os numeros das sombrinhas */
+
+    static final int[] max2A = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+
+    static final int[] max3A = new int[]{11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+
+    static final int[] max4A = new int[]{16, 17, 18, 19, 20};
+
+    static final int[] max2B = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+
+    static final int[] max3B = new int[]{6, 7, 8, 9, 10, 11};
+
+    static final int[] max4B = new int[]{11};
+
+    static final int[] max2C = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+
+    /* Sombrinha Lists */
+    static Sombrinha[][] praia_A;
+    static Sombrinha[] max2_A;
+    static Sombrinha[] max3_A;
+    static Sombrinha[] max4_A;
+    static Sombrinha[][] praia_B;
+    static Sombrinha[] max2_B;
+    static Sombrinha[] max3_B;
+    static Sombrinha[] max4_B;
+    static Sombrinha[][] praia_C;
+    static Sombrinha[] max2_C;
+
+    static int used = 0;
+    static String user = "";
+    static int dia = 0;
+    static int mes = 0;
+    static int ano = 0;
+    static int horadeInicio = 0;
+    static int horaFim = 0;
+    static String idSombrinha = "";
+    static String praia = "";
+    static int maxPessoas = 0;
+    static boolean loggedIn = false;
+
+
+    //Variaveis do USER
+
+
     public static void main(String[] args) throws IOException {
+
+
         /* Initiialize all the Variables and Lists */
         Functions.start();
 
@@ -28,7 +100,7 @@ public class Main {
         String password;
         String email = "";
 
-        if (!Functions.loggedIn) {
+        if (!Main.loggedIn) {
             /* Login or register? */
             System.out.println("Do you wish to Login or Register? \n 1 - Login \n 2 - Register");
             input = reader.readLine();
@@ -49,18 +121,18 @@ public class Main {
 
             if (thisInput == '1') {
                 /* Login */
-                if (input != null && !User.user_verificarDisponibilidade(input)) {
+                if (input != null && !Functions.user_verificarDisponibilidade(input)) {
                     email = input;
                     System.out.println("Please type in your password:");
                     input = reader.readLine();
-                    if (input != null && !User.verifyLogin(email, input)) {
+                    if (input != null && !Functions.user_verifyLogin(email, input)) {
                         System.out.println("Incorrect login credentials!");
                     }
                 }
             } else {
                 /* Register */
                 /* Check if email already is registered */
-                if (input != null && User.user_verificarDisponibilidade(input)) {
+                if (input != null && Functions.user_verificarDisponibilidade(input)) {
 
                     //Register Section
                     email = input;
@@ -180,7 +252,7 @@ public class Main {
                     if (input != null) {
                         if (input.equals(password)) {
                             /* Locale Root is good practice */
-                            User.register(email, password);
+                            Functions.user_register(email, password);
                         } else {
                             System.out.println("Password incorrect, retype password");
                         }
@@ -188,7 +260,7 @@ public class Main {
                 }
             }
 
-            Functions.loggedIn = true;
+            Main.loggedIn = true;
         }
 
         /* After Login Steps */
@@ -203,7 +275,7 @@ public class Main {
                 "Exit - If you type in exit at any stage of the process, you will be redirected to this question.");
 
         /* 1 - Needs to know amnt of people */
-        /* 2 - Just list the umbrellas from that user */
+        /* 2 - Just list the umbrellas from that Functions.*/
         /* 1 & 3 - ask for day/Hour... + which beach */
         /* 4 - Ask: Are you sure you wish to logout? */
 
@@ -232,7 +304,7 @@ public class Main {
                     default:
                         System.out.println("Invalid Input");
                 }
-                Functions.praia = input;
+                Main.praia = input;
 
                 System.out.println("Which day do you want to go to the beach?");
                 day = reader.readLine().trim();
@@ -256,17 +328,17 @@ public class Main {
                 }
 
                 /* Now we need to check, which umbrella's are valid options for the amount of people */
-                /* We need a function, that returns an Array, with only UmbrellaNrs, that are valid for this user */
+                /* We need a function, that returns an Array, with only UmbrellaNrs, that are valid for this Functions.*/
                 /* thisArray = CallsTheFunction */
                 int theFileNr = -1;
                 int[] thisArray = Praia.umbrellasNr();
                 if (thisArray != null) {
                     for (int i = 0; i < thisArray.length; i++) {
-                        String fileName = Functions.praia + thisArray[i] + ".txt";
+                        String fileName = Main.praia + thisArray[i] + ".txt";
                         if (Praia.verificarDisponibilidade(fileName)) {
                             theFileNr = thisArray[i];
 
-                            System.out.println("This Umbrella: " + Functions.praia + thisArray[i] + "will be reserved in your name");
+                            System.out.println("This Umbrella: " + Main.praia + thisArray[i] + "will be reserved in your name");
                             break;
                         }
                     }
@@ -274,8 +346,8 @@ public class Main {
 
                 if (theFileNr != -1) {
                     //escreve no ficheiro praia
-                    Praia.reservarSombrinha(Functions.pathGetter(Functions.praia + theFileNr), Functions.write_combiner(day, month, year, startHour, endHour, email));
-                    User.reservarSombrinha(email, Functions.write_combiner(day, month, year, startHour, endHour, Functions.praia + theFileNr));
+                    Praia.reservarSombrinha(Functions.pathGetter(Main.praia + theFileNr), Functions.write_combiner(day, month, year, startHour, endHour, email));
+                    Functions.user_reservarSombrinha(email, Functions.write_combiner(day, month, year, startHour, endHour, Main.praia + theFileNr));
                 } else {
                     System.out.println("Unfortunately, there are no Umbrellas available for your specifications");
                 }
@@ -285,8 +357,8 @@ public class Main {
 
                 /* Cancel Umbrella */
 
-                String file = Functions.pathGetter(Functions.user + ".txt");
-                String[][] thisUserFile = User.listarSombrinhas(file);
+                String file = Functions.pathGetter(Main.user + ".txt");
+                String[][] thisUserFile = Functions.user_listarSombrinhas(file);
 
                 System.out.println("Which of these reservations, do you wish to cancel?");
                 input = reader.readLine().trim();
@@ -296,9 +368,9 @@ public class Main {
                     System.out.println("Invalid input");
                 }
 
-                String id = thisUserFile[Integer.parseInt(input) - 1][Functions.idSombra];
+                String id = thisUserFile[Integer.parseInt(input) - 1][Main.idSombra];
 
-                User.cancelarSombrinha( Integer.parseInt(input) - 1, thisUserFile, email);
+                Functions.user_cancelarSombrinha( Integer.parseInt(input) - 1, thisUserFile, email);
 
             case "3":
 
@@ -312,7 +384,7 @@ public class Main {
                     default:
                         System.out.println("Invalid Input");
                 }
-                Functions.praia = input;
+                Main.praia = input;
 
                 System.out.println("Which day do you want to go to the beach?");
                 day = reader.readLine().trim();
@@ -341,7 +413,7 @@ public class Main {
 
             case "4":
                 /* Logout */
-                Functions.loggedIn = false;
+                Main.loggedIn = false;
                 break;
 
             case "Exit":
@@ -352,7 +424,7 @@ public class Main {
         }
 
         // Send user back to the loginScreen
-        if (!Functions.loggedIn){
+        if (!Main.loggedIn){
             //break;
         }
 
