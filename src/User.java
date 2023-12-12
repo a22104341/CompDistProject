@@ -133,7 +133,7 @@ public class User {
         Functions.replaceFileInfo(line, originalFileName, info);
 
         /* Also delete this reservation, inside the umbrella file */
-        Praia.cancelarSombrinha(email, info[line]);
+        Praia.praia_cancelarSombrinha(email, info[line]);
     }
 }
 

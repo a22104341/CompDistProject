@@ -291,7 +291,7 @@ public class Main {
                 System.out.println("How many people will be going to the beach with you?");
                 input = reader.readLine().trim();
                 if (Character.isDigit(input.charAt(0))) {
-                    Praia.quantidadePessoasSombrinha(Integer.parseInt(input));
+                    Functions.praia_quantidadePessoasSombrinha(Integer.parseInt(input));
                 } else {
                     System.out.println("Invalid Input");
                 }
@@ -331,11 +331,11 @@ public class Main {
                 /* We need a function, that returns an Array, with only UmbrellaNrs, that are valid for this Functions.*/
                 /* thisArray = CallsTheFunction */
                 int theFileNr = -1;
-                int[] thisArray = Praia.umbrellasNr();
+                int[] thisArray = Functions.praia_umbrellasNr();
                 if (thisArray != null) {
                     for (int i = 0; i < thisArray.length; i++) {
                         String fileName = Main.praia + thisArray[i] + ".txt";
-                        if (Praia.verificarDisponibilidade(fileName)) {
+                        if (Functions.praia_verificarDisponibilidade(fileName)) {
                             theFileNr = thisArray[i];
 
                             System.out.println("This Umbrella: " + Main.praia + thisArray[i] + "will be reserved in your name");
@@ -346,7 +346,7 @@ public class Main {
 
                 if (theFileNr != -1) {
                     //escreve no ficheiro praia
-                    Praia.reservarSombrinha(Functions.pathGetter(Main.praia + theFileNr), Functions.write_combiner(day, month, year, startHour, endHour, email));
+                    Functions.praia_reservarSombrinha(Functions.pathGetter(Main.praia + theFileNr), Functions.write_combiner(day, month, year, startHour, endHour, email));
                     Functions.user_reservarSombrinha(email, Functions.write_combiner(day, month, year, startHour, endHour, Main.praia + theFileNr));
                 } else {
                     System.out.println("Unfortunately, there are no Umbrellas available for your specifications");
@@ -409,7 +409,7 @@ public class Main {
 
                 String date = day + "/" + month + "/" + year;
 
-                Praia.listarSombrinhas(date, start, end);
+                Functions.praia_listarSombrinhas(date, start, end);
 
             case "4":
                 /* Logout */
