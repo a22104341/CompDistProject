@@ -203,6 +203,8 @@ public class Main {
                             System.out.println("The email can't have two Symbols following each other");
                         }
                         b4Char = currentChar;
+
+
                     }
                 } else {
                     System.out.println("Email already in use, use a different email");

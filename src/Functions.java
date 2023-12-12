@@ -5,9 +5,6 @@ import java.util.Locale;
 public class Functions {
     /* Define variables that won't change */
 
-
-
-
     public static void lerUser(String nomeDoFicheiro, String user) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(new File("praia.txt")));
@@ -68,7 +65,7 @@ public class Functions {
 
 
 
-    /*                                               ACTUAL CODE STARTS HERE */
+    /*   ACTUAL CODE STARTS HERE */
 
     public static void start() {
 
@@ -294,7 +291,7 @@ public class Functions {
         replaceFileInfo(line, originalFileName, info);
 
         /* Also delete this reservation, inside the umbrella file */
-        Functions.praia_cancelarSombrinha(email, info[line]);
+        praia_cancelarSombrinha(email, info[line]);
     }
     public static String[][] praia_read_splitter(String file, String path) {
         /* use the variables on top in Functions */
@@ -331,8 +328,8 @@ public class Functions {
 
     public static boolean praia_verificarDisponibilidade(String file) {
         // (vai ao ficheiro da sombrinha, verifica se já existe algum registo a esta hora/data)
-        Functions.lerPraias(file);
-        String path = Functions.pathGetter(file);
+        lerPraias(file);
+        String path = pathGetter(file);
         String[][] matriz = praia_read_splitter(file, path);
         // O QUE TEM O 1 E A MATRIZ
         boolean returnValue = true;
@@ -377,7 +374,7 @@ public class Functions {
 
         for (int i = 1; i <= amntUmbrellas; i++){
             /* read with file reader*/
-            String[][] reader = praia_read_splitter(beach + i + ".txt", Functions.pathGetter(beach));
+            String[][] reader = praia_read_splitter(beach + i + ".txt", pathGetter(beach));
 
             /* if any of the lines have a problem with this date and start/endhour go to the next line, till the matrix is over */
             boolean isFine = true;
@@ -434,8 +431,8 @@ public class Functions {
     public static void praia_cancelarSombrinha(String email, String[] info) {
         // (Vai a essa sombrinha, procura o email, verifica se a data/horasFim são as msmas, apaga as reservas)
         String file = Main.praia + info[Main.idSombra] + ".txt";
-        String path = Functions.pathGetter(file);
-        String[][] thisUmbrella = Functions.praia_read_splitter(file, path);
+        String path = pathGetter(file);
+        String[][] thisUmbrella = praia_read_splitter(file, path);
 
         int removeThisLine = -1;
         for (int i = 0; i < thisUmbrella.length; i++){
@@ -454,7 +451,7 @@ public class Functions {
 
         /* Remove the line that we don't need */
         String ogFileName = Main.praia + ".txt";
-        Functions.replaceFileInfo(removeThisLine, ogFileName, thisUmbrella);
+        replaceFileInfo(removeThisLine, ogFileName, thisUmbrella);
     }
 
     public static void praia_quantidadePessoasSombrinha(int maxPeople) {
