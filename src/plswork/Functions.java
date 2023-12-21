@@ -362,7 +362,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         // (email already being used?)
         /* go into the user Folder and then do this */
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File("folderTudo/Users/"+email + ".txt")));
+            BufferedReader reader = new BufferedReader(new FileReader(new File(email + ".txt")));
             return false;
         } catch (FileNotFoundException e) {
             System.out.println("File Not Found");
@@ -374,7 +374,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         // (emailExiste?PasswordCorreta?)
         /* go into the user Folder and then do this */
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File("folderTudo/Users/"+email.toLowerCase(Locale.ROOT) + ".txt")));
+            BufferedReader reader = new BufferedReader(new FileReader(new File(email.toLowerCase(Locale.ROOT) + ".txt")));
             System.out.println("File open successful!");
             /* Check if password is correct */
             if (password.equals(reader.readLine().trim())) {
@@ -397,7 +397,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         /* go into the user Folder and then do this */
         try {
             /* Need to turn the email lowercase */
-            BufferedWriter writer = new BufferedWriter(new FileWriter("folderTudo/Users/"+email.toLowerCase(Locale.ROOT) + ".txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(email.toLowerCase(Locale.ROOT) + ".txt"));
             writer.write(password + "\n");
             /* print user has been registered */
         } catch (IOException e) {
@@ -490,9 +490,8 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
 
     public boolean praia_verificarDisponibilidade(String file) throws RemoteException {
         // (vai ao ficheiro da sombrinha, verifica se já existe algum registo a esta hora/data)
-
+        lerPraias(file);
         String path = pathGetter(file);
-        lerPraias(path);
         String[][] matriz = praia_read_splitter(file, path);
         // O QUE TEM O 1 E A MATRIZ
         boolean returnValue = true;
