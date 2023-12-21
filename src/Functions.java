@@ -181,7 +181,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
     public void lerUser(String nomeDoFicheiro, String user) throws RemoteException {
         // Existing code...
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File("praia.txt")));
+            BufferedReader reader = new BufferedReader(new FileReader(new File(nomeDoFicheiro)));
             System.out.println("File open successful!");
 
             int lines = 0;
@@ -210,7 +210,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
     public void lerPraias(String nomeDoFicheiro) throws RemoteException {
         // Existing code...
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File("praia.txt")));
+            BufferedReader reader = new BufferedReader(new FileReader(new File(nomeDoFicheiro)));
             System.out.println("File open successful!");
 
             int lines = 0;
@@ -264,19 +264,19 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
 
             switch (filename.charAt(0)) {
                 case 'A':
-                    path = "../FolderDeTudo/BeachA/" + filename;
+                    path = "FolderDeTudo/BeachA/" + filename;
                     return path;
 
                 case 'B':
-                    path = "../FolderDeTudo/BeachB/" + filename;
+                    path = "FolderDeTudo/BeachB/" + filename;
                     return path;
 
                 case 'C':
-                    path = "../FolderDeTudo/BeachC/" + filename;
+                    path = "FolderDeTudo/BeachC/" + filename;
                     return path;
 
                 default:
-                    path = "../FolderDeTudo/Users/" + filename;
+                    path = "FolderDeTudo/Users/" + filename;
                     return path;
             }
         }
@@ -362,7 +362,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         // (email already being used?)
         /* go into the user Folder and then do this */
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File("folderTudo/Users/"+email + ".txt")));
+            BufferedReader reader = new BufferedReader(new FileReader(new File(email + ".txt")));
             return false;
         } catch (FileNotFoundException e) {
             System.out.println("File Not Found");
@@ -374,7 +374,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         // (emailExiste?PasswordCorreta?)
         /* go into the user Folder and then do this */
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File("folderTudo/Users/"+email.toLowerCase(Locale.ROOT) + ".txt")));
+            BufferedReader reader = new BufferedReader(new FileReader(new File(email.toLowerCase(Locale.ROOT) + ".txt")));
             System.out.println("File open successful!");
             /* Check if password is correct */
             if (password.equals(reader.readLine().trim())) {
@@ -397,7 +397,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         /* go into the user Folder and then do this */
         try {
             /* Need to turn the email lowercase */
-            BufferedWriter writer = new BufferedWriter(new FileWriter("folderTudo/Users/"+email.toLowerCase(Locale.ROOT) + ".txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("FolderDeTudo/Users/"+email.toLowerCase(Locale.ROOT) + ".txt"));
             writer.write(password + "\n");
             /* print user has been registered */
         } catch (IOException e) {
@@ -492,6 +492,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         // (vai ao ficheiro da sombrinha, verifica se já existe algum registo a esta hora/data)
 
         String path = pathGetter(file);
+        System.out.println(path);
         lerPraias(path);
         String[][] matriz = praia_read_splitter(file, path);
         // O QUE TEM O 1 E A MATRIZ
@@ -573,7 +574,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
 
         try {
 
-            BufferedReader in = new BufferedReader(new FileReader(file + "txt"));
+            BufferedReader in = new BufferedReader(new FileReader(""+file + "txt"));
             BufferedWriter writer = new BufferedWriter(new FileWriter(file + "txt"));
 
             //ciclo rescreve o que ja la esta dentro
