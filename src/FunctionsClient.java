@@ -8,14 +8,15 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Locale;
+
+import javax.jws.WebService;
+@WebService(targetNamespace = "http://default_package/", portName = "FunctionsClientPort", serviceName = "FunctionsClientService")
 public class FunctionsClient {
 
     public void comeca() throws  Exception {
-        String addServerURL = "rmi://192.168.56.101/AddServer";
-
+        String addServerURL = "rmi://192.168.56.101/FunctionsServer";
         FunctionsInterface addServerIntf = (FunctionsInterface)Naming.lookup(addServerURL);
         try{
-
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
