@@ -1,11 +1,185 @@
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.io.*;
-import java.util.List;
 import java.util.Locale;
 
-public class Functions {
-    /* Define variables that won't change */
+public class Functions extends UnicastRemoteObject implements FunctionsInterface {
+    // Existing code...
+    /* Array com os numeros das sombrinhas */
+    int day = 0;
+    int month = 1;
+    int year = 2;
+    int startHour = 3;
+    int endHour = 4;
+    int idSombra = 5;
+    int email = 5;
+    int[] max2A = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
 
-    public static void lerUser(String nomeDoFicheiro, String user) {
+    int[] max3A = new int[]{11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+
+    int[] max4A = new int[]{16, 17, 18, 19, 20};
+
+    int[] max2B = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+
+    int[] max3B = new int[]{6, 7, 8, 9, 10, 11};
+
+    int[] max4B = new int[]{11};
+
+    int[] max2C = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    String user = "";
+    int dia = 0;
+    int mes = 0;
+    int ano = 0;
+    int horadeInicio = 0;
+    int horaFim = 0;
+    String idSombrinha = "";
+    String praia = "";
+    int maxPessoas = 0;
+    boolean loggedIn = false;
+    public Functions() throws RemoteException {
+        // Constructor
+
+        this.day = 0;
+        this.month = 1;
+        this.year = 2;
+        this.startHour = 3;
+        this.endHour = 4;
+        this.idSombra = 5;
+        this.email = 5;
+        this.max2A = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+
+        this.max3A = new int[]{11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+
+        this.max4A = new int[]{16, 17, 18, 19, 20};
+
+        this.max2B = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+
+        this.max3B = new int[]{6, 7, 8, 9, 10, 11};
+
+        this.max4B = new int[]{11};
+        this.max2C = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+        this.user="";
+        this.dia=0;
+        this.mes = 0;
+        this.ano = 0;
+        this.horadeInicio = 0;
+        this.horaFim = 0;
+        this.idSombrinha = "";
+        this.praia = "";
+        this.maxPessoas = 0;
+        this.loggedIn = false;
+    }
+    @Override
+    public String getpraia() throws RemoteException {
+        return this.praia;
+    }
+    @Override
+    public void changepraia(String value) throws RemoteException {
+        this.praia = value;
+    }
+    @Override
+    public int getday() throws RemoteException {
+        return this.day;
+    }
+    @Override
+    public int getmonth() throws RemoteException {
+        return this.month;
+    }
+    @Override
+    public int getyear() throws RemoteException {
+        return this.year;
+    }
+    @Override
+    public int getstartHour() throws RemoteException {
+        return this.startHour;
+    }
+    @Override
+    public int getendHour() throws RemoteException {
+        return this.endHour;
+    }
+    @Override
+    public int getidSombra() throws RemoteException {
+        return this.idSombra;
+    }
+    @Override
+    public int getemail1() throws RemoteException {
+        return this.email;
+    }
+    @Override
+    public int[] getmax2A() throws RemoteException {
+        return this.max2A;
+    }
+    @Override
+    public int[] getmax3A() throws RemoteException {
+        return this.max3A;
+    }
+    @Override
+    public int[] getmax4A() throws RemoteException {
+        return this.max4A;
+    }
+
+    @Override
+    public int[] getmax2B() throws RemoteException {
+        return this.max2B;
+    }
+    @Override
+    public int[] getmax3B() throws RemoteException {
+        return this.max3B;
+    }
+    @Override
+    public int[] getmax4B() throws RemoteException {
+        return this.max4B;
+    }
+
+    @Override
+    public int[] getmax2C() throws RemoteException {
+        return this.max2C;
+    }
+    @Override
+    public String getuser() throws RemoteException {
+        return this.user;
+    }
+    @Override
+    public int getdia() throws RemoteException {
+        return this.dia;
+    }
+    @Override
+    public int getmes() throws RemoteException {
+        return this.mes;
+    }
+    @Override
+    public int getano() throws RemoteException {
+        return this.ano;
+    }
+    @Override
+    public int gethoradeInicio() throws RemoteException {
+        return this.horadeInicio;
+    }
+    @Override
+    public int gethoraFim() throws RemoteException {
+        return this.horaFim;
+    }
+    @Override
+    public String getidSombrinha() throws RemoteException {
+        return this.idSombrinha;
+    }
+    @Override
+    public int getmaxPessoas() throws RemoteException {
+        return this.maxPessoas;
+    }
+    @Override
+    public boolean getloggedIn() throws RemoteException {
+        return this.loggedIn=false;
+    }
+    @Override
+    public void changeloggedIn(boolean value) throws RemoteException {
+        this.loggedIn=value;
+    }
+
+    @Override
+    public void lerUser(String nomeDoFicheiro, String user) throws RemoteException {
+        // Existing code...
         try {
             BufferedReader reader = new BufferedReader(new FileReader(new File("praia.txt")));
             System.out.println("File open successful!");
@@ -18,10 +192,10 @@ public class Functions {
 
                     String[] divisao = line.split("/");
                     // rethinking
-                    Main.dia = Integer.parseInt(divisao[0].trim());
-                    Main.mes = Integer.parseInt(divisao[1].trim());
-                    Main.ano = Integer.parseInt(divisao[2].trim());
-                    Main.idSombrinha = String.valueOf(divisao[3]);
+                    this.dia = Integer.parseInt(divisao[0].trim());
+                    this.mes = Integer.parseInt(divisao[1].trim());
+                    this.ano = Integer.parseInt(divisao[2].trim());
+                    this.idSombrinha = String.valueOf(divisao[3]);
 
                 }
                 lines++;
@@ -32,8 +206,9 @@ public class Functions {
         }
     }
 
-
-    public static void lerPraias(String nomeDoFicheiro) {
+    @Override
+    public void lerPraias(String nomeDoFicheiro) throws RemoteException {
+        // Existing code...
         try {
             BufferedReader reader = new BufferedReader(new FileReader(new File("praia.txt")));
             System.out.println("File open successful!");
@@ -63,29 +238,26 @@ public class Functions {
         }
     }
 
+    @Override
+    public void start() throws RemoteException {
+        // Existing code...
 
 
-    /*   ACTUAL CODE STARTS HERE */
-
-    public static void start() {
-
-
-        Main.used = 0;
-        Main.user = "";
-        Main.dia = 0;
-        Main.mes = 0;
-        Main.ano = 0;
-        Main.horadeInicio = 0;
-        Main.horaFim = 0;
-        Main.idSombrinha = "";
-        Main.praia = "";
-        Main.maxPessoas = 0;
-        Main.loggedIn = false;
-
+        this.user = "";
+        this.dia = 0;
+        this.mes = 0;
+        this.ano = 0;
+        this.horadeInicio = 0;
+        this.horaFim = 0;
+        this.idSombrinha = "";
+        this.praia = "";
+        this.maxPessoas = 0;
+        this.loggedIn = false;
     }
 
-
-    public static String pathGetter(String filename) {
+    @Override
+    public String pathGetter(String filename) throws RemoteException {
+        // Existing code...
         /* We need to verify the input of the user, before it gets here */
         String path = "";
         if (filename != null && filename.length() > 0) {
@@ -111,20 +283,19 @@ public class Functions {
         return path;
     }
 
-    public static String write_combiner(String day, String month, String year, String startHour, String endHour, String lastVariable) {
+    // Implement other methods from FunctionsInterface
+    public String write_combiner(String day, String month, String year, String startHour, String endHour, String lastVariable) throws RemoteException{
         /* maybe these are not all strings? idk, if they arent, then they need a converter in here, so we don't gotta do it by hand everytime */
         return day + "/" + month + "/" + year + "/" + startHour + "/" + endHour + "/" + lastVariable;
     }
-
-    public static String array_combiner(String[] array){
+    public String array_combiner(String[] array)throws RemoteException{
         StringBuilder magic = new StringBuilder();
         for (int i = 0; i < array.length - 1; i++){
             magic.append(array[i]).append("/");
         }
         return magic + array[array.length - 1];
     }
-
-    public static void replaceFileInfo(int line, String originalFileName, String[][] info){
+    public void replaceFileInfo(int line, String originalFileName, String[][] info)throws RemoteException{
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("TempFile" + ".txt"));
 
@@ -156,11 +327,7 @@ public class Functions {
             System.err.println("Error cloning content: " + e.getMessage());
         }
     }
-
-
-
-
-    public static String[][] user_read_splitter(String file, String path) {
+    public String[][] user_read_splitter(String file, String path) throws RemoteException{
         // (tem a String como input, retorna uma Matrix com tudo separado [][] 1st is the lines, 2nd is split by / etc.)
         // 0-day, 1-month, 2-year, 3-startHour, 4-endHour, 5-idSombra;
 
@@ -191,9 +358,7 @@ public class Functions {
         }
         return new String[1][1];
     }
-
-
-    public static boolean user_verificarDisponibilidade(String email) {
+    public boolean user_verificarDisponibilidade(String email) throws RemoteException{
         // (email already being used?)
         /* go into the user Folder and then do this */
         try {
@@ -205,7 +370,7 @@ public class Functions {
         }
     }
 
-    public static boolean user_verifyLogin(String email, String password) {
+    public boolean user_verifyLogin(String email, String password) throws RemoteException{
         // (emailExiste?PasswordCorreta?)
         /* go into the user Folder and then do this */
         try {
@@ -227,8 +392,7 @@ public class Functions {
             return false;
         }
     }
-
-    public static void user_register(String email, String password) {
+    public void user_register(String email, String password) throws RemoteException{
         // (criar novo ficheiro - Filename: "email", conteúdo:"Password")
         /* go into the user Folder and then do this */
         try {
@@ -241,8 +405,7 @@ public class Functions {
             System.exit(1);
         }
     }
-
-    public static String[][] user_listarSombrinhas(String file) {
+    public String[][] user_listarSombrinhas(String file) throws RemoteException {
         // (Listar as sombrinhas q ele tem no ficheiro)
         /* go into the user Folder and then do this */
         System.out.println("These are your Umbrella reservations:");
@@ -260,8 +423,7 @@ public class Functions {
         /* Beach: X  Date: X  StartHour: X  EndHour: X */
         return readsplitter;
     }
-
-    public static void user_reservarSombrinha(String file, String input) {
+    public void user_reservarSombrinha(String file, String input) throws RemoteException{
         // (guarda no user newLine:-Dia/Mes/Ano/HoraInicio/HoraFim/IDSOMBRINHA   input = call write_combiner()      Esse chama o mesmo mas das funcoes da praia)
         /* go into the user Folder and then do this */
         try {
@@ -283,7 +445,7 @@ public class Functions {
 
     }
 
-    public static void user_cancelarSombrinha(int line, String[][] info, String email) {
+    public void user_cancelarSombrinha(int line, String[][] info, String email) throws RemoteException{
         // (GOES WITH PRAIA ONE)
         /* go into the user Folder and then do this */
         String originalFileName = email + ".txt";
@@ -293,7 +455,7 @@ public class Functions {
         /* Also delete this reservation, inside the umbrella file */
         praia_cancelarSombrinha(email, info[line]);
     }
-    public static String[][] praia_read_splitter(String file, String path) {
+    public String[][] praia_read_splitter(String file, String path) throws RemoteException{
         /* use the variables on top in Functions */
         // (tem a String como input, retorna uma Matrix com tudo separado [][] 1st is the lines, 2nd is split by / etc.)
         //GUARDA OS DADOS DAS PRAIAS dentro de uma matriz
@@ -326,7 +488,7 @@ public class Functions {
     }
 
 
-    public static boolean praia_verificarDisponibilidade(String file) {
+    public boolean praia_verificarDisponibilidade(String file) throws RemoteException {
         // (vai ao ficheiro da sombrinha, verifica se já existe algum registo a esta hora/data)
         lerPraias(file);
         String path = pathGetter(file);
@@ -334,10 +496,10 @@ public class Functions {
         // O QUE TEM O 1 E A MATRIZ
         boolean returnValue = true;
         for (int index = 0; index < matriz.length; index++) {
-            if (Main.ano == Integer.parseInt(matriz[index][Main.year]) && Integer.parseInt(matriz[index][Main.month]) == Main.mes && Main.dia == Integer.parseInt(matriz[index][Main.day])) {
-                if (Main.horadeInicio >= Integer.parseInt(matriz[index][Main.startHour]) && Main.horadeInicio < Integer.parseInt(matriz[index][Main.endHour])) {
+            if (this.ano == Integer.parseInt(matriz[index][this.year]) && Integer.parseInt(matriz[index][this.month]) == this.mes && this.dia == Integer.parseInt(matriz[index][this.day])) {
+                if (this.horadeInicio >= Integer.parseInt(matriz[index][this.startHour]) && this.horadeInicio < Integer.parseInt(matriz[index][this.endHour])) {
                     returnValue = false;
-                } else if (Main.horaFim < Integer.parseInt(matriz[index][Main.endHour]) && Integer.parseInt(matriz[index][Main.startHour]) < Main.horaFim) {
+                } else if (this.horaFim < Integer.parseInt(matriz[index][this.endHour]) && Integer.parseInt(matriz[index][this.startHour]) < this.horaFim) {
                     returnValue = false;
                 } else {
                     //dps escreve no ficheiro
@@ -349,12 +511,11 @@ public class Functions {
         }
         return returnValue;
     }
-
-    public static void praia_listarSombrinhas(String date, int startHour, int endHour) {
+    public void praia_listarSombrinhas(String date, int startHour, int endHour) throws RemoteException{
         // (passa pelo array desta praia e chama verificarDisponibilidade, às horas/data que o utilizador introduziu)
 
         /* Go through each file with the file_reader , then check if the sombrinha is occupied during those times */
-        String beach = Main.praia;
+        String beach = this.praia;
 
         System.out.println("These are the available umbrellas on beach " + beach + ":");
         int amntUmbrellas = 0;
@@ -380,14 +541,14 @@ public class Functions {
             boolean isFine = true;
             for (int j = 0; j < reader.length; j++){
                 String[] currentRead = reader[j];
-                String day = currentRead[Main.day];
-                String month = currentRead[Main.month];
-                String year = currentRead[Main.year];
+                String day = currentRead[this.day];
+                String month = currentRead[this.month];
+                String year = currentRead[this.year];
 
-                int start = Integer.parseInt(currentRead[Main.startHour]);
-                int end = Integer.parseInt(currentRead[Main.endHour]);
+                int start = Integer.parseInt(currentRead[this.startHour]);
+                int end = Integer.parseInt(currentRead[this.endHour]);
 
-                if (requestedDate[Main.day].equals(day) && requestedDate[Main.month].equals(month) && requestedDate[Main.year].equals(year)){
+                if (requestedDate[this.day].equals(day) && requestedDate[this.month].equals(month) && requestedDate[this.year].equals(year)){
                     if ((startHour >= start && startHour < end) || (end <= endHour && endHour > start)){
 
                         /* If any of the lines in the file, have problems with the requested date and time, this umbrella
@@ -406,7 +567,7 @@ public class Functions {
         }
     }
 
-    public static void praia_reservarSombrinha(String file, String input) {
+    public void praia_reservarSombrinha(String file, String input) throws RemoteException {
         // (guarda dentro da sombrinha newLine: -Dia/Mes/Ano/HoraIncio/HoraFim/email) input = call write_combiner()
 
         try {
@@ -427,19 +588,18 @@ public class Functions {
         }
 
     }
-
-    public static void praia_cancelarSombrinha(String email, String[] info) {
+    public void praia_cancelarSombrinha(String email, String[] info) throws RemoteException {
         // (Vai a essa sombrinha, procura o email, verifica se a data/horasFim são as msmas, apaga as reservas)
-        String file = Main.praia + info[Main.idSombra] + ".txt";
+        String file = this.praia + info[this.idSombra] + ".txt";
         String path = pathGetter(file);
         String[][] thisUmbrella = praia_read_splitter(file, path);
 
         int removeThisLine = -1;
         for (int i = 0; i < thisUmbrella.length; i++){
             String[] currentLine = thisUmbrella[i];
-            if (currentLine[Main.email].equals(email)){
-                if (currentLine[Main.day].equals(info[Main.day]) && currentLine[Main.month].equals(info[Main.month]) &&
-                        currentLine[Main.year].equals(info[Main.year]) && currentLine[Main.endHour].equals(info[Main.endHour])){
+            if (currentLine[this.email].equals(email)){
+                if (currentLine[this.day].equals(info[this.day]) && currentLine[this.month].equals(info[this.month]) &&
+                        currentLine[this.year].equals(info[this.year]) && currentLine[this.endHour].equals(info[this.endHour])){
                     removeThisLine = i;
                     break;
                 }
@@ -450,52 +610,49 @@ public class Functions {
         }
 
         /* Remove the line that we don't need */
-        String ogFileName = Main.praia + ".txt";
+        String ogFileName = this.praia + ".txt";
         replaceFileInfo(removeThisLine, ogFileName, thisUmbrella);
     }
 
-    public static void praia_quantidadePessoasSombrinha(int maxPeople) {
+    public void praia_quantidadePessoasSombrinha(int maxPeople) throws RemoteException{
         // (qual das sombrinhas a mais apropriada?)
-        Main.maxPessoas = maxPeople;
+        this.maxPessoas = maxPeople;
     }
 
-    public static int[] praia_umbrellasNr() {
-        if (Main.praia.equals("A")) {
-            if (Main.maxPessoas <= 2) {
-                return Main.max2A;
+    public int[] praia_umbrellasNr() throws RemoteException{
+        if (this.praia.equals("A")) {
+            if (this.maxPessoas <= 2) {
+                return this.max2A;
             }
-            if (Main.maxPessoas <= 3) {
-                return Main.max3A;
+            if (this.maxPessoas <= 3) {
+                return this.max3A;
             }
-            if (Main.maxPessoas <= 4) {
-                return Main.max4A;
+            if (this.maxPessoas <= 4) {
+                return this.max4A;
             }
 
-        } else if (Main.praia.equals("B")) {
-            if (Main.maxPessoas <= 2) {
-                return Main.max2B;
+        } else if (this.praia.equals("B")) {
+            if (this.maxPessoas <= 2) {
+                return this.max2B;
             }
-            if (Main.maxPessoas <= 3) {
-                return Main.max3B;
+            if (this.maxPessoas <= 3) {
+                return this.max3B;
             }
-            if (Main.maxPessoas <= 4) {
-                return Main.max4B;
+            if (this.maxPessoas <= 4) {
+                return this.max4B;
             }
         } else {
-            if (Main.maxPessoas <= 2) {
-                return Main.max2C;
+            if (this.maxPessoas <= 2) {
+                return this.max2C;
 
 
             }
         }
         return null;
     }
-    public static void eachHour() {
+    public void eachHour() throws RemoteException{
         // (Passa por cada Praia e sombrinha, para ver a horaFim, se a hora fim for igual à hora atual, usa cancelarSombrinha(praia + user))
     }
-
-
-
     /*
      * start()                  (starts everything just like before)
      *
@@ -525,6 +682,5 @@ public class Functions {
      * Temos q fzr dps ainda um sombrinhasValidas, etc. (mas isso é tdo só validações q adicionamos a seguir como função, é mais facil fzr essas mais tarde)
      * Mas isso é mais tipo verificar se os inputs do user são corretos etc.
      */
-
 
 }
