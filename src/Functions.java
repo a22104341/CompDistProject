@@ -306,6 +306,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
                     writer.write(thisLine + "\n");
                 }
             }
+            writer.close();
 
         } catch (IOException e) {
             System.out.println("File I/O error!");
@@ -323,6 +324,8 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
                 writer.write(line2);
                 writer.newLine(); // Add a newline for each line if needed
             }
+            writer.close();
+            reader.close();
         } catch (IOException e) {
             System.err.println("Error cloning content: " + e.getMessage());
         }
@@ -352,6 +355,8 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
                 dados[lines] = divisao;
                 line = reader.readLine();
             }
+            reader1.close();
+            reader.close();
             return dados;
         } catch (IOException e) {
             System.out.println("File I/O error!");
@@ -374,13 +379,15 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         // (emailExiste?PasswordCorreta?)
         /* go into the user Folder and then do this */
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File(email.toLowerCase(Locale.ROOT) + ".txt")));
+            BufferedReader reader = new BufferedReader(new FileReader(new File(email + ".txt")));
             System.out.println("File open successful!");
             /* Check if password is correct */
             if (password.equals(reader.readLine().trim())) {
                 /* print that the user is logged in */
+                reader.close();
                 return true;
             }
+            reader.close();
             /* print that the password is wrong */
             return false;
         } catch (FileNotFoundException e) {
@@ -397,8 +404,14 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         /* go into the user Folder and then do this */
         try {
             /* Need to turn the email lowercase */
-            BufferedWriter writer = new BufferedWriter(new FileWriter("FolderDeTudo/Users/"+email.toLowerCase(Locale.ROOT) + ".txt"));
+            String filePath = "/home/miguel/Desktop/plswork/FolderDeTudo/Users/" + email.toLowerCase(Locale.ROOT) + ".txt";
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
             writer.write(password + "\n");
+            // Close the writer to flush and release resources
+            writer.close();
+
+            System.out.println("Write successful!");
+
             /* print user has been registered */
         } catch (IOException e) {
             System.out.println("something messed up");
@@ -438,6 +451,10 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
             //escreve no fim
 
             writer.write(input + "\n");
+            writer.close();
+            in.close();
+
+
 
         } catch (IOException e) {
             System.out.println("File I/O error!");
@@ -479,7 +496,10 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
                 String[] divisao = line.split("/");
                 dados[lines] = divisao;
                 line = reader.readLine();
+
             }
+            reader.close();
+            reader1.close();
             return dados;
         } catch (IOException e) {
             System.out.println("File I/O error!");
@@ -574,7 +594,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
 
         try {
 
-            BufferedReader in = new BufferedReader(new FileReader(""+file + "txt"));
+            BufferedReader in = new BufferedReader(new FileReader(file + "txt"));
             BufferedWriter writer = new BufferedWriter(new FileWriter(file + "txt"));
 
             //ciclo rescreve o que ja la esta dentro
@@ -584,6 +604,8 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
             //escreve no fim
 
             writer.write(input + "\n");
+            writer.close();
+            in.close();
 
         } catch (IOException e) {
             System.out.println("File I/O error!");

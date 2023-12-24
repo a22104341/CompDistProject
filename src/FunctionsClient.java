@@ -20,56 +20,56 @@ public class FunctionsClient {
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 
-            //variaveis do Functions
+                //variaveis do Functions
 
-            /* Define variables that won't change */
+                /* Define variables that won't change */
 
-            String praia = addServerIntf.getpraia();
-            int day1 = addServerIntf.getday();
-            int month1 = addServerIntf.getmonth();
-            int year1 = addServerIntf.getyear();
-            int startHour1 = addServerIntf.getstartHour();
-            int endHour1 = addServerIntf.getendHour();
-            int idSombra = addServerIntf.getidSombra();
-            int email1 = addServerIntf.getemail1();
-
-
-            /* Array com os numeros das sombrinhas */
-
-            int[] max2A = addServerIntf.getmax2A();
-
-            int[] max3A = addServerIntf.getmax3A();
-
-            int[] max4A = addServerIntf.getmax4A();
-
-            int[] max2B = addServerIntf.getmax2B();
-
-            int[] max3B = addServerIntf.getmax3B();
-
-            int[] max4B = addServerIntf.getmax4B();
-
-            int[] max2C = addServerIntf.getmax2C();
-            String user = addServerIntf.getuser();
-            int dia = addServerIntf.getdia();
-            int mes = addServerIntf.getmes();
-            int ano = addServerIntf.getano();
-            int horadeInicio = addServerIntf.gethoradeInicio();
-            int horaFim = addServerIntf.gethoraFim();
-            String idSombrinha = addServerIntf.getidSombrinha();
-            int maxPessoas = addServerIntf.getmaxPessoas();
-            boolean loggedIn = addServerIntf.getloggedIn();
+                String praia = addServerIntf.getpraia();
+                int day1 = addServerIntf.getday();
+                int month1 = addServerIntf.getmonth();
+                int year1 = addServerIntf.getyear();
+                int startHour1 = addServerIntf.getstartHour();
+                int endHour1 = addServerIntf.getendHour();
+                int idSombra = addServerIntf.getidSombra();
+                int email1 = addServerIntf.getemail1();
 
 
+                /* Array com os numeros das sombrinhas */
+
+                int[] max2A = addServerIntf.getmax2A();
+
+                int[] max3A = addServerIntf.getmax3A();
+
+                int[] max4A = addServerIntf.getmax4A();
+
+                int[] max2B = addServerIntf.getmax2B();
+
+                int[] max3B = addServerIntf.getmax3B();
+
+                int[] max4B = addServerIntf.getmax4B();
+
+                int[] max2C = addServerIntf.getmax2C();
+                String user = addServerIntf.getuser();
+                int dia = addServerIntf.getdia();
+                int mes = addServerIntf.getmes();
+                int ano = addServerIntf.getano();
+                int horadeInicio = addServerIntf.gethoradeInicio();
+                int horaFim = addServerIntf.gethoraFim();
+                String idSombrinha = addServerIntf.getidSombrinha();
+                int maxPessoas = addServerIntf.getmaxPessoas();
+                boolean loggedIn = addServerIntf.getloggedIn();
 
 
 
-            /* Initiialize all the Variables and Lists */
-            addServerIntf.start();
 
 
-            //CREATE BUFFREADER
-            BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(System.in));
+                /* Initiialize all the Variables and Lists */
+                addServerIntf.start();
+
+
+                //CREATE BUFFREADER
+                BufferedReader reader = new BufferedReader(
+                        new InputStreamReader(System.in));
 
 
 
@@ -287,6 +287,7 @@ public class FunctionsClient {
                                             if (input != null) {
                                                 if (input.equals(password)) {
                                                     /* Locale Root is good practice */
+                                                    System.out.println(password);
                                                     addServerIntf.user_register(email, password);
                                                     reaskPw = false;
                                                     break;
@@ -384,6 +385,7 @@ public class FunctionsClient {
                             /* thisArray = CallsTheFunction */
                             int theFileNr = -1;
                             int[] thisArray = addServerIntf.praia_umbrellasNr();
+                            System.out.println(thisArray.length);
                             if (thisArray != null) {
                                 for (int i = 0; i < thisArray.length; i++) {
                                     String fileName = praia + thisArray[i] + ".txt";
