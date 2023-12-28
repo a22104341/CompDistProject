@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.rmi.Naming;
@@ -8,7 +9,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Locale;
-
 
 public class FunctionsClient {
 
@@ -64,7 +64,7 @@ public class FunctionsClient {
 
 
 
-                /* Initiialize all the Variables and Lists */
+                /* Initialize all the Variables and Lists */
                 addServerIntf.start();
 
 
@@ -387,6 +387,7 @@ public class FunctionsClient {
                             /* thisArray = CallsTheFunction */
                             int theFileNr = -1;
                             int[] thisArray = null;
+
                             thisArray=addServerIntf.praia_umbrellasNr();
                             System.out.println(thisArray.length);
                             if (thisArray != null) {

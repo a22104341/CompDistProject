@@ -368,7 +368,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         // (email already being used?)
         /* go into the user Folder and then do this */
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File(email + ".txt")));
+            BufferedReader reader = new BufferedReader(new FileReader(new File("/home/miguel/Desktop/plswork/FolderDeTudo/Users/"+email + ".txt")));
             return false;
         } catch (FileNotFoundException e) {
             System.out.println("File Not Found");
@@ -380,7 +380,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         // (emailExiste?PasswordCorreta?)
         /* go into the user Folder and then do this */
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File(email + ".txt")));
+            BufferedReader reader = new BufferedReader(new FileReader(new File("/home/miguel/Desktop/plswork/FolderDeTudo/Users/"+email + ".txt")));
             System.out.println("File open successful!");
             /* Check if password is correct */
             if (password.equals(reader.readLine().trim())) {
@@ -442,8 +442,8 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         /* go into the user Folder and then do this */
         try {
 
-            BufferedReader in = new BufferedReader(new FileReader(file + ".txt"));
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file + ".txt"));
+            BufferedReader in = new BufferedReader(new FileReader(pathGetter(file)+file + ".txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(pathGetter(file)+file + ".txt"));
 
             //ciclo rescreve o que ja la esta dentro
             for (String x = in.readLine(); x != null; x = in.readLine()) {
@@ -597,8 +597,8 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         try {
             System.out.println(file + "txt");
             String path = pathGetter(file);
-            BufferedReader in = new BufferedReader(new FileReader(path));
-            BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+            BufferedReader in = new BufferedReader(new FileReader(path+file+".txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path+file+".txt"));
 
             //ciclo rescreve o que ja la esta dentro
             for (String x = in.readLine(); x != null; x = in.readLine()) {
