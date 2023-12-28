@@ -437,6 +437,7 @@ public class FunctionsClient {
                             String id = thisUserFile[Integer.parseInt(input) - 1][idSombra];
 
                             addServerIntf.user_cancelarSombrinha(Integer.parseInt(input) - 1, thisUserFile, email);
+                            break;
 
                         case "3":
 
@@ -479,6 +480,7 @@ public class FunctionsClient {
                             String date = day + "/" + month + "/" + year;
 
                             addServerIntf.praia_listarSombrinhas(date, start, end);
+                            break;
 
                         case "4":
                             /* Logout */
