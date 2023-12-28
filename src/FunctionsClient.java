@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Locale;
 
+
 public class FunctionsClient {
 
     public void comeca() throws Exception {
@@ -337,15 +338,14 @@ public class FunctionsClient {
                         case "1":
 
                             /* Reserve umbrella */
-
+                            int ola=0;
                             System.out.println("How many people will be going to the beach with you?");
                             input = reader.readLine().trim();
                             if (Character.isDigit(input.charAt(0))) {
-                                addServerIntf.praia_quantidadePessoasSombrinha(Integer.parseInt(input));
-                            } else {
+                                addServerIntf.praia_quantidadePessoasSombrinha(Integer.parseInt(input));                            } else {
                                 System.out.println("Invalid Input");
                             }
-
+                            addServerIntf.praia_quantidadePessoasSombrinha(Integer.parseInt(input));
                             System.out.println("What is the beach you want to go to?\n A\nB\nC");
                             input = reader.readLine().trim();
                             switch (input) {
@@ -358,6 +358,8 @@ public class FunctionsClient {
                             }
                             addServerIntf.changepraia(input);
                             praia = input;
+
+
 
                             System.out.println("Which day do you want to go to the beach?");
                             day = reader.readLine().trim();
@@ -384,13 +386,15 @@ public class FunctionsClient {
                             /* We need a function, that returns an Array, with only UmbrellaNrs, that are valid for this Functions.*/
                             /* thisArray = CallsTheFunction */
                             int theFileNr = -1;
-                            int[] thisArray = addServerIntf.praia_umbrellasNr();
+                            int[] thisArray = null;
+                            thisArray=addServerIntf.praia_umbrellasNr();
                             System.out.println(thisArray.length);
                             if (thisArray != null) {
                                 for (int i = 0; i < thisArray.length; i++) {
                                     String fileName = praia + thisArray[i] + ".txt";
                                     if (addServerIntf.praia_verificarDisponibilidade(fileName)) {
                                         theFileNr = thisArray[i];
+                                        System.out.println(thisArray[i]);
 
                                         System.out.println("This Umbrella: " + praia + thisArray[i] + "will be reserved in your name");
                                         break;
@@ -399,8 +403,9 @@ public class FunctionsClient {
                             }
 
                             if (theFileNr != -1) {
+                                System.out.println("007");
                                 //escreve no ficheiro praia
-                                addServerIntf.praia_reservarSombrinha(addServerIntf.pathGetter(praia + theFileNr), addServerIntf.write_combiner(day, month, year, startHour, endHour, email));
+                                addServerIntf.praia_reservarSombrinha(addServerIntf.pathGetter(praia + theFileNr+".txt"), addServerIntf.write_combiner(day, month, year, startHour, endHour, email));
                                 addServerIntf.user_reservarSombrinha(email, addServerIntf.write_combiner(day, month, year, startHour, endHour, praia + theFileNr));
                             } else {
                                 System.out.println("Unfortunately, there are no Umbrellas available for your specifications");

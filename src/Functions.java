@@ -77,6 +77,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
     @Override
     public void changepraia(String value) throws RemoteException {
         this.praia = value;
+        System.out.println(this.praia = value);
     }
     @Override
     public int getday() throws RemoteException {
@@ -593,9 +594,10 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         // (guarda dentro da sombrinha newLine: -Dia/Mes/Ano/HoraIncio/HoraFim/email) input = call write_combiner()
 
         try {
-
-            BufferedReader in = new BufferedReader(new FileReader(file + "txt"));
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file + "txt"));
+            System.out.println(file + "txt");
+            String path = pathGetter(file);
+            BufferedReader in = new BufferedReader(new FileReader(path + "txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path + "txt"));
 
             //ciclo rescreve o que ja la esta dentro
             for (String x = in.readLine(); x != null; x = in.readLine()) {
