@@ -397,7 +397,7 @@ public class FunctionsClient {
                             System.out.println(thisArray.length);
                             if (thisArray != null) {
                                 for (int i = 0; i < thisArray.length; i++) {
-                                    String fileName = praia + thisArray[i] + ".txt";
+                                    String fileName = praia + thisArray[i];
                                     if (addServerIntf.praia_verificarDisponibilidade(fileName)) {
                                         theFileNr = thisArray[i];
                                         System.out.println(thisArray[i]);

@@ -504,11 +504,11 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         // (tem a String como input, retorna uma Matrix com tudo separado [][] 1st is the lines, 2nd is split by / etc.)
         //GUARDA OS DADOS DAS PRAIAS dentro de uma matriz
         String[][] dados=null;
-        System.out.println(path+file);
+        System.out.println(path);
         try {
 
-            BufferedReader reader = new BufferedReader(new FileReader(new File(path)));
-            BufferedReader reader1 = new BufferedReader(new FileReader(new File(path)));
+            BufferedReader reader = new BufferedReader(new FileReader(new File(path+".txt")));
+            BufferedReader reader1 = new BufferedReader(new FileReader(new File(path+".txt")));
             System.out.println("File open successful!");
             //countLines count lines
             int countLines = 0;
@@ -557,12 +557,14 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
                     } else {
                         //dps escreve no ficheiro
                         //PRINT("NO FICHEIRO A2 A VAGA ");
+                        System.out.println("nao entrou");
                         returnValue = true;
                         break;
                     }
                 }
             }
         }
+        System.out.println("NADA");
         return returnValue;
     }
     public void praia_listarSombrinhas(String date, int startHour, int endHour) throws RemoteException{
@@ -625,14 +627,16 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         // (guarda dentro da sombrinha newLine: -Dia/Mes/Ano/HoraIncio/HoraFim/email) input = call write_combiner()
 
         try {
-            System.out.println(file + "txt");
+
             String path = pathGetter(file);
-            BufferedReader in = new BufferedReader(new FileReader(path+file+".txt"));
-            BufferedWriter writer = new BufferedWriter(new FileWriter(path+file+".txt"));
+            System.out.println(path);
+            BufferedReader in = new BufferedReader(new FileReader(path+".txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path+".txt"));
 
             //ciclo rescreve o que ja la esta dentro
             for (String x = in.readLine(); x != null; x = in.readLine()) {
                 writer.write(x);
+
             }
             //escreve no fim
 
