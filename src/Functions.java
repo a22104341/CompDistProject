@@ -460,35 +460,41 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         /* Beach: X  Date: X  StartHour: X  EndHour: X */
         return readsplitter;
     }
-    public void user_reservarSombrinha(String file, String input) throws RemoteException{
+
+    public void user_reservarSombrinha(String file, String input) throws RemoteException {
         // (guarda no user newLine:-Dia/Mes/Ano/HoraInicio/HoraFim/IDSOMBRINHA   input = call write_combiner()      Esse chama o mesmo mas das funcoes da praia)
         /* go into the user Folder and then do this */
         try {
+            // Read the existing content of the file
             BufferedReader in = new BufferedReader(new FileReader(pathGetter(file) + ".txt"));
-            BufferedWriter writer = new BufferedWriter(new FileWriter(pathGetter(file) + ".txt"));
-            System.out.println(pathGetter(file) + ".txt");
             StringBuilder existingContent = new StringBuilder();
-            //ciclo rescreve o que ja la esta dentro
-            String x ;
-            for (x = in.readLine(); x != null; x = in.readLine()) {
+
+            // ciclo rescreve o que já está dentro, excluding the last line
+            String x;
+            while ((x = in.readLine()) != null) {
                 existingContent.append(x).append("\n");
             }
             in.close();
 
-            // Append the new text to the existing content
-            existingContent.append(input).append("\n");
+            // Open the file for writing without append mode (overwrite existing content)
+            BufferedWriter writer = new BufferedWriter(new FileWriter(pathGetter(file) + ".txt"));
+
+            // Rewrite the existing content excluding the last line
             writer.write(existingContent.toString());
-            //escreve no fim
 
+            // Append the new text to the modified existing content
+            writer.write(input);
+            writer.newLine();  // Add a newline character if needed
 
+            // Close the BufferedWriter to release resources
             writer.close();
-
 
         } catch (IOException e) {
             System.out.println("File I/O error!");
         }
-
     }
+
+
 
     public void user_cancelarSombrinha(int line, String[][] info, String email) throws RemoteException{
         // (GOES WITH PRAIA ONE)

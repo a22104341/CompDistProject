@@ -402,7 +402,7 @@ public class FunctionsClient {
                                         theFileNr = thisArray[i];
                                         System.out.println(thisArray[i]);
 
-                                        System.out.println("This Umbrella: " + praia + thisArray[i] + "will be reserved in your name");
+                                        System.out.println("This Umbrella: " + praia + thisArray[i] + " will be reserved in your name");
                                         break;
                                     }
                                 }
