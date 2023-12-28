@@ -363,13 +363,17 @@ public class FunctionsClient {
 
                             System.out.println("Which day do you want to go to the beach?");
                             day = reader.readLine().trim();
+                            addServerIntf.changedia(Integer. parseInt(day));
                             System.out.println("What month you want to go to the beach?");
                             month = reader.readLine().trim();
+                            addServerIntf.changemes(Integer. parseInt(month));
                             System.out.println("What year you want to go to the beach?");
                             year = reader.readLine().trim();
+                            addServerIntf.changeano(Integer. parseInt(year));
 
                             System.out.println("At what time do you wish to go? Opening times: 8-20");
                             startHour = reader.readLine().trim();
+                            addServerIntf.changestarthour(Integer. parseInt(year));
                             int start = Integer.parseInt(startHour);
                             if (!(start >= 8 && start < 20)) {
                                 System.out.println("Invalid Option");
@@ -377,6 +381,7 @@ public class FunctionsClient {
 
                             System.out.println("When do you want to leave the beach? 8-20");
                             endHour = reader.readLine().trim();
+                            addServerIntf.changeendhour(Integer. parseInt(endHour));
                             int end = Integer.parseInt(endHour);
                             if (!(end > 8 && end <= 20)) {
                                 System.out.println("Invalid Option");

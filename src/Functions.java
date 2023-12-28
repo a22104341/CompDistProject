@@ -92,6 +92,27 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         return this.year;
     }
     @Override
+    public void changedia(int value) throws RemoteException {
+        this.dia = value;
+    }
+    @Override
+    public void changemes(int value) throws RemoteException {
+        this.mes = value;
+    }
+    @Override
+    public void changeano(int value) throws RemoteException {
+        this.ano = value;
+    }
+    @Override
+    public void changestarthour(int value) throws RemoteException {
+        this.startHour = value;
+    }
+    @Override
+    public void changeendhour(int value) throws RemoteException {
+        this.endHour = value;
+    }
+
+    @Override
     public int getstartHour() throws RemoteException {
         return this.startHour;
     }
@@ -211,7 +232,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
     public void lerPraias(String nomeDoFicheiro) throws RemoteException {
         // Existing code...
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File(nomeDoFicheiro)));
+            BufferedReader reader = new BufferedReader(new FileReader(new File(nomeDoFicheiro+".txt")));
             System.out.println("File open successful!");
 
             int lines = 0;
@@ -234,6 +255,8 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
                 lines++;
                 line = reader.readLine();
             }
+        } catch (FileNotFoundException e) {
+            System.out.println("File Not Found");
         } catch (IOException e) {
             System.out.println("File I/O error!");
         }
@@ -338,8 +361,8 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         String[][] dados;
         try {
 
-            BufferedReader reader = new BufferedReader(new FileReader(new File(path + file)));
-            BufferedReader reader1 = new BufferedReader(new FileReader(new File(path + file)));
+            BufferedReader reader = new BufferedReader(new FileReader(new File(path +".txt")));
+            BufferedReader reader1 = new BufferedReader(new FileReader(new File(path +".txt")));
             System.out.println("File open successful!");
             //countLines count lines
             int countLines = 0;
@@ -441,20 +464,23 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         // (guarda no user newLine:-Dia/Mes/Ano/HoraInicio/HoraFim/IDSOMBRINHA   input = call write_combiner()      Esse chama o mesmo mas das funcoes da praia)
         /* go into the user Folder and then do this */
         try {
-
-            BufferedReader in = new BufferedReader(new FileReader(pathGetter(file)+file + ".txt"));
-            BufferedWriter writer = new BufferedWriter(new FileWriter(pathGetter(file)+file + ".txt"));
+            int count=0;
+            BufferedReader in = new BufferedReader(new FileReader(pathGetter(file) + ".txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(pathGetter(file) + ".txt"));
+            System.out.println(pathGetter(file) + ".txt");
 
             //ciclo rescreve o que ja la esta dentro
             for (String x = in.readLine(); x != null; x = in.readLine()) {
                 writer.write(x);
+                count++;
             }
             //escreve no fim
+            if (count!=0) {
+                writer.write(input + "\n");
 
-            writer.write(input + "\n");
+            }
             writer.close();
             in.close();
-
 
 
         } catch (IOException e) {
@@ -477,11 +503,12 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         /* use the variables on top in Functions */
         // (tem a String como input, retorna uma Matrix com tudo separado [][] 1st is the lines, 2nd is split by / etc.)
         //GUARDA OS DADOS DAS PRAIAS dentro de uma matriz
-        String[][] dados;
+        String[][] dados=null;
+        System.out.println(path+file);
         try {
 
-            BufferedReader reader = new BufferedReader(new FileReader(new File(path + file)));
-            BufferedReader reader1 = new BufferedReader(new FileReader(new File(path + file)));
+            BufferedReader reader = new BufferedReader(new FileReader(new File(path)));
+            BufferedReader reader1 = new BufferedReader(new FileReader(new File(path)));
             System.out.println("File open successful!");
             //countLines count lines
             int countLines = 0;
@@ -489,23 +516,26 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
                 countLines++;
 
             }
-            dados = new String[countLines][6];
+            if (countLines!=0) {
+                dados = new String[countLines][6];
 
-            String line = null;
-            line = reader.readLine();
-            for (int lines = 0; lines < countLines; lines++) {
-                String[] divisao = line.split("/");
-                dados[lines] = divisao;
+                String line = null;
                 line = reader.readLine();
+                for (int lines = 0; lines < countLines; lines++) {
+                    String[] divisao = line.split("/");
+                    dados[lines] = divisao;
+                    line = reader.readLine();
 
+                }
+                reader.close();
+                reader1.close();
+                return dados;
             }
-            reader.close();
-            reader1.close();
-            return dados;
         } catch (IOException e) {
             System.out.println("File I/O error!");
         }
-        return new String[1][1];
+        return dados;
+
     }
 
 

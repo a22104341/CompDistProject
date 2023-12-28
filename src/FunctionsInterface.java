@@ -46,7 +46,11 @@ public interface FunctionsInterface extends Remote {
     boolean getloggedIn() throws RemoteException;
     void changeloggedIn(boolean value) throws RemoteException;
 
-
+    void changedia(int value) throws RemoteException;
+    void changemes(int value) throws RemoteException;
+    void changeano(int value) throws RemoteException ;
+    void changestarthour(int value) throws RemoteException;
+    void changeendhour(int value) throws RemoteException ;
     void lerUser(String nomeDoFicheiro, String user) throws RemoteException;
 
     void lerPraias(String nomeDoFicheiro) throws RemoteException;
