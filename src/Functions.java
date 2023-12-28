@@ -467,17 +467,21 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
             BufferedReader in = new BufferedReader(new FileReader(pathGetter(file) + ".txt"));
             BufferedWriter writer = new BufferedWriter(new FileWriter(pathGetter(file) + ".txt"));
             System.out.println(pathGetter(file) + ".txt");
-
+            StringBuilder existingContent = new StringBuilder();
             //ciclo rescreve o que ja la esta dentro
             String x ;
             for (x = in.readLine(); x != null; x = in.readLine()) {
-
+                existingContent.append(x).append("\n");
             }
+            in.close();
+
+            // Append the new text to the existing content
+            existingContent.append(input).append("\n");
+            writer.write(existingContent.toString());
             //escreve no fim
-                writer.write(input + "\n");
+
 
             writer.close();
-            in.close();
 
 
         } catch (IOException e) {
