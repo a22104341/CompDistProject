@@ -471,7 +471,6 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
 
             //ciclo rescreve o que ja la esta dentro
             for (String x = in.readLine(); x != null; x = in.readLine()) {
-                writer.write(x);
                 count++;
             }
             //escreve no fim

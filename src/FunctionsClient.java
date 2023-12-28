@@ -409,13 +409,14 @@ public class FunctionsClient {
                             }
 
                             if (theFileNr != -1) {
-                                System.out.println("007");
+
                                 //escreve no ficheiro praia
-                                addServerIntf.praia_reservarSombrinha(addServerIntf.pathGetter(praia + theFileNr+".txt"), addServerIntf.write_combiner(day, month, year, startHour, endHour, email));
+                                addServerIntf.praia_reservarSombrinha((praia + theFileNr), addServerIntf.write_combiner(day, month, year, startHour, endHour, email));
                                 addServerIntf.user_reservarSombrinha(email, addServerIntf.write_combiner(day, month, year, startHour, endHour, praia + theFileNr));
                             } else {
                                 System.out.println("Unfortunately, there are no Umbrellas available for your specifications");
                             }
+                            break;
 
 
                         case "2":
