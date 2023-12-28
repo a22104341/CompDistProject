@@ -629,33 +629,39 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
             }
         }
     }
-
     public void praia_reservarSombrinha(String file, String input) throws RemoteException {
-        // (guarda dentro da sombrinha newLine: -Dia/Mes/Ano/HoraIncio/HoraFim/email) input = call write_combiner()
-
+        // (guarda no user newLine:-Dia/Mes/Ano/HoraInicio/HoraFim/IDSOMBRINHA   input = call write_combiner()      Esse chama o mesmo mas das funcoes da praia)
+        /* go into the user Folder and then do this */
         try {
+            // Read the existing content of the file
+            BufferedReader in = new BufferedReader(new FileReader(pathGetter(file) + ".txt"));
+            StringBuilder existingContent = new StringBuilder();
 
-            String path = pathGetter(file);
-            System.out.println(path);
-            BufferedReader in = new BufferedReader(new FileReader(path+".txt"));
-            BufferedWriter writer = new BufferedWriter(new FileWriter(path+".txt"));
-
-            //ciclo rescreve o que ja la esta dentro
-            for (String x = in.readLine(); x != null; x = in.readLine()) {
-                writer.write(x);
-
+            // ciclo rescreve o que já está dentro, excluding the last line
+            String x;
+            while ((x = in.readLine()) != null) {
+                existingContent.append(x).append("\n");
             }
-            //escreve no fim
-
-            writer.write(input + "\n");
-            writer.close();
             in.close();
+
+            // Open the file for writing without append mode (overwrite existing content)
+            BufferedWriter writer = new BufferedWriter(new FileWriter(pathGetter(file) + ".txt"));
+
+            // Rewrite the existing content excluding the last line
+            writer.write(existingContent.toString());
+
+            // Append the new text to the modified existing content
+            writer.write(input);
+            writer.newLine();  // Add a newline character if needed
+
+            // Close the BufferedWriter to release resources
+            writer.close();
 
         } catch (IOException e) {
             System.out.println("File I/O error!");
         }
-
     }
+
     public void praia_cancelarSombrinha(String email, String[] info) throws RemoteException {
         // (Vai a essa sombrinha, procura o email, verifica se a data/horasFim são as msmas, apaga as reservas)
         String file = this.praia + info[this.idSombra] + ".txt";
