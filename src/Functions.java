@@ -464,20 +464,18 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         // (guarda no user newLine:-Dia/Mes/Ano/HoraInicio/HoraFim/IDSOMBRINHA   input = call write_combiner()      Esse chama o mesmo mas das funcoes da praia)
         /* go into the user Folder and then do this */
         try {
-            int count=0;
             BufferedReader in = new BufferedReader(new FileReader(pathGetter(file) + ".txt"));
             BufferedWriter writer = new BufferedWriter(new FileWriter(pathGetter(file) + ".txt"));
             System.out.println(pathGetter(file) + ".txt");
 
             //ciclo rescreve o que ja la esta dentro
-            for (String x = in.readLine(); x != null; x = in.readLine()) {
-                count++;
-            }
-            //escreve no fim
-            if (count!=0) {
-                writer.write(input + "\n");
+            String x ;
+            for (x = in.readLine(); x != null; x = in.readLine()) {
 
             }
+            //escreve no fim
+                writer.write(input + "\n");
+
             writer.close();
             in.close();
 
