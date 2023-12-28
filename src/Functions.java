@@ -265,19 +265,19 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
 
             switch (filename.charAt(0)) {
                 case 'A':
-                    path = "FolderDeTudo/BeachA/" + filename;
+                    path = "/home/miguel/Desktop/plswork/FolderDeTudo/BeachA/" + filename;
                     return path;
 
                 case 'B':
-                    path = "FolderDeTudo/BeachB/" + filename;
+                    path = "/home/miguel/Desktop/plswork/FolderDeTudo/BeachB/" + filename;
                     return path;
 
                 case 'C':
-                    path = "FolderDeTudo/BeachC/" + filename;
+                    path = "/home/miguel/Desktop/plswork/FolderDeTudo/BeachC/" + filename;
                     return path;
 
                 default:
-                    path = "FolderDeTudo/Users/" + filename;
+                    path = "/home/miguel/Desktop/plswork/FolderDeTudo/Users/" + filename;
                     return path;
             }
         }
@@ -513,22 +513,23 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         // (vai ao ficheiro da sombrinha, verifica se já existe algum registo a esta hora/data)
 
         String path = pathGetter(file);
-        System.out.println(path);
         lerPraias(path);
         String[][] matriz = praia_read_splitter(file, path);
         // O QUE TEM O 1 E A MATRIZ
         boolean returnValue = true;
-        for (int index = 0; index < matriz.length; index++) {
-            if (this.ano == Integer.parseInt(matriz[index][this.year]) && Integer.parseInt(matriz[index][this.month]) == this.mes && this.dia == Integer.parseInt(matriz[index][this.day])) {
-                if (this.horadeInicio >= Integer.parseInt(matriz[index][this.startHour]) && this.horadeInicio < Integer.parseInt(matriz[index][this.endHour])) {
-                    returnValue = false;
-                } else if (this.horaFim < Integer.parseInt(matriz[index][this.endHour]) && Integer.parseInt(matriz[index][this.startHour]) < this.horaFim) {
-                    returnValue = false;
-                } else {
-                    //dps escreve no ficheiro
-                    //PRINT("NO FICHEIRO A2 A VAGA ");
-                    returnValue = true;
-                    break;
+        if (matriz!=null){
+            for (int index = 0; index < matriz.length; index++) {
+                if (this.ano == Integer.parseInt(matriz[index][this.year]) && Integer.parseInt(matriz[index][this.month]) == this.mes && this.dia == Integer.parseInt(matriz[index][this.day])) {
+                    if (this.horadeInicio >= Integer.parseInt(matriz[index][this.startHour]) && this.horadeInicio < Integer.parseInt(matriz[index][this.endHour])) {
+                        returnValue = false;
+                    } else if (this.horaFim < Integer.parseInt(matriz[index][this.endHour]) && Integer.parseInt(matriz[index][this.startHour]) < this.horaFim) {
+                        returnValue = false;
+                    } else {
+                        //dps escreve no ficheiro
+                        //PRINT("NO FICHEIRO A2 A VAGA ");
+                        returnValue = true;
+                        break;
+                    }
                 }
             }
         }
@@ -596,8 +597,8 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         try {
             System.out.println(file + "txt");
             String path = pathGetter(file);
-            BufferedReader in = new BufferedReader(new FileReader(path + "txt"));
-            BufferedWriter writer = new BufferedWriter(new FileWriter(path + "txt"));
+            BufferedReader in = new BufferedReader(new FileReader(path));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path));
 
             //ciclo rescreve o que ja la esta dentro
             for (String x = in.readLine(); x != null; x = in.readLine()) {
@@ -642,6 +643,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
 
     public void praia_quantidadePessoasSombrinha(int maxPeople) throws RemoteException{
         // (qual das sombrinhas a mais apropriada?)
+        System.out.println(this.maxPessoas = maxPeople);
         this.maxPessoas = maxPeople;
     }
 
@@ -687,7 +689,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
      * praia_write_combiner()       (gets all the inputs, writes them with the +"/"+ in the middle etc.)
      * user_write_combiner()
      *
-     * praia_verificarDisponibilidade()       (vai ao ficheiro da sombrinha, verifica se já existe algum registo a esta hora/data)
+     * praia_Disponibilidade()       (vai ao ficheiro da sombrinha, verifica se já existe algum registo a esta hora/data)
      * praia_listarSombrinhas()             (passa pelo array desta praia e chama verificarDisponibilidade, às horas/data que o utilizador introduziu)
      * praia_reservarSombrinha()           (guarda dentro da sombrinha newLine: -Dia/Mes/Ano/HoraIncio/HoraFim/email)
      * praia_cancelarSombrinha()       (Vai a essa combrinha, procura o email, verifica se a data/horas são as msmas, apaga as reservas)
