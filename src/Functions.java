@@ -319,25 +319,25 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         }
         return magic + array[array.length - 1];
     }
-    public void replaceFileInfo(int line, String originalFileName, String[][] info)throws RemoteException{
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("TempFile" + ".txt"));
+   // public void replaceFileInfo(int line, String originalFileName, String[][] info)throws RemoteException{
+   //    try {
+    //         BufferedWriter writer = new BufferedWriter(new FileWriter("TempFile" + ".txt"));
 
             //ciclo que escreve oq tem do outro ficheiro, para dentro de um TempFile
-            for (int i = 0; i < info.length; i++) {
-                if (i != line) {
-                    String thisLine = array_combiner(info[i]);
-                    writer.write(thisLine + "\n");
-                }
-            }
-            writer.close();
+    //         for (int i = 0; i < info.length; i++) {
+            //           if (i != line) {
+    //                String thisLine = array_combiner(info[i]);
+    //               writer.write(thisLine + "\n");
+    //        }
+//}
+    //        writer.close();
 
-        } catch (IOException e) {
-            System.out.println("File I/O error!");
-        }
+    //    } catch (IOException e) {
+    //         System.out.println("File I/O error!");
+    //     }
 
         /* Overwrite stuff from old file, with stuff from new file */
-        String sourceFileName = "TempFile.txt";
+    /*    String sourceFileName = "TempFile.txt";
         try (
                 BufferedReader reader = new BufferedReader(new FileReader("TempFile.txt"));
                 BufferedWriter writer = new BufferedWriter(new FileWriter(pathGetter(originalFileName) + originalFileName + ".txt"))
@@ -353,7 +353,44 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         } catch (IOException e) {
             System.err.println("Error cloning content: " + e.getMessage());
         }
-    }
+    }*/
+        public void replaceFileInfo(int line, String path, String[][] info)throws RemoteException {
+            // (guarda no user newLine:-Dia/Mes/Ano/HoraInicio/HoraFim/IDSOMBRINHA   input = call write_combiner()      Esse chama o mesmo mas das funcoes da praia)
+            /* go into the user Folder and then do this */
+            try {
+                int count =0;
+                // Read the existing content of the file
+                BufferedReader in = new BufferedReader(new FileReader(path + ".txt"));
+                StringBuilder existingContent = new StringBuilder();
+
+                // ciclo rescreve o que já está dentro, excluding the last line
+                String x;
+                while ((x = in.readLine()) != null) {
+
+                    if (count!=line){
+                    existingContent.append(x).append("\n");
+                }
+                    count++;
+                }
+                in.close();
+
+                // Open the file for writing without append mode (overwrite existing content)
+                BufferedWriter writer = new BufferedWriter(new FileWriter(path + ".txt"));
+
+                // Rewrite the existing content excluding the last line
+                writer.write(existingContent.toString());
+
+                // Append the new text to the modified existing content
+                writer.newLine();  // Add a newline character if needed
+
+                // Close the BufferedWriter to release resources
+                writer.close();
+
+            } catch (IOException e) {
+                System.out.println("File I/O error!");
+            }
+        }
+
     public String[][] user_read_splitter(String file, String path) throws RemoteException{
         // (tem a String como input, retorna uma Matrix com tudo separado [][] 1st is the lines, 2nd is split by / etc.)
         // 0-day, 1-month, 2-year, 3-startHour, 4-endHour, 5-idSombra;
@@ -664,7 +701,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
 
     public void praia_cancelarSombrinha(String email, String[] info) throws RemoteException {
         // (Vai a essa sombrinha, procura o email, verifica se a data/horasFim são as msmas, apaga as reservas)
-        String file = this.praia + info[this.idSombra] + ".txt";
+        String file = this.praia + info[this.idSombra];
         String path = pathGetter(file);
         String[][] thisUmbrella = praia_read_splitter(file, path);
 
@@ -684,8 +721,8 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         }
 
         /* Remove the line that we don't need */
-        String ogFileName = this.praia + ".txt";
-        replaceFileInfo(removeThisLine, ogFileName, thisUmbrella);
+        //String ogFileName = this.praia;
+        replaceFileInfo(removeThisLine, path, thisUmbrella);
     }
 
     public void praia_quantidadePessoasSombrinha(int maxPeople) throws RemoteException{
