@@ -398,7 +398,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         String[][] dados;
         try {
 
-            BufferedReader reader = new BufferedReader(new FileReader(new File(path +".txt")));
+
             BufferedReader reader1 = new BufferedReader(new FileReader(new File(path +".txt")));
             System.out.println("File open successful!");
             //countLines count lines
@@ -407,22 +407,25 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
                 countLines++;
 
             }
+            reader1.close();
+            BufferedReader reader = new BufferedReader(new FileReader(new File(path +".txt")));
             dados = new String[countLines][6];
 
             String line = null;
             line = reader.readLine();
             for (int lines = 0; lines < countLines; lines++) {
-                String[] divisao = line.split("/");
-                dados[lines] = divisao;
-                line = reader.readLine();
+                if (line!=null) {
+                    String[] divisao = line.split("/");
+                    dados[lines] = divisao;
+                    line = reader.readLine();
+                }
             }
-            reader1.close();
             reader.close();
             return dados;
         } catch (IOException e) {
             System.out.println("File I/O error!");
         }
-        return new String[1][1];
+        return null;
     }
     public boolean user_verificarDisponibilidade(String email) throws RemoteException{
         // (email already being used?)
