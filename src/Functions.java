@@ -548,16 +548,17 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         /* Also delete this reservation, inside the umbrella file */
         praia_cancelarSombrinha(email, info[line]);
     }
+
     public String[][] praia_read_splitter(String file, String path) throws RemoteException{
         /* use the variables on top in Functions */
         // (tem a String como input, retorna uma Matrix com tudo separado [][] 1st is the lines, 2nd is split by / etc.)
         //GUARDA OS DADOS DAS PRAIAS dentro de uma matriz
-        String[][] dados=null;
-        System.out.println(path);
+
+        String[][] dados;
         try {
 
-            BufferedReader reader = new BufferedReader(new FileReader(new File(path+".txt")));
-            BufferedReader reader1 = new BufferedReader(new FileReader(new File(path+".txt")));
+
+            BufferedReader reader1 = new BufferedReader(new FileReader(new File(path +".txt")));
             System.out.println("File open successful!");
             //countLines count lines
             int countLines = 0;
@@ -565,25 +566,26 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
                 countLines++;
 
             }
-            if (countLines!=0) {
-                dados = new String[countLines][6];
+            reader1.close();
+            BufferedReader reader = new BufferedReader(new FileReader(new File(path +".txt")));
+            dados = new String[countLines][6];
 
-                String line = null;
-                line = reader.readLine();
-                for (int lines = 0; lines < countLines; lines++) {
+            String line = null;
+            line = reader.readLine();
+            for (int lines = 0; lines < countLines; lines++) {
+                if (line!=null) {
                     String[] divisao = line.split("/");
                     dados[lines] = divisao;
                     line = reader.readLine();
-
                 }
-                reader.close();
-                reader1.close();
-                return dados;
             }
+            reader.close();
+            return dados;
         } catch (IOException e) {
             System.out.println("File I/O error!");
         }
-        return dados;
+        return null;
+
 
     }
 
