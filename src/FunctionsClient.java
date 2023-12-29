@@ -427,10 +427,15 @@ public class FunctionsClient {
                             /* Cancel Umbrella */
 
                             String file = addServerIntf.pathGetter(user);
-                            String[][] thisUserFile = addServerIntf.user_listarSombrinhas(file);
 
+                            String[][] thisUserFile = addServerIntf.user_listarSombrinhas(file);
+                            if(thisUserFile==null) {
+                                System.out.println("You dont have any reservations.");
+                                break;
+                            }
                             System.out.println("Which of these reservations, do you wish to cancel?");
                             input = reader.readLine().trim();
+
 
                             /* check if its a valid option */
                             if (!(Integer.parseInt(input) > 0 && Integer.parseInt(input) <= thisUserFile.length)) {
