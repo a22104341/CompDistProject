@@ -489,10 +489,12 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         String[][] readsplitter = user_read_splitter(file, path);
 
         // 0-day, 1-month, 2-year, 3-startHour, 4-endHour, 5-idSombra;
-        for (int i = 0; i < readsplitter.length; i++) {
-            String beach = file.charAt(0) + "";
-            System.out.println((i + 1) + " - Beach: " + beach + "DD/MM/YYYY" + readsplitter[0] + "/" + readsplitter[1] + "/" + readsplitter[2]
-                    + "start hour: " + readsplitter[3] + "end hour: " + readsplitter[4]);
+        if (readsplitter!=null) {
+            for (int i = 0; i < readsplitter.length; i++) {
+                String beach = file.charAt(0) + "";
+                System.out.println((i + 1) + " - Beach: " + beach + "DD/MM/YYYY" + readsplitter[0] + "/" + readsplitter[1] + "/" + readsplitter[2]
+                        + "start hour: " + readsplitter[3] + "end hour: " + readsplitter[4]);
+            }
         }
         /* Beach: X  Date: X  StartHour: X  EndHour: X */
         return readsplitter;

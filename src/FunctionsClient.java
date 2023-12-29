@@ -10,6 +10,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Locale;
 
+import javax.jws.WebService;
+
+@WebService(targetNamespace = "http://default_package/", portName = "FunctionsClientPort", serviceName = "FunctionsClientService")
 public class FunctionsClient {
 
     public void comeca() throws Exception {
@@ -346,7 +349,7 @@ public class FunctionsClient {
                                 System.out.println("Invalid Input");
                             }
                             addServerIntf.praia_quantidadePessoasSombrinha(Integer.parseInt(input));
-                            System.out.println("What is the beach you want to go to?\n A\nB\nC");
+                            System.out.println("What is the beach you want to go to?\nA\nB\nC");
                             input = reader.readLine().trim();
                             switch (input) {
                                 case "A":
@@ -423,7 +426,7 @@ public class FunctionsClient {
 
                             /* Cancel Umbrella */
 
-                            String file = addServerIntf.pathGetter(user + ".txt");
+                            String file = addServerIntf.pathGetter(user);
                             String[][] thisUserFile = addServerIntf.user_listarSombrinhas(file);
 
                             System.out.println("Which of these reservations, do you wish to cancel?");
@@ -437,13 +440,12 @@ public class FunctionsClient {
                             String id = thisUserFile[Integer.parseInt(input) - 1][idSombra];
 
                             addServerIntf.user_cancelarSombrinha(Integer.parseInt(input) - 1, thisUserFile, email);
-                            break;
 
                         case "3":
 
                             /* List umbrella's on beach */
 
-                            System.out.println("What is the beach you want to go to?\n A\nB\nC");
+                            System.out.println("What is the beach you want to go to?\nA\nB\nC");
                             input = reader.readLine().trim();
                             switch (input) {
                                 case "A":
@@ -480,7 +482,6 @@ public class FunctionsClient {
                             String date = day + "/" + month + "/" + year;
 
                             addServerIntf.praia_listarSombrinhas(date, start, end);
-                            break;
 
                         case "4":
                             /* Logout */
