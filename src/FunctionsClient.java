@@ -10,9 +10,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Locale;
 
-import javax.jws.WebService;
 
-@WebService(targetNamespace = "http://default_package/", portName = "FunctionsClientPort", serviceName = "FunctionsClientService")
 public class FunctionsClient {
 
     public void comeca() throws Exception {
