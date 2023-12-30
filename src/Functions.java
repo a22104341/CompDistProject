@@ -360,7 +360,6 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         try {
             int count =0;
             path=pathGetter(path);
-            System.out.println(path);
             // Read the existing content of the file
             BufferedReader in = new BufferedReader(new FileReader(path + ".txt"));
             StringBuilder existingContent = new StringBuilder();
@@ -408,8 +407,6 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
                 countLines++;
             }
             reader1.close();
-            System.out.println("DEU2 ?");
-            System.out.println(path);
 
 
             BufferedReader reader = new BufferedReader(new FileReader(new File(filePath)));
@@ -420,7 +417,6 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
 
             String line;
             for (int lines = 0; (line = reader.readLine()) != null; lines++) {
-                System.out.println("entroU ?");
                 // Split the line by "/"
                 String[] divisao = line.split("/");
 
@@ -502,8 +498,6 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         /* Call ReadSplitter and print em out*/
         String path = pathGetter(file);
         String[][] readsplitter = user_read_splitter(file, path);
-        System.out.println(path);
-        System.out.println("DEU ?");
         // 0-day, 1-month, 2-year, 3-startHour, 4-endHour, 5-idSombra;
         /* Beach: X  Date: X  StartHour: X  EndHour: X */
         return readsplitter;
@@ -712,6 +706,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         // (Vai a essa sombrinha, procura o email, verifica se a data/horasFim são as msmas, apaga as reservas)
         String file = info[5].trim();
         String path = pathGetter(file);
+        System.out.println(path);
         String[][] thisUmbrella = praia_read_splitter(file, path);
 
         int removeThisLine = -1;
@@ -721,6 +716,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
                 if (currentLine[this.day].equals(info[this.day]) && currentLine[this.month].equals(info[this.month]) &&
                         currentLine[this.year].equals(info[this.year]) && currentLine[this.endHour].equals(info[this.endHour])){
                     removeThisLine = i;
+                    System.out.println(i);
                     break;
                 }
             }
