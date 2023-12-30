@@ -359,6 +359,8 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         /* go into the user Folder and then do this */
         try {
             int count =0;
+            path=pathGetter(path);
+            System.out.println(path);
             // Read the existing content of the file
             BufferedReader in = new BufferedReader(new FileReader(path + ".txt"));
             StringBuilder existingContent = new StringBuilder();
@@ -545,9 +547,8 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
     public void user_cancelarSombrinha(int line, String[][] info, String email) throws RemoteException{
         // (GOES WITH PRAIA ONE)
         /* go into the user Folder and then do this */
-        String originalFileName = email + ".txt";
 
-        replaceFileInfo(line, originalFileName, info);
+        replaceFileInfo(line+1, email, info);
 
         /* Also delete this reservation, inside the umbrella file */
         praia_cancelarSombrinha(email, info[line]);
@@ -709,7 +710,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
 
     public void praia_cancelarSombrinha(String email, String[] info) throws RemoteException {
         // (Vai a essa sombrinha, procura o email, verifica se a data/horasFim são as msmas, apaga as reservas)
-        String file = this.praia + info[this.idSombra];
+        String file = info[5].trim();
         String path = pathGetter(file);
         String[][] thisUmbrella = praia_read_splitter(file, path);
 
