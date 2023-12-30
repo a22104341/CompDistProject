@@ -644,8 +644,8 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
                 String month = currentRead[this.month];
                 String year = currentRead[this.year];
 
-                int start = Integer.parseInt(currentRead[this.startHour]);
-                int end = Integer.parseInt(currentRead[this.endHour]);
+                int start = Integer.parseInt(currentRead[3]);
+                int end = Integer.parseInt(currentRead[4]);
 
                 if (requestedDate[this.day].equals(day) && requestedDate[this.month].equals(month) && requestedDate[this.year].equals(year)){
                     if ((startHour >= start && startHour < end) || (end <= endHour && endHour > start)){

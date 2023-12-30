@@ -12,11 +12,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Locale;
 
-import javax.jws.WebService;
 
 import java.util.Arrays;
 
-@WebService(targetNamespace = "http://default_package/", portName = "FunctionsClientPort", serviceName = "FunctionsClientService")
+
 public class FunctionsClient {
 
     public void comeca() throws Exception {
@@ -485,7 +484,6 @@ public class FunctionsClient {
                             System.out.println("What year you want to go to the beach?");
                             year = reader.readLine().trim();
                             addServerIntf.changeano(Integer. parseInt(year));
-
                             System.out.println("At what time do you wish to go? Opening times: 8-20");
                             startHour = reader.readLine().trim();
                             addServerIntf.changestarthour(Integer. parseInt(year));
@@ -493,6 +491,7 @@ public class FunctionsClient {
                             if (!(start1 >= 8 && start1 < 20)) {
                                 System.out.println("Invalid Option");
                             }
+
 
                             System.out.println("When do you want to leave the beach? 8-20");
                             endHour = reader.readLine().trim();
@@ -502,7 +501,6 @@ public class FunctionsClient {
                                 System.out.println("Invalid Option");
                             }
                             String date = day + "/" + month + "/" + year;
-
 
                             String resposta =addServerIntf.praia_listarSombrinhas(date, start1, end1);
 
