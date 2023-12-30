@@ -395,7 +395,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         String[][] matriz;
         try {
             System.out.println(path);
-            String filePath = "/home/miguel/Desktop/plswork/FolderDeTudo/Users/" + path.toLowerCase(Locale.ROOT) + ".txt";
+            String filePath = path + ".txt";
 
             BufferedReader reader1 = new BufferedReader(new FileReader(new File(filePath)));
             System.out.println("File open successful!");
@@ -500,16 +500,9 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         /* Call ReadSplitter and print em out*/
         String path = pathGetter(file);
         String[][] readsplitter = user_read_splitter(file, path);
-        System.out.println("path");
+        System.out.println(path);
         System.out.println("DEU ?");
         // 0-day, 1-month, 2-year, 3-startHour, 4-endHour, 5-idSombra;
-        if (readsplitter!=null) {
-            for (int i = 0; i < readsplitter.length; i++) {
-                String beach = file.charAt(0) + "";
-                System.out.println((i + 1) + " - Beach: " + beach + "DD/MM/YYYY" + readsplitter[0] + "/" + readsplitter[1] + "/" + readsplitter[2]
-                        + "start hour: " + readsplitter[3] + "end hour: " + readsplitter[4]);
-            }
-        }
         /* Beach: X  Date: X  StartHour: X  EndHour: X */
         return readsplitter;
     }
