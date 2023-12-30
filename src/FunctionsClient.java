@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.rmi.Naming;
@@ -9,7 +10,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Locale;
-
+import java.util.Arrays;
 
 public class FunctionsClient {
 
@@ -431,18 +432,24 @@ public class FunctionsClient {
                                 System.out.println("You dont have any reservations.");
                                 break;
                             }
-                            System.out.println("Which of these reservations, do you wish to cancel?");
-                            input = reader.readLine().trim();
+                            if(thisUserFile!=null) {
+                                for (String[] line : thisUserFile) {
+                                    System.out.println(Arrays.toString(line));
+                                }
 
+                                System.out.println("Which of these reservations, do you wish to cancel?");
+                                input = reader.readLine().trim();
+                                /* check if its a valid option */
+                                if (!(Integer.parseInt(input) > 0 && Integer.parseInt(input) <= thisUserFile.length)) {
+                                    System.out.println("Invalid input");
+                                }
 
-                            /* check if its a valid option */
-                            if (!(Integer.parseInt(input) > 0 && Integer.parseInt(input) <= thisUserFile.length)) {
-                                System.out.println("Invalid input");
+                                String id = thisUserFile[Integer.parseInt(input) - 1][idSombra];
+
+                                addServerIntf.user_cancelarSombrinha(Integer.parseInt(input) - 1, thisUserFile, email);
                             }
-
-                            String id = thisUserFile[Integer.parseInt(input) - 1][idSombra];
-
-                            addServerIntf.user_cancelarSombrinha(Integer.parseInt(input) - 1, thisUserFile, email);
+                            /* check if its a valid option */
+                            break;
 
                         case "3":
 

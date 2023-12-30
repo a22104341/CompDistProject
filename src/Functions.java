@@ -391,37 +391,40 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
             }
         }
 
-    public String[][] user_read_splitter(String file, String path) throws RemoteException{
-        // (tem a String como input, retorna uma Matrix com tudo separado [][] 1st is the lines, 2nd is split by / etc.)
-        // 0-day, 1-month, 2-year, 3-startHour, 4-endHour, 5-idSombra;
-
-        String[][] dados;
+    public  String[][] user_read_splitter(String file, String path) throws RemoteException {
+        String[][] matriz;
         try {
-
-
-            BufferedReader reader1 = new BufferedReader(new FileReader(new File(path +".txt")));
+            BufferedReader reader1 = new BufferedReader(new FileReader(new File(path + ".txt")));
             System.out.println("File open successful!");
-            //countLines count lines
+
+            // Count lines
             int countLines = 0;
             for (String x = reader1.readLine(); x != null; x = reader1.readLine()) {
                 countLines++;
-
             }
             reader1.close();
-            BufferedReader reader = new BufferedReader(new FileReader(new File(path +".txt")));
-            dados = new String[countLines][6];
 
-            String line = null;
-            line = reader.readLine();
-            for (int lines = 0; lines < countLines; lines++) {
-                if (line!=null) {
-                    String[] divisao = line.split("/");
-                    dados[lines] = divisao;
-                    line = reader.readLine();
+            BufferedReader reader = new BufferedReader(new FileReader(new File(path + ".txt")));
+            matriz = new String[countLines - 1][6]; // Adjusted to skip the first line
+
+            // Skip the first line
+            reader.readLine();
+
+            String line;
+            for (int lines = 0; (line = reader.readLine()) != null; lines++) {
+                // Split the line by "/"
+                String[] divisao = line.split("/");
+
+                // Ensure that divisao has exactly 6 elements
+                if (divisao.length == 6) {
+                    matriz[lines] = divisao;
+                } else {
+                    System.out.println("Invalid number of fields on line " + (lines + 2)); // Adjusted line number
+                    // Handle the error or skip the line as needed
                 }
             }
             reader.close();
-            return dados;
+            return matriz;
         } catch (IOException e) {
             System.out.println("File I/O error!");
         }
@@ -549,44 +552,41 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         praia_cancelarSombrinha(email, info[line]);
     }
 
-    public String[][] praia_read_splitter(String file, String path) throws RemoteException{
-        /* use the variables on top in Functions */
-        // (tem a String como input, retorna uma Matrix com tudo separado [][] 1st is the lines, 2nd is split by / etc.)
-        //GUARDA OS DADOS DAS PRAIAS dentro de uma matriz
-
-        String[][] dados;
+    public String[][] praia_read_splitter(String file, String path) throws RemoteException {
+        String[][] matriz;
         try {
-
-
-            BufferedReader reader1 = new BufferedReader(new FileReader(new File(path +".txt")));
+            BufferedReader reader1 = new BufferedReader(new FileReader(new File(path + ".txt")));
             System.out.println("File open successful!");
-            //countLines count lines
+
+            // Count lines
             int countLines = 0;
             for (String x = reader1.readLine(); x != null; x = reader1.readLine()) {
                 countLines++;
-
             }
             reader1.close();
-            BufferedReader reader = new BufferedReader(new FileReader(new File(path +".txt")));
-            dados = new String[countLines][6];
 
-            String line = null;
-            line = reader.readLine();
-            for (int lines = 0; lines < countLines; lines++) {
-                if (line!=null) {
-                    String[] divisao = line.split("/");
-                    dados[lines] = divisao;
-                    line = reader.readLine();
+            BufferedReader reader = new BufferedReader(new FileReader(new File(path + ".txt")));
+            matriz = new String[countLines][6];
+
+            String line;
+            for (int lines = 0; (line = reader.readLine()) != null; lines++) {
+                // Split the line by "/"
+                String[] divisao = line.split("/");
+
+                // Ensure that divisao has exactly 6 elements
+                if (divisao.length == 6) {
+                    matriz[lines] = divisao;
+                } else {
+                    System.out.println("Invalid number of fields on line " + (lines + 1));
+                    // Handle the error or skip the line as needed
                 }
             }
             reader.close();
-            return dados;
+            return matriz;
         } catch (IOException e) {
             System.out.println("File I/O error!");
         }
         return null;
-
-
     }
 
 
