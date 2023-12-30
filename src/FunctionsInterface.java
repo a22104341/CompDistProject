@@ -74,7 +74,7 @@ public interface FunctionsInterface extends Remote {
     void user_cancelarSombrinha(int line, String[][] info, String email) throws RemoteException;
     String[][] praia_read_splitter(String file, String path) throws RemoteException;
     boolean praia_verificarDisponibilidade(String file) throws RemoteException;
-    void praia_listarSombrinhas(String date, int startHour, int endHour) throws RemoteException;
+    String praia_listarSombrinhas(String date, int startHour, int endHour) throws RemoteException;
     void praia_reservarSombrinha(String file, String input) throws RemoteException;
     void praia_cancelarSombrinha(String email, String[] info) throws RemoteException;
     void praia_quantidadePessoasSombrinha(int maxPeople) throws RemoteException;

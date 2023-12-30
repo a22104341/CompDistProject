@@ -609,11 +609,12 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         System.out.println("NADA");
         return returnValue;
     }
-    public void praia_listarSombrinhas(String date, int startHour, int endHour) throws RemoteException{
+    public String praia_listarSombrinhas(String date, int startHour, int endHour) throws RemoteException{
         // (passa pelo array desta praia e chama verificarDisponibilidade, às horas/data que o utilizador introduziu)
 
         /* Go through each file with the file_reader , then check if the sombrinha is occupied during those times */
         String beach = this.praia;
+        StringBuilder devolver = null;
 
         int amntUmbrellas = 0;
         switch (beach){
@@ -659,9 +660,13 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
 
             /* if there was no problems with the date and time of the requested booking, the umbrella gets printed */
             if (isFine){
+                assert devolver != null;
+                devolver.append("\n").append(beach).append(i);
+
                 System.out.println(beach + i);
             }
         }
+        return null;
     }
     public void praia_reservarSombrinha(String file, String input) throws RemoteException {
         // (guarda no user newLine:-Dia/Mes/Ano/HoraInicio/HoraFim/IDSOMBRINHA   input = call write_combiner()      Esse chama o mesmo mas das funcoes da praia)
