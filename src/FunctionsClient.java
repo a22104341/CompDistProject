@@ -505,14 +505,9 @@ public class FunctionsClient {
 
 
                             String resposta =addServerIntf.praia_listarSombrinhas(date, start1, end1);
-                            if(resposta == null) {
-                                System.out.println("there is no beach available in beach" + praia + ".");
-                            }
-                            if(resposta!=null) {
-                                System.out.println("These are the available umbrellas on beach " + praia + ":");
-                                System.out.println(resposta);
 
-                            }
+                            System.out.println("These are the available umbrellas on beach " + praia + ":"+"\n");
+                            System.out.println(resposta);
 
                             break;
 
