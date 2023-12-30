@@ -11,8 +11,12 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Locale;
+
+import javax.jws.WebService;
+
 import java.util.Arrays;
 
+@WebService(targetNamespace = "http://default_package/", portName = "FunctionsClientPort", serviceName = "FunctionsClientService")
 public class FunctionsClient {
 
     public void comeca() throws Exception {
@@ -499,7 +503,17 @@ public class FunctionsClient {
                             }
                             String date = day + "/" + month + "/" + year;
 
-                            addServerIntf.praia_listarSombrinhas(date, start1, end1);
+
+                            String resposta =addServerIntf.praia_listarSombrinhas(date, start1, end1);
+                            if(resposta == null) {
+                                System.out.println("there is no beach available in beach" + praia + ".");
+                            }
+                            if(resposta!=null) {
+                                System.out.println("These are the available umbrellas on beach " + praia + ":");
+                                System.out.println(resposta);
+
+                            }
+
                             break;
 
                         case "4":
