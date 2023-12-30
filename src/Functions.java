@@ -319,13 +319,13 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         }
         return magic + array[array.length - 1];
     }
-   // public void replaceFileInfo(int line, String originalFileName, String[][] info)throws RemoteException{
-   //    try {
+    // public void replaceFileInfo(int line, String originalFileName, String[][] info)throws RemoteException{
+    //    try {
     //         BufferedWriter writer = new BufferedWriter(new FileWriter("TempFile" + ".txt"));
 
-            //ciclo que escreve oq tem do outro ficheiro, para dentro de um TempFile
+    //ciclo que escreve oq tem do outro ficheiro, para dentro de um TempFile
     //         for (int i = 0; i < info.length; i++) {
-            //           if (i != line) {
+    //           if (i != line) {
     //                String thisLine = array_combiner(info[i]);
     //               writer.write(thisLine + "\n");
     //        }
@@ -336,7 +336,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
     //         System.out.println("File I/O error!");
     //     }
 
-        /* Overwrite stuff from old file, with stuff from new file */
+    /* Overwrite stuff from old file, with stuff from new file */
     /*    String sourceFileName = "TempFile.txt";
         try (
                 BufferedReader reader = new BufferedReader(new FileReader("TempFile.txt"));
@@ -354,47 +354,50 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
             System.err.println("Error cloning content: " + e.getMessage());
         }
     }*/
-        public void replaceFileInfo(int line, String path, String[][] info)throws RemoteException {
-            // (guarda no user newLine:-Dia/Mes/Ano/HoraInicio/HoraFim/IDSOMBRINHA   input = call write_combiner()      Esse chama o mesmo mas das funcoes da praia)
-            /* go into the user Folder and then do this */
-            try {
-                int count =0;
-                // Read the existing content of the file
-                BufferedReader in = new BufferedReader(new FileReader(path + ".txt"));
-                StringBuilder existingContent = new StringBuilder();
+    public void replaceFileInfo(int line, String path, String[][] info)throws RemoteException {
+        // (guarda no user newLine:-Dia/Mes/Ano/HoraInicio/HoraFim/IDSOMBRINHA   input = call write_combiner()      Esse chama o mesmo mas das funcoes da praia)
+        /* go into the user Folder and then do this */
+        try {
+            int count =0;
+            // Read the existing content of the file
+            BufferedReader in = new BufferedReader(new FileReader(path + ".txt"));
+            StringBuilder existingContent = new StringBuilder();
 
-                // ciclo rescreve o que já está dentro, excluding the last line
-                String x;
-                while ((x = in.readLine()) != null) {
+            // ciclo rescreve o que já está dentro, excluding the last line
+            String x;
+            while ((x = in.readLine()) != null) {
 
-                    if (count!=line){
+                if (count!=line){
                     existingContent.append(x).append("\n");
                 }
-                    count++;
-                }
-                in.close();
-
-                // Open the file for writing without append mode (overwrite existing content)
-                BufferedWriter writer = new BufferedWriter(new FileWriter(path + ".txt"));
-
-                // Rewrite the existing content excluding the last line
-                writer.write(existingContent.toString());
-
-                // Append the new text to the modified existing content
-                writer.newLine();  // Add a newline character if needed
-
-                // Close the BufferedWriter to release resources
-                writer.close();
-
-            } catch (IOException e) {
-                System.out.println("File I/O error!");
+                count++;
             }
+            in.close();
+
+            // Open the file for writing without append mode (overwrite existing content)
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path + ".txt"));
+
+            // Rewrite the existing content excluding the last line
+            writer.write(existingContent.toString());
+
+            // Append the new text to the modified existing content
+            writer.newLine();  // Add a newline character if needed
+
+            // Close the BufferedWriter to release resources
+            writer.close();
+
+        } catch (IOException e) {
+            System.out.println("File I/O error!");
         }
+    }
 
     public  String[][] user_read_splitter(String file, String path) throws RemoteException {
         String[][] matriz;
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(new File(path + ".txt")));
+            System.out.println(path);
+            String filePath = "/home/miguel/Desktop/plswork/FolderDeTudo/Users/" + path.toLowerCase(Locale.ROOT) + ".txt";
+
+            BufferedReader reader1 = new BufferedReader(new FileReader(new File(filePath)));
             System.out.println("File open successful!");
 
             // Count lines
@@ -403,8 +406,11 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
                 countLines++;
             }
             reader1.close();
+            System.out.println("DEU2 ?");
+            System.out.println(path);
 
-            BufferedReader reader = new BufferedReader(new FileReader(new File(path + ".txt")));
+
+            BufferedReader reader = new BufferedReader(new FileReader(new File(filePath)));
             matriz = new String[countLines - 1][6]; // Adjusted to skip the first line
 
             // Skip the first line
@@ -412,6 +418,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
 
             String line;
             for (int lines = 0; (line = reader.readLine()) != null; lines++) {
+                System.out.println("entroU ?");
                 // Split the line by "/"
                 String[] divisao = line.split("/");
 
@@ -493,7 +500,8 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         /* Call ReadSplitter and print em out*/
         String path = pathGetter(file);
         String[][] readsplitter = user_read_splitter(file, path);
-
+        System.out.println("path");
+        System.out.println("DEU ?");
         // 0-day, 1-month, 2-year, 3-startHour, 4-endHour, 5-idSombra;
         if (readsplitter!=null) {
             for (int i = 0; i < readsplitter.length; i++) {
