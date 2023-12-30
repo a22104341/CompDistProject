@@ -638,7 +638,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
             /* if any of the lines have a problem with this date and start/endhour go to the next line, till the matrix is over */
             boolean isFine = true;
             for (int j = 0; j < reader.length; j++){
-                isFine = true;
+
                 String[] currentRead = reader[j];
                 String day = currentRead[this.day];
                 String month = currentRead[this.month];
@@ -653,7 +653,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
                         /* If any of the lines in the file, have problems with the requested date and time, this umbrella
                         can't be used for the user, so we go to the next file */
                         isFine = false;
-                        //break;
+                        break;
 
                     }
                 }
