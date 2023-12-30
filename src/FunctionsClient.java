@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 
 
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.rmi.Naming;
@@ -431,6 +432,7 @@ public class FunctionsClient {
                                 break;
                             }
                             if(thisUserFile!=null) {
+                                System.out.println("These are your Umbrella reservations:");
                                 int count1 =1;
                                 for (String[] line : thisUserFile) {
                                     System.out.println(count1+"- "+Arrays.toString(line));
@@ -468,30 +470,37 @@ public class FunctionsClient {
                             addServerIntf.changepraia(input);
                             praia = input;
 
+
+
                             System.out.println("Which day do you want to go to the beach?");
                             day = reader.readLine().trim();
+                            addServerIntf.changedia(Integer. parseInt(day));
                             System.out.println("What month you want to go to the beach?");
                             month = reader.readLine().trim();
+                            addServerIntf.changemes(Integer. parseInt(month));
                             System.out.println("What year you want to go to the beach?");
                             year = reader.readLine().trim();
+                            addServerIntf.changeano(Integer. parseInt(year));
 
                             System.out.println("At what time do you wish to go? Opening times: 8-20");
                             startHour = reader.readLine().trim();
-                            start = Integer.parseInt(startHour);
-                            if (!(start >= 8 && start < 20)) {
+                            addServerIntf.changestarthour(Integer. parseInt(year));
+                            int start1 = Integer.parseInt(startHour);
+                            if (!(start1 >= 8 && start1 < 20)) {
                                 System.out.println("Invalid Option");
                             }
 
                             System.out.println("When do you want to leave the beach? 8-20");
                             endHour = reader.readLine().trim();
-                            end = Integer.parseInt(endHour);
-                            if (!(end > 8 && end <= 20)) {
+                            addServerIntf.changeendhour(Integer. parseInt(endHour));
+                            int end1 = Integer.parseInt(endHour);
+                            if (!(end1 > 8 && end1 <= 20)) {
                                 System.out.println("Invalid Option");
                             }
-
                             String date = day + "/" + month + "/" + year;
 
-                            addServerIntf.praia_listarSombrinhas(date, start, end);
+                            addServerIntf.praia_listarSombrinhas(date, start1, end1);
+                            break;
 
                         case "4":
                             /* Logout */

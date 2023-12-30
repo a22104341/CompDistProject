@@ -359,7 +359,6 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         /* go into the user Folder and then do this */
         try {
             int count =0;
-            path=pathGetter(path);
             // Read the existing content of the file
             BufferedReader in = new BufferedReader(new FileReader(path + ".txt"));
             StringBuilder existingContent = new StringBuilder();
@@ -382,8 +381,6 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
             writer.write(existingContent.toString());
 
             // Append the new text to the modified existing content
-            writer.newLine();  // Add a newline character if needed
-
             // Close the BufferedWriter to release resources
             writer.close();
 
@@ -493,7 +490,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
     public String[][] user_listarSombrinhas(String file) throws RemoteException {
         // (Listar as sombrinhas q ele tem no ficheiro)
         /* go into the user Folder and then do this */
-        System.out.println("These are your Umbrella reservations:");
+
 
         /* Call ReadSplitter and print em out*/
         String path = pathGetter(file);
@@ -526,9 +523,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
 
             // Append the new text to the modified existing content
             writer.write(input);
-            writer.newLine();  // Add a newline character if needed
-
-            // Close the BufferedWriter to release resources
+         // Close the BufferedWriter to release resources
             writer.close();
 
         } catch (IOException e) {
@@ -542,7 +537,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         // (GOES WITH PRAIA ONE)
         /* go into the user Folder and then do this */
 
-        replaceFileInfo(line+1, email, info);
+        replaceFileInfo(line+1, pathGetter(email), info);
 
         /* Also delete this reservation, inside the umbrella file */
         praia_cancelarSombrinha(email, info[line]);
@@ -620,7 +615,6 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         /* Go through each file with the file_reader , then check if the sombrinha is occupied during those times */
         String beach = this.praia;
 
-        System.out.println("These are the available umbrellas on beach " + beach + ":");
         int amntUmbrellas = 0;
         switch (beach){
             case "A":
@@ -638,7 +632,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
 
         for (int i = 1; i <= amntUmbrellas; i++){
             /* read with file reader*/
-            String[][] reader = praia_read_splitter(beach + i + ".txt", pathGetter(beach));
+            String[][] reader = praia_read_splitter(beach + i, pathGetter(beach+i));
 
             /* if any of the lines have a problem with this date and start/endhour go to the next line, till the matrix is over */
             boolean isFine = true;
@@ -692,7 +686,6 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
 
             // Append the new text to the modified existing content
             writer.write(input);
-            writer.newLine();  // Add a newline character if needed
 
             // Close the BufferedWriter to release resources
             writer.close();
