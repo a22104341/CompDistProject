@@ -499,13 +499,14 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         /* Beach: X  Date: X  StartHour: X  EndHour: X */
         return readsplitter;
     }
-    public void user_cria(String email) throws RemoteException {
+    public void user_cria(String email, String password) throws RemoteException {
         // (criar novo ficheiro - Filename: "email", conteúdo:"Password")
         /* go into the user Folder and then do this */
         try {
             /* Need to turn the email lowercase */
             String filePath = "/home/miguel/Desktop/plswork/FolderDeTudo/Users/" + email.toLowerCase(Locale.ROOT) + ".txt";
-            BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(new File(filePath)));
+            writer.write(password + "\n");
             // Close the writer to flush and release resources
             writer.close();
 
@@ -558,7 +559,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         // (GOES WITH PRAIA ONE)
         /* go into the user Folder and then do this */
 
-        replaceFileInfo(line, pathGetter(email), info);
+        replaceFileInfo(line+1, pathGetter(email), info);
 
         /* Also delete this reservation, inside the umbrella file */
         praia_cancelarSombrinha(email, info[line]);

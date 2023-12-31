@@ -79,7 +79,7 @@ public interface FunctionsInterface extends Remote {
     void praia_cancelarSombrinha(String email, String[] info) throws RemoteException;
     void praia_quantidadePessoasSombrinha(int maxPeople) throws RemoteException;
     int[] praia_umbrellasNr() throws RemoteException;
-    void user_cria(String email) throws RemoteException;
+    void user_cria(String email,String password) throws RemoteException;
     void eachHour() throws RemoteException;
 
 
