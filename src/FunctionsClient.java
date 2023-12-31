@@ -532,7 +532,6 @@ public class FunctionsClient {
             throw new RuntimeException(e);
         }
     }
-
     public static void user_register(String email, String password) throws RemoteException {
         // (criar novo ficheiro - Filename: "email", conteúdo:"Password")
         /* go into the user Folder and then do this */
@@ -544,11 +543,11 @@ public class FunctionsClient {
             // Close the writer to flush and release resources
             writer.close();
 
-            // System.out.println("Write successful!");
+           // System.out.println("Write successful!");
 
             /* print user has been registered */
         } catch (IOException e) {
-            //  System.out.println("something messed up");
+         //   System.out.println("something messed up");
             System.exit(1);
         }
     }
@@ -559,7 +558,7 @@ public class FunctionsClient {
             BufferedReader reader = new BufferedReader(new FileReader(new File("C:\\Users\\Administrador\\eclipse-workspace\\soapserver2.0\\src\\plswork\\Users\\"+email + ".txt")));
             return false;
         } catch (FileNotFoundException e) {
-            // System.out.println("File Not Found");
+            //System.out.println("File Not Found");
             return true;
         }
     }
@@ -569,7 +568,7 @@ public class FunctionsClient {
         try {
 
             BufferedReader reader = new BufferedReader(new FileReader(new File("C:\\Users\\Administrador\\eclipse-workspace\\soapserver2.0\\src\\plswork\\Users\\"+email + ".txt")));
-            // System.out.println("File open successful!");
+            //System.out.println("File open successful!");
             /* Check if password is correct */
             if (password.equals(reader.readLine().trim())) {
                 /* print that the user is logged in */
@@ -580,10 +579,10 @@ public class FunctionsClient {
             /* print that the password is wrong */
             return false;
         } catch (FileNotFoundException e) {
-            // System.out.println("File Not Found");
+          //  System.out.println("File Not Found");
             return false;
         } catch (IOException e) {
-            System.out.println("File I/O error!");
+           // System.out.println("File I/O error!");
             /* print (that the email is wrong) */
             return false;
         }
