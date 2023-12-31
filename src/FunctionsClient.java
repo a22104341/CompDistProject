@@ -221,8 +221,12 @@ public class FunctionsClient {
                                     for (int i = 2; i < email.length() - 1; i++) {
                                         char currentChar = email.charAt(i);
                                         /* Checks: both letter, both digit, 1digit 1letter, 1letter 1 digit */
-                                        if (!((Character.isLetter(b4Char) && Character.isLetter(currentChar)) || (Character.isDigit(b4Char) && Character.isDigit(currentChar))
-                                                || (Character.isLetter(b4Char) && Character.isDigit(currentChar)) || (Character.isDigit(b4Char) && Character.isLetter(currentChar)))) {
+                                        if (!((Character.isLetter(b4Char) && Character.isLetter(currentChar)) ||
+                                                (Character.isDigit(b4Char) && Character.isDigit(currentChar)) ||
+                                                (Character.isLetter(b4Char) && Character.isDigit(currentChar)) ||
+                                                (Character.isDigit(b4Char) && Character.isLetter(currentChar)))) {
+
+
                                             System.out.println("The email can't have two Symbols following each other");
                                             cutItShort = true;
                                             break;
