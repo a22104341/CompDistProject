@@ -66,9 +66,9 @@ public interface FunctionsInterface extends Remote {
     void replaceFileInfo(int line, String originalFileName, String[][] info) throws RemoteException;
     String[][] user_read_splitter(String file, String path) throws RemoteException;
 
-    boolean user_verificarDisponibilidade(String email) throws RemoteException;
-    boolean user_verifyLogin(String email, String password) throws RemoteException;
-    void user_register(String email, String password) throws RemoteException;
+  //  boolean user_verificarDisponibilidade(String email) throws RemoteException;
+    //boolean user_verifyLogin(String email, String password) throws RemoteException;
+   // void user_register(String email, String password) throws RemoteException;
     String[][] user_listarSombrinhas(String file) throws RemoteException;
     void user_reservarSombrinha(String file, String input) throws RemoteException;
     void user_cancelarSombrinha(int line, String[][] info, String email) throws RemoteException;

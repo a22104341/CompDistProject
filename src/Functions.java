@@ -432,61 +432,61 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         }
         return null;
     }
-    public boolean user_verificarDisponibilidade(String email) throws RemoteException{
+  //  public boolean user_verificarDisponibilidade(String email) throws RemoteException{
         // (email already being used?)
         /* go into the user Folder and then do this */
-        try {
+       /* try {
             BufferedReader reader = new BufferedReader(new FileReader(new File("/home/miguel/Desktop/plswork/FolderDeTudo/Users/"+email + ".txt")));
             return false;
         } catch (FileNotFoundException e) {
             System.out.println("File Not Found");
             return true;
         }
-    }
+    }*/
 
-    public boolean user_verifyLogin(String email, String password) throws RemoteException{
+  // public boolean user_verifyLogin(String email, String password) throws RemoteException{
         // (emailExiste?PasswordCorreta?)
         /* go into the user Folder and then do this */
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File("/home/miguel/Desktop/plswork/FolderDeTudo/Users/"+email + ".txt")));
-            System.out.println("File open successful!");
+    //    try {
+      //      BufferedReader reader = new BufferedReader(new FileReader(new File("/home/miguel/Desktop/plswork/FolderDeTudo/Users/"+email + ".txt")));
+        //    System.out.println("File open successful!");
             /* Check if password is correct */
-            if (password.equals(reader.readLine().trim())) {
-                /* print that the user is logged in */
+          /*  if (password.equals(reader.readLine().trim())) {
+                print that the user is logged in
                 reader.close();
                 return true;
             }
             reader.close();
-            /* print that the password is wrong */
+             print that the password is wrong
             return false;
         } catch (FileNotFoundException e) {
             System.out.println("File Not Found");
             return false;
         } catch (IOException e) {
             System.out.println("File I/O error!");
-            /* print (that the email is wrong) */
+             print (that the email is wrong)
             return false;
         }
-    }
-    public void user_register(String email, String password) throws RemoteException{
+    } */
+   /* public void user_register(String email, String password) throws RemoteException{*/
         // (criar novo ficheiro - Filename: "email", conteúdo:"Password")
         /* go into the user Folder and then do this */
-        try {
+     //   try {
             /* Need to turn the email lowercase */
-            String filePath = "/home/miguel/Desktop/plswork/FolderDeTudo/Users/" + email.toLowerCase(Locale.ROOT) + ".txt";
+      /*      String filePath = "/home/miguel/Desktop/plswork/FolderDeTudo/Users/" + email.toLowerCase(Locale.ROOT) + ".txt";
             BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
             writer.write(password + "\n");
             // Close the writer to flush and release resources
             writer.close();
 
-            System.out.println("Write successful!");
+            System.out.println("Write successful!");*/
 
             /* print user has been registered */
-        } catch (IOException e) {
+     /*   } catch (IOException e) {
             System.out.println("something messed up");
             System.exit(1);
         }
-    }
+    }*/
     public String[][] user_listarSombrinhas(String file) throws RemoteException {
         // (Listar as sombrinhas q ele tem no ficheiro)
         /* go into the user Folder and then do this */

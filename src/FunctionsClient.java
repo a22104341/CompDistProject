@@ -10,7 +10,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.util.Locale;
+
 
 
 import java.util.Arrays;
@@ -115,11 +117,11 @@ public class FunctionsClient {
                             int counter = 0;
                             while (counter < 3) {
                                 /* Login */
-                                if (input != null && !addServerIntf.user_verificarDisponibilidade(input)) {
+                                if (input != null && !user_verificarDisponibilidade(input)) {
                                     email = input;
                                     System.out.println("Please type in your password:");
                                     String input2 = reader.readLine();
-                                    if (input2 != null && !addServerIntf.user_verifyLogin(email.trim(), input2)) {
+                                    if (input2 != null && !FunctionsClient.user_verifyLogin(email.trim(), input2)) {
                                         System.out.println("Incorrect login credentials!(Attempt " + counter + "/3 )");
                                     } else {
                                         System.out.println("You are logged in!");
@@ -137,7 +139,7 @@ public class FunctionsClient {
                             while (true) {
                                 /* Register */
                                 /* Check if email already is registered */
-                                if (input != null && addServerIntf.user_verificarDisponibilidade(input)) {
+                                if (input != null && user_verificarDisponibilidade(input)) {
 
                                     //Register Section
                                     email = input.trim();
@@ -295,7 +297,7 @@ public class FunctionsClient {
                                                 if (input.equals(password)) {
                                                     /* Locale Root is good practice */
                                                     System.out.println(password);
-                                                    addServerIntf.user_register(email, password);
+                                                    user_register(email, password);
                                                     reaskPw = false;
                                                     break;
                                                 } else {
@@ -530,4 +532,60 @@ public class FunctionsClient {
             throw new RuntimeException(e);
         }
     }
+    public static void user_register(String email, String password) throws RemoteException {
+        // (criar novo ficheiro - Filename: "email", conteúdo:"Password")
+        /* go into the user Folder and then do this */
+        try {
+            /* Need to turn the email lowercase */
+            String filePath = "C:\\Users\\Administrador\\eclipse-workspace\\soapserver2.0\\src\\plswork\\Users\\"+email + ".txt";
+            BufferedWriter writer = new BufferedWriter(new FileWriter(new File(filePath)));
+            writer.write(password + "\n");
+            // Close the writer to flush and release resources
+            writer.close();
+
+            System.out.println("Write successful!");
+
+            /* print user has been registered */
+        } catch (IOException e) {
+            System.out.println("something messed up");
+            System.exit(1);
+        }
+    }
+    public static boolean user_verificarDisponibilidade(String email) throws RemoteException{
+        // (email already being used?)
+        /* go into the user Folder and then do this */
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(new File("C:\\Users\\Administrador\\eclipse-workspace\\soapserver2.0\\src\\plswork\\Users\\"+email + ".txt")));
+            return false;
+        } catch (FileNotFoundException e) {
+            System.out.println("File Not Found");
+            return true;
+        }
+    }
+    public static boolean user_verifyLogin(String email, String password) throws RemoteException{
+        // (emailExiste?PasswordCorreta?)
+        /* go into the user Folder and then do this */
+        try {
+
+            BufferedReader reader = new BufferedReader(new FileReader(new File("C:\\Users\\Administrador\\eclipse-workspace\\soapserver2.0\\src\\plswork\\Users\\"+email + ".txt")));
+            System.out.println("File open successful!");
+            /* Check if password is correct */
+            if (password.equals(reader.readLine().trim())) {
+                /* print that the user is logged in */
+                reader.close();
+                return true;
+            }
+            reader.close();
+            /* print that the password is wrong */
+            return false;
+        } catch (FileNotFoundException e) {
+            System.out.println("File Not Found");
+            return false;
+        } catch (IOException e) {
+            System.out.println("File I/O error!");
+            /* print (that the email is wrong) */
+            return false;
+        }
+    }
+
 }
