@@ -158,33 +158,29 @@ public class FunctionsClient {
                                         int counter = 0;
                                         boolean cutItShort = false;
                                         for (int i = 0; i < email.length(); i++) {
-                                            if (email.charAt(i) == '@' && (i != 0 && i != email.length() - 1)) {
+                                            if (email.charAt(i) == '@') {
                                                 counter++;
                                                 position = i;
-                                            } else {
-                                                /* @ cant be in 1st or last position */
-                                                System.out.println("You can't have the @ be in the first or last position of your email");
-                                                cutItShort = true;
-                                                break;
-                                            }
-
-                                            if (counter > 1) {
-                                                /* Too many @'s */
-                                                System.out.println("You can only have 1 @ in your email");
-                                                cutItShort = true;
-                                                break;
                                             }
                                         }
+
+                                        if (counter != 1 || position == 0 || position == email.length() - 1) {
+                                            /* Either missing '@', more than one '@', or '@' in the first or last position */
+                                            System.out.println("Incorrect Format, you need to have exactly 1 @ in your email, and it should not be in the first or last position");
+                                            cutItShort = true;
+                                        }
+
                                         if (cutItShort) {
+                                            // Handle the error or break as needed
                                             break;
                                         }
 
                                     } else {
                                         /* Missing an @ */
                                         System.out.println("Incorrect Format, you need to have at least 1 @ in your email");
+                                        // Handle the error or break as needed
                                         break;
                                     }
-
 
                                     /* Check for Spaces */
                                     if (email.contains(" ")) {
