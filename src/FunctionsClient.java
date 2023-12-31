@@ -13,12 +13,12 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.Locale;
 
-import javax.jws.WebService;
+
 
 import java.util.Arrays;
 
 
-@WebService(targetNamespace = "http://default_package/", portName = "FunctionsClientPort", serviceName = "FunctionsClientService")
+
 public class FunctionsClient {
 
     public void comeca() throws Exception {
@@ -404,13 +404,13 @@ public class FunctionsClient {
                             int[] thisArray = null;
 
                             thisArray=addServerIntf.praia_umbrellasNr();
-                            System.out.println(thisArray.length);
+
                             if (thisArray != null) {
                                 for (int i = 0; i < thisArray.length; i++) {
                                     String fileName = praia + thisArray[i];
                                     if (addServerIntf.praia_verificarDisponibilidade(fileName)) {
                                         theFileNr = thisArray[i];
-                                        System.out.println(thisArray[i]);
+
 
                                         System.out.println("This Umbrella: " + praia + thisArray[i] + " will be reserved in your name");
                                         break;
