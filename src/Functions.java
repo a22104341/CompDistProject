@@ -300,7 +300,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
                     return path;
 
                 default:
-                    path = "C:\\Users\\Administrador\\eclipse-workspace\\soapserver2.0\\src\\plswork\\Users\\" + filename;
+                    path = "/home/miguel/Desktop/plswork/FolderDeTudo/Users/" + filename;
                     return path;
             }
         }
@@ -499,13 +499,33 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         /* Beach: X  Date: X  StartHour: X  EndHour: X */
         return readsplitter;
     }
+    public void user_cria(String email) throws RemoteException {
+        // (criar novo ficheiro - Filename: "email", conteúdo:"Password")
+        /* go into the user Folder and then do this */
+        try {
+            /* Need to turn the email lowercase */
+            String filePath = "/home/miguel/Desktop/plswork/FolderDeTudo/Users/" + email.toLowerCase(Locale.ROOT) + ".txt";
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
+            // Close the writer to flush and release resources
+            writer.close();
+
+            System.out.println("Write successful!");
+
+            /* print user has been registered */
+        } catch (IOException e) {
+            System.out.println("something messed up");
+            System.exit(1);
+        }
+    }
 
     public void user_reservarSombrinha(String file, String input) throws RemoteException {
         // (guarda no user newLine:-Dia/Mes/Ano/HoraInicio/HoraFim/IDSOMBRINHA   input = call write_combiner()      Esse chama o mesmo mas das funcoes da praia)
         /* go into the user Folder and then do this */
         try {
+
             // Read the existing content of the file
-            BufferedReader in = new BufferedReader(new FileReader(pathGetter(file) + ".txt"));
+
+            BufferedReader in = new BufferedReader(new FileReader(new File(pathGetter(file) + ".txt")));
             StringBuilder existingContent = new StringBuilder();
 
             // ciclo rescreve o que já está dentro, excluding the last line
@@ -527,6 +547,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
             writer.close();
 
         } catch (IOException e) {
+
             System.out.println("File I/O error!");
         }
     }
@@ -537,7 +558,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         // (GOES WITH PRAIA ONE)
         /* go into the user Folder and then do this */
 
-        replaceFileInfo(line+1, pathGetter(email), info);
+        replaceFileInfo(line, pathGetter(email), info);
 
         /* Also delete this reservation, inside the umbrella file */
         praia_cancelarSombrinha(email, info[line]);

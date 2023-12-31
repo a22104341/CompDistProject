@@ -13,11 +13,12 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.Locale;
 
-
+import javax.jws.WebService;
 
 import java.util.Arrays;
 
 
+@WebService(targetNamespace = "http://default_package/", portName = "FunctionsClientPort", serviceName = "FunctionsClientService")
 public class FunctionsClient {
 
     public void comeca() throws Exception {
@@ -298,6 +299,7 @@ public class FunctionsClient {
                                                     /* Locale Root is good practice */
                                                     System.out.println(password);
                                                     user_register(email, password);
+                                                    addServerIntf.user_cria(email);
                                                     reaskPw = false;
                                                     break;
                                                 } else {
