@@ -432,9 +432,9 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         }
         return null;
     }
-  //  public boolean user_verificarDisponibilidade(String email) throws RemoteException{
-        // (email already being used?)
-        /* go into the user Folder and then do this */
+    //  public boolean user_verificarDisponibilidade(String email) throws RemoteException{
+    // (email already being used?)
+    /* go into the user Folder and then do this */
        /* try {
             BufferedReader reader = new BufferedReader(new FileReader(new File("/home/miguel/Desktop/plswork/FolderDeTudo/Users/"+email + ".txt")));
             return false;
@@ -444,13 +444,13 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         }
     }*/
 
-  // public boolean user_verifyLogin(String email, String password) throws RemoteException{
-        // (emailExiste?PasswordCorreta?)
-        /* go into the user Folder and then do this */
+    // public boolean user_verifyLogin(String email, String password) throws RemoteException{
+    // (emailExiste?PasswordCorreta?)
+    /* go into the user Folder and then do this */
     //    try {
-      //      BufferedReader reader = new BufferedReader(new FileReader(new File("/home/miguel/Desktop/plswork/FolderDeTudo/Users/"+email + ".txt")));
-        //    System.out.println("File open successful!");
-            /* Check if password is correct */
+    //      BufferedReader reader = new BufferedReader(new FileReader(new File("/home/miguel/Desktop/plswork/FolderDeTudo/Users/"+email + ".txt")));
+    //    System.out.println("File open successful!");
+    /* Check if password is correct */
           /*  if (password.equals(reader.readLine().trim())) {
                 print that the user is logged in
                 reader.close();
@@ -468,11 +468,11 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
             return false;
         }
     } */
-   /* public void user_register(String email, String password) throws RemoteException{*/
-        // (criar novo ficheiro - Filename: "email", conteúdo:"Password")
-        /* go into the user Folder and then do this */
-     //   try {
-            /* Need to turn the email lowercase */
+    /* public void user_register(String email, String password) throws RemoteException{*/
+    // (criar novo ficheiro - Filename: "email", conteúdo:"Password")
+    /* go into the user Folder and then do this */
+    //   try {
+    /* Need to turn the email lowercase */
       /*      String filePath = "/home/miguel/Desktop/plswork/FolderDeTudo/Users/" + email.toLowerCase(Locale.ROOT) + ".txt";
             BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
             writer.write(password + "\n");
@@ -481,7 +481,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
 
             System.out.println("Write successful!");*/
 
-            /* print user has been registered */
+    /* print user has been registered */
      /*   } catch (IOException e) {
             System.out.println("something messed up");
             System.exit(1);
@@ -501,20 +501,20 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
     }
     public void user_cria(String email, String password) {
         // Ensure that the directory path exists
-       try {
-        String filePath ="/home/miguel/Desktop/plswork/FolderDeTudo/Users/" + email.toLowerCase(Locale.ROOT) + ".txt";
-        BufferedWriter writer = new BufferedWriter(new FileWriter(new File(filePath)));
-        writer.write(password + "\n");
-        // Close the writer to flush and release resources
-        writer.close();
+        try {
+            String filePath ="/home/miguel/Desktop/plswork/FolderDeTudo/Users/" + email.toLowerCase(Locale.ROOT) + ".txt";
+            BufferedWriter writer = new BufferedWriter(new FileWriter(new File(filePath)));
+            writer.write(password + "\n");
+            // Close the writer to flush and release resources
+            writer.close();
 
-        System.out.println("Write successful!");
+            System.out.println("Write successful!");
 
-        /* print user has been registered */
-    } catch (IOException e) {
-        System.out.println("something messed up");
-        System.exit(1);
-    }
+            /* print user has been registered */
+        } catch (IOException e) {
+            System.out.println("something messed up");
+            System.exit(1);
+        }
     }
 
 
@@ -543,7 +543,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
 
             // Append the new text to the modified existing content
             writer.write(input);
-         // Close the BufferedWriter to release resources
+            // Close the BufferedWriter to release resources
             writer.close();
 
         } catch (IOException e) {
@@ -613,9 +613,9 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         if (matriz!=null){
             for (int index = 0; index < matriz.length; index++) {
                 if (this.ano == Integer.parseInt(matriz[index][this.year]) && Integer.parseInt(matriz[index][this.month]) == this.mes && this.dia == Integer.parseInt(matriz[index][this.day])) {
-                    if (this.horadeInicio >= Integer.parseInt(matriz[index][this.startHour]) && this.horadeInicio < Integer.parseInt(matriz[index][this.endHour])) {
+                    if (this.startHour >= Integer.parseInt(matriz[index][3]) && this.horadeInicio < Integer.parseInt(matriz[index][4])) {
                         returnValue = false;
-                    } else if (this.horaFim < Integer.parseInt(matriz[index][this.endHour]) && Integer.parseInt(matriz[index][this.startHour]) < this.horaFim) {
+                    } else if (this.endHour < Integer.parseInt(matriz[index][4]) && Integer.parseInt(matriz[index][3]) < this.endHour) {
                         returnValue = false;
                     } else {
                         //dps escreve no ficheiro

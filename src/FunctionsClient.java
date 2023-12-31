@@ -152,7 +152,7 @@ public class FunctionsClient {
                                     }
 
                                     /* @ Checks */
-                                    int position = 0;
+                                    int position = -1;
                                     if (email.contains("@")) {
                                         /* Check how many @'s */
                                         int counter = 0;
