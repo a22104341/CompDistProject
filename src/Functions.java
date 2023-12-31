@@ -300,7 +300,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
                     return path;
 
                 default:
-                    path = "/home/miguel/Desktop/plswork/FolderDeTudo/Users/" + filename;
+                    path = "C:\\Users\\Administrador\\eclipse-workspace\\soapserver2.0\\src\\plswork\\Users\\" + filename;
                     return path;
             }
         }
