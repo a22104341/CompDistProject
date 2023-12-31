@@ -122,7 +122,7 @@ public class FunctionsClient {
                                     email = input;
                                     System.out.println("Please type in your password:");
                                     String input2 = reader.readLine();
-                                    if (input2 != null && !FunctionsClient.user_verifyLogin(email.trim(), input2)) {
+                                    if (input2 != null && !user_verifyLogin(email.trim(), input2)) {
                                         System.out.println("Incorrect login credentials!(Attempt " + counter + "/3 )");
                                     } else {
                                         System.out.println("You are logged in!");
@@ -299,7 +299,7 @@ public class FunctionsClient {
                                                     /* Locale Root is good practice */
                                                     System.out.println(password);
                                                     user_register(email, password);
-                                                    addServerIntf.user_cria(email);
+                                                    addServerIntf.user_cria(email,password);
                                                     reaskPw = false;
                                                     break;
                                                 } else {

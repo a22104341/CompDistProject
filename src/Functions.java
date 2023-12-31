@@ -499,25 +499,24 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         /* Beach: X  Date: X  StartHour: X  EndHour: X */
         return readsplitter;
     }
-    public void user_cria(String email, String password) throws RemoteException {
-        // (criar novo ficheiro - Filename: "email", conteúdo:"Password")
-        /* go into the user Folder and then do this */
-        try {
-            /* Need to turn the email lowercase */
-            String filePath = "/home/miguel/Desktop/plswork/FolderDeTudo/Users/" + email.toLowerCase(Locale.ROOT) + ".txt";
-            BufferedWriter writer = new BufferedWriter(new FileWriter(new File(filePath)));
-            writer.write(password + "\n");
-            // Close the writer to flush and release resources
-            writer.close();
+    public void user_cria(String email, String password) {
+        // Ensure that the directory path exists
+       try {
+        String filePath ="/home/miguel/Desktop/plswork/FolderDeTudo/Users/" + email.toLowerCase(Locale.ROOT) + ".txt";
+        BufferedWriter writer = new BufferedWriter(new FileWriter(new File(filePath)));
+        writer.write(password + "\n");
+        // Close the writer to flush and release resources
+        writer.close();
 
-            System.out.println("Write successful!");
+        System.out.println("Write successful!");
 
-            /* print user has been registered */
-        } catch (IOException e) {
-            System.out.println("something messed up");
-            System.exit(1);
-        }
+        /* print user has been registered */
+    } catch (IOException e) {
+        System.out.println("something messed up");
+        System.exit(1);
     }
+    }
+
 
     public void user_reservarSombrinha(String file, String input) throws RemoteException {
         // (guarda no user newLine:-Dia/Mes/Ano/HoraInicio/HoraFim/IDSOMBRINHA   input = call write_combiner()      Esse chama o mesmo mas das funcoes da praia)
