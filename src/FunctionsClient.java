@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 
 
-
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.rmi.Naming;
@@ -15,7 +14,6 @@ import java.util.Locale;
 
 
 import java.util.Arrays;
-
 
 
 public class FunctionsClient {
@@ -79,7 +77,6 @@ public class FunctionsClient {
                 //CREATE BUFFREADER
                 BufferedReader reader = new BufferedReader(
                         new InputStreamReader(System.in));
-
 
 
                 String input;
@@ -232,16 +229,17 @@ public class FunctionsClient {
                                     }
                                     if (cutItShort) {
                                         break;
-                                    }else{
+                                    } else {
                                         reaskEmail = false;
                                         break;
                                     }
 
                                 } else {
                                     System.out.println("Email already in use, use a different email");
-                                    break;
                                 }
                             }
+
+
 
                             /* reasking password Section */
                             boolean reaskPw = true;
@@ -299,7 +297,7 @@ public class FunctionsClient {
                                                     /* Locale Root is good practice */
                                                     System.out.println(password);
                                                     user_register(email, password);
-                                                    addServerIntf.user_cria(email,password);
+                                                    addServerIntf.user_cria(email, password);
                                                     reaskPw = false;
                                                     break;
                                                 } else {
@@ -348,8 +346,8 @@ public class FunctionsClient {
                         case "1":
 
                             /* Reserve umbrella */
-                            int ola=0;
-                            while(true){
+                            int ola = 0;
+                            while (true) {
                                 System.out.println("How many people will be going to the beach with you?");
                                 input = reader.readLine().trim();
                                 if (Character.isDigit(input.charAt(0))) {
@@ -361,7 +359,7 @@ public class FunctionsClient {
                             }
                             addServerIntf.praia_quantidadePessoasSombrinha(Integer.parseInt(input));
                             boolean magic = false;
-                            while(!magic){
+                            while (!magic) {
 
                                 System.out.println("What is the beach you want to go to?\nA\nB\nC");
                                 input = reader.readLine().trim();
@@ -379,37 +377,36 @@ public class FunctionsClient {
                             praia = input;
 
 
-
                             System.out.println("Which day do you want to go to the beach?");
                             day = reader.readLine().trim();
-                            addServerIntf.changedia(Integer. parseInt(day));
+                            addServerIntf.changedia(Integer.parseInt(day));
                             System.out.println("What month you want to go to the beach?");
                             month = reader.readLine().trim();
-                            addServerIntf.changemes(Integer. parseInt(month));
+                            addServerIntf.changemes(Integer.parseInt(month));
                             System.out.println("What year you want to go to the beach?");
                             year = reader.readLine().trim();
-                            addServerIntf.changeano(Integer. parseInt(year));
+                            addServerIntf.changeano(Integer.parseInt(year));
 
-                            while(true){
+                            while (true) {
                                 System.out.println("At what time do you wish to go? Opening times: 8-20");
                                 startHour = reader.readLine().trim();
-                                addServerIntf.changestarthour(Integer. parseInt(year));
+                                addServerIntf.changestarthour(Integer.parseInt(year));
                                 int start = Integer.parseInt(startHour);
                                 if (!(start >= 8 && start < 20)) {
                                     System.out.println("Invalid Option");
-                                }else{
+                                } else {
                                     break;
                                 }
                             }
 
-                            while(true){
+                            while (true) {
                                 System.out.println("When do you want to leave the beach? 8-20");
                                 endHour = reader.readLine().trim();
-                                addServerIntf.changeendhour(Integer. parseInt(endHour));
+                                addServerIntf.changeendhour(Integer.parseInt(endHour));
                                 int end = Integer.parseInt(endHour);
                                 if (!(end > 8 && end <= 20)) {
                                     System.out.println("Invalid Option");
-                                }else{
+                                } else {
                                     break;
                                 }
                             }
@@ -420,7 +417,7 @@ public class FunctionsClient {
                             int theFileNr = -1;
                             int[] thisArray = null;
 
-                            thisArray=addServerIntf.praia_umbrellasNr();
+                            thisArray = addServerIntf.praia_umbrellasNr();
 
                             if (thisArray != null) {
                                 for (int i = 0; i < thisArray.length; i++) {
@@ -451,24 +448,24 @@ public class FunctionsClient {
                             /* Cancel Umbrella */
 
                             String[][] thisUserFile = addServerIntf.user_listarSombrinhas(email);
-                            if(thisUserFile==null) {
+                            if (thisUserFile == null) {
                                 System.out.println("You dont have any reservations.");
                                 break;
                             }
-                            if(thisUserFile!=null) {
+                            if (thisUserFile != null) {
                                 System.out.println("These are your Umbrella reservations:");
-                                int count1 =1;
+                                int count1 = 1;
                                 for (String[] line : thisUserFile) {
-                                    System.out.println(count1+"- "+Arrays.toString(line));
+                                    System.out.println(count1 + "- " + Arrays.toString(line));
                                     count1++;
                                 }
-                                while(true){
+                                while (true) {
                                     System.out.println("Which of these reservations, do you wish to cancel?");
                                     input = reader.readLine().trim();
                                     /* check if its a valid option */
                                     if (!(Integer.parseInt(input) > 0 && Integer.parseInt(input) <= thisUserFile.length)) {
                                         System.out.println("Invalid input");
-                                    }else{
+                                    } else {
                                         break;
                                     }
                                 }
@@ -483,18 +480,18 @@ public class FunctionsClient {
                         case "3":
 
                             /* List umbrella's on beach */
-                            int count1=0;
-                            while(count1!=0){
+                            int count1 = 0;
+                            while (count1 != 0) {
                                 System.out.println("What is the beach you want to go to?\nA\nB\nC");
                                 input = reader.readLine().trim();
                                 switch (input) {
                                     case "A":
                                     case "B":
                                     case "C":
-                                        count1=1;
+                                        count1 = 1;
                                         break;
                                     default:
-                                        count1=0;
+                                        count1 = 0;
                                         System.out.println("Invalid Input");
                                 }
                             }
@@ -502,49 +499,48 @@ public class FunctionsClient {
                             praia = input;
 
 
-
                             System.out.println("Which day do you want to go to the beach?");
                             day = reader.readLine().trim();
-                            addServerIntf.changedia(Integer. parseInt(day));
+                            addServerIntf.changedia(Integer.parseInt(day));
                             System.out.println("What month you want to go to the beach?");
                             month = reader.readLine().trim();
-                            addServerIntf.changemes(Integer. parseInt(month));
+                            addServerIntf.changemes(Integer.parseInt(month));
                             System.out.println("What year you want to go to the beach?");
                             year = reader.readLine().trim();
-                            addServerIntf.changeano(Integer. parseInt(year));
+                            addServerIntf.changeano(Integer.parseInt(year));
                             int start1 = 0;
-                            count1=0;
-                            while(count1!=0){
+                            count1 = 0;
+                            while (count1 != 0) {
                                 System.out.println("At what time do you wish to go? Opening times: 8-20");
                                 startHour = reader.readLine().trim();
-                                addServerIntf.changestarthour(Integer. parseInt(year));
+                                addServerIntf.changestarthour(Integer.parseInt(year));
                                 start1 = Integer.parseInt(startHour);
                                 if (!(start1 >= 8 && start1 < 20)) {
                                     System.out.println("Invalid Option");
-                                }else{
-                                    count1=1;
+                                } else {
+                                    count1 = 1;
                                     break;
                                 }
                             }
                             int end1 = 0;
-                            count1=0;
-                            while(count1!=0){
+                            count1 = 0;
+                            while (count1 != 0) {
                                 System.out.println("When do you want to leave the beach? 8-20");
                                 endHour = reader.readLine().trim();
-                                addServerIntf.changeendhour(Integer. parseInt(endHour));
+                                addServerIntf.changeendhour(Integer.parseInt(endHour));
                                 end1 = Integer.parseInt(endHour);
                                 if (!(end1 > 8 && end1 <= 20)) {
                                     System.out.println("Invalid Option");
-                                }else {
-                                    count1=1;
+                                } else {
+                                    count1 = 1;
                                     break;
                                 }
                             }
                             String date = day + "/" + month + "/" + year;
 
-                            String resposta =addServerIntf.praia_listarSombrinhas(date, start1, end1);
+                            String resposta = addServerIntf.praia_listarSombrinhas(date, start1, end1);
 
-                            System.out.println("These are the available umbrellas on beach " + praia + ":"+"\n");
+                            System.out.println("These are the available umbrellas on beach " + praia + ":" + "\n");
                             System.out.println(resposta);
 
                             break;
@@ -570,12 +566,13 @@ public class FunctionsClient {
             throw new RuntimeException(e);
         }
     }
+
     public static void user_register(String email, String password) throws RemoteException {
         // (criar novo ficheiro - Filename: "email", conteúdo:"Password")
         /* go into the user Folder and then do this */
         try {
             /* Need to turn the email lowercase */
-            String filePath = "C:\\Users\\Administrador\\eclipse-workspace\\soapserver2.0\\src\\plswork\\Users\\"+email + ".txt";
+            String filePath = "C:\\Users\\Administrador\\eclipse-workspace\\soapserver2.0\\src\\plswork\\Users\\" + email + ".txt";
             BufferedWriter writer = new BufferedWriter(new FileWriter(new File(filePath)));
             writer.write(password + "\n");
             // Close the writer to flush and release resources
@@ -589,23 +586,25 @@ public class FunctionsClient {
             System.exit(1);
         }
     }
-    public static boolean user_verificarDisponibilidade(String email) throws RemoteException{
+
+    public static boolean user_verificarDisponibilidade(String email) throws RemoteException {
         // (email already being used?)
         /* go into the user Folder and then do this */
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File("C:\\Users\\Administrador\\eclipse-workspace\\soapserver2.0\\src\\plswork\\Users\\"+email + ".txt")));
+            BufferedReader reader = new BufferedReader(new FileReader(new File("C:\\Users\\Administrador\\eclipse-workspace\\soapserver2.0\\src\\plswork\\Users\\" + email + ".txt")));
             return false;
         } catch (FileNotFoundException e) {
             //System.out.println("File Not Found");
             return true;
         }
     }
-    public static boolean user_verifyLogin(String email, String password) throws RemoteException{
+
+    public static boolean user_verifyLogin(String email, String password) throws RemoteException {
         // (emailExiste?PasswordCorreta?)
         /* go into the user Folder and then do this */
         try {
 
-            BufferedReader reader = new BufferedReader(new FileReader(new File("C:\\Users\\Administrador\\eclipse-workspace\\soapserver2.0\\src\\plswork\\Users\\"+email + ".txt")));
+            BufferedReader reader = new BufferedReader(new FileReader(new File("C:\\Users\\Administrador\\eclipse-workspace\\soapserver2.0\\src\\plswork\\Users\\" + email + ".txt")));
             //System.out.println("File open successful!");
             /* Check if password is correct */
             if (password.equals(reader.readLine().trim())) {
