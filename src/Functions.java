@@ -309,7 +309,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
 
     // Implement other methods from FunctionsInterface
     public String write_combiner(String day, String month, String year, String startHour, String endHour, String lastVariable) throws RemoteException{
-        /* maybe these are not all strings? idk, if they arent, then they need a converter in here, so we don't gotta do it by hand everytime */
+        /* combine all the variables into one String */
         return day + "/" + month + "/" + year + "/" + startHour + "/" + endHour + "/" + lastVariable;
     }
     public String array_combiner(String[] array)throws RemoteException{
