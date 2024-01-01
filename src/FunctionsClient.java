@@ -13,13 +13,10 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.Locale;
 
-import javax.jws.WebService;
-
 import java.util.Arrays;
 
 
 
-@WebService(targetNamespace = "http://default_package/", portName = "FunctionsClientPort", serviceName = "FunctionsClientService")
 public class FunctionsClient {
 
     public void comeca() throws Exception {
