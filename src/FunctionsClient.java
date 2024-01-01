@@ -352,7 +352,7 @@ public class FunctionsClient {
                                 System.out.println("How many people will be going to the beach with you?");
                                 input = reader.readLine().trim();
                                 if (Character.isDigit(input.charAt(0))) {
-                                    addServerIntf.praia_quantidadePessoasSombrinha(Integer.parseInt(input));    
+                                    addServerIntf.praia_quantidadePessoasSombrinha(Integer.parseInt(input));
                                     break;
                                 } else {
                                     System.out.println("Invalid Input");
@@ -361,7 +361,7 @@ public class FunctionsClient {
                             addServerIntf.praia_quantidadePessoasSombrinha(Integer.parseInt(input));
                             boolean magic = false;
                             while(!magic){
-                                
+
                                 System.out.println("What is the beach you want to go to?\nA\nB\nC");
                                 input = reader.readLine().trim();
                                 switch (input) {
@@ -378,7 +378,7 @@ public class FunctionsClient {
                             praia = input;
 
 
-                            
+
                             System.out.println("Which day do you want to go to the beach?");
                             day = reader.readLine().trim();
                             addServerIntf.changedia(Integer. parseInt(day));
@@ -398,7 +398,7 @@ public class FunctionsClient {
                                     System.out.println("Invalid Option");
                                 }else{
                                     break;
-                                }   
+                                }
                             }
 
                             while(true){
@@ -482,15 +482,18 @@ public class FunctionsClient {
                         case "3":
 
                             /* List umbrella's on beach */
-                            while(true){
+                            int count1=0;
+                            while(count1!=0){
                                 System.out.println("What is the beach you want to go to?\nA\nB\nC");
                                 input = reader.readLine().trim();
                                 switch (input) {
                                     case "A":
                                     case "B":
                                     case "C":
+                                        count1=1;
                                         break;
                                     default:
+                                        count1=0;
                                         System.out.println("Invalid Input");
                                 }
                             }
@@ -508,25 +511,32 @@ public class FunctionsClient {
                             System.out.println("What year you want to go to the beach?");
                             year = reader.readLine().trim();
                             addServerIntf.changeano(Integer. parseInt(year));
-                            while(true){
+                            int start1 = 0;
+                            count1=0;
+                            while(count1!=0){
                                 System.out.println("At what time do you wish to go? Opening times: 8-20");
                                 startHour = reader.readLine().trim();
                                 addServerIntf.changestarthour(Integer. parseInt(year));
-                                int start1 = Integer.parseInt(startHour);
+                                start1 = Integer.parseInt(startHour);
                                 if (!(start1 >= 8 && start1 < 20)) {
                                     System.out.println("Invalid Option");
                                 }else{
+                                    count1=1;
                                     break;
                                 }
                             }
-
-                            while(true){
+                            int end1 = 0;
+                            count1=0;
+                            while(count1!=0){
                                 System.out.println("When do you want to leave the beach? 8-20");
                                 endHour = reader.readLine().trim();
                                 addServerIntf.changeendhour(Integer. parseInt(endHour));
-                                int end1 = Integer.parseInt(endHour);
+                                end1 = Integer.parseInt(endHour);
                                 if (!(end1 > 8 && end1 <= 20)) {
                                     System.out.println("Invalid Option");
+                                }else {
+                                    count1=1;
+                                    break;
                                 }
                             }
                             String date = day + "/" + month + "/" + year;

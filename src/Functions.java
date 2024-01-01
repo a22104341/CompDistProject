@@ -77,7 +77,6 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
     @Override
     public void changepraia(String value) throws RemoteException {
         this.praia = value;
-        System.out.println(this.praia = value);
     }
     @Override
     public int getday() throws RemoteException {
