@@ -106,6 +106,7 @@ public class FunctionsClient {
                     boolean reaskEmail = true;
                     while (reaskEmail) {
                         System.out.println("Please type in your email:");
+                        boolean askedEmail = true;
                         input = reader.readLine();
 
                         if (thisInput == '1') {
@@ -136,6 +137,11 @@ public class FunctionsClient {
                             while (true) {
                                 /* Register */
                                 /* Check if email already is registered */
+                                if (!askedEmail){
+                                    System.out.println("Please type in your email:");
+                                    input = reader.readLine();
+                                    askedEmail = true;
+                                }
                                 if (input != null && user_verificarDisponibilidade(input)) {
 
                                     //Register Section
@@ -236,6 +242,7 @@ public class FunctionsClient {
 
                                 } else {
                                     System.out.println("Email already in use, use a different email");
+                                    askedEmail = false;
                                 }
                             }
 
