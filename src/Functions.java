@@ -535,15 +535,15 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
             }
             in.close();
 
-            // Open the file for writing without append mode (overwrite existing content)
+            /* Open the file for writing */
             BufferedWriter writer = new BufferedWriter(new FileWriter(pathGetter(file) + ".txt"));
 
-            // Rewrite the existing content excluding the last line
+            /* Rewrite the existing content */
             writer.write(existingContent.toString());
 
-            // Append the new text to the modified existing content
+            /* Append text */
             writer.write(input);
-            // Close the BufferedWriter to release resources
+            /* Close writer */
             writer.close();
 
         } catch (IOException e) {
