@@ -13,12 +13,13 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.Locale;
 
-
+import javax.jws.WebService;
 
 import java.util.Arrays;
 
 
 
+@WebService(targetNamespace = "http://default_package/", portName = "FunctionsClientPort", serviceName = "FunctionsClientService")
 public class FunctionsClient {
 
     public void comeca() throws Exception {
@@ -232,6 +233,9 @@ public class FunctionsClient {
                                         b4Char = currentChar;
                                     }
                                     if (cutItShort) {
+                                        break;
+                                    }else{
+                                        reaskEmail = false;
                                         break;
                                     }
 
@@ -543,11 +547,11 @@ public class FunctionsClient {
             // Close the writer to flush and release resources
             writer.close();
 
-           // System.out.println("Write successful!");
+            // System.out.println("Write successful!");
 
             /* print user has been registered */
         } catch (IOException e) {
-         //   System.out.println("something messed up");
+            //   System.out.println("something messed up");
             System.exit(1);
         }
     }
@@ -579,10 +583,10 @@ public class FunctionsClient {
             /* print that the password is wrong */
             return false;
         } catch (FileNotFoundException e) {
-          //  System.out.println("File Not Found");
+            //  System.out.println("File Not Found");
             return false;
         } catch (IOException e) {
-           // System.out.println("File I/O error!");
+            // System.out.println("File I/O error!");
             /* print (that the email is wrong) */
             return false;
         }
