@@ -41,39 +41,12 @@ public class UmbrellaDetailsImpl implements UmbrellaDetails   {
     }
 
     @POST
-    @Path("/input")
-    public String input3(String input) {
-        char thisInput='0';
-        if (input != null) {
-            thisInput = input.trim().charAt(0);
-
-            /* Check if input is correct */
-            if (!(thisInput == '1' || thisInput == '2')) {
-                return "Invalid input";
-            }
-            return "Valid Input";
-
-        } else {
-            return "Invalid input";
-        }
-    }
-    @POST
-    @Path("/add")
-    public String add(String numeros) {
-        String[] numerosdivisao= numeros.split(",");
-        String numero1= numerosdivisao[0].trim();
-        String numero2= numerosdivisao[1].trim();
-        int i =Integer.parseInt(numero1)+Integer.parseInt(numero2);
-        return Integer.toString(i);
-    }
-
-    @POST
     @Path("/disponivel")
     public String user_verificarDisponibilidade(String email)  {
         // (email already being used?)
         /* go into the user Folder and then do this */
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File("C:\\Users\\Administrador\\eclipse-workspace\\soapserver2.0\\src\\plswork\\Users\\" + email + ".txt")));
+            BufferedReader reader = new BufferedReader(new FileReader(new File("C:\\Users\\Administrador\\eclipse-workspace\\rest_webservice1.0\\src\\plsworkrest\\Users\\" + email + ".txt")));
             return "false";
         } catch (FileNotFoundException e) {
             //System.out.println("File Not Found");
@@ -91,7 +64,7 @@ public class UmbrellaDetailsImpl implements UmbrellaDetails   {
             String password = resultList[1];
 
 
-            BufferedReader reader = new BufferedReader(new FileReader(new File("C:\\Users\\Administrador\\eclipse-workspace\\soapserver2.0\\src\\plswork\\Users\\" + email + ".txt")));
+            BufferedReader reader = new BufferedReader(new FileReader(new File("C:\\Users\\Administrador\\eclipse-workspace\\rest_webservice1.0\\src\\plsworkrest\\Users\\" + email + ".txt")));
             //System.out.println("File open successful!");
             /* Check if password is correct */
             if (password.equals(reader.readLine().trim())) {
@@ -113,29 +86,33 @@ public class UmbrellaDetailsImpl implements UmbrellaDetails   {
     }
     @POST
     @Path("/criaFileUser")
-    public String user_register(String emailepassword)  {
-        // (criar novo ficheiro - Filename: "email", conteúdo:"Password")
-        /* go into the user Folder and then do this */
+    public String user_register(String emailepassword) {
+        BufferedWriter writer = null;
         try {
             String[] resultList = emailepassword.split(",");
             String email = resultList[0];
             String password = resultList[1];
+
             /* Need to turn the email lowercase */
-            String filePath = "C:\\Users\\Administrador\\eclipse-workspace\\soapserver2.0\\src\\plswork\\Users\\" + email + ".txt";
-            BufferedWriter writer = new BufferedWriter(new FileWriter(new File(filePath)));
+            String filePath = "C:\\Users\\Administrador\\eclipse-workspace\\rest_webservice1.0\\src\\plsworkrest\\Users\\" + email + ".txt";
+
+            writer = new BufferedWriter(new FileWriter(new File(filePath)));
             writer.write(password + "\n");
-            // Close the writer to flush and release resources
-            writer.close();
+
             return "";
 
-            // System.out.println("Write successful!");
-
-            /* print user has been registered */
         } catch (IOException e) {
-            //   System.out.println("something messed up");
-            System.exit(1);
+            e.printStackTrace(); // Log the exception
+            return "Failed";
+        } finally {
+            try {
+                if (writer != null) {
+                    writer.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace(); // Log the exception
+            }
         }
-        return "Failed";
     }
     @POST
     @Path("/criaFileUser1")
@@ -154,7 +131,7 @@ public class UmbrellaDetailsImpl implements UmbrellaDetails   {
                 String email = resultList[0];
                 String password = resultList[1];
                 addServerIntf.user_cria(email, password);
-                return "";
+                return "OKI";
             } catch (NotBoundException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -185,7 +162,6 @@ public class UmbrellaDetailsImpl implements UmbrellaDetails   {
         try {
             String addServerURL = "rmi://192.168.56.101/FunctionsServer";
             FunctionsInterface addServerIntf = (FunctionsInterface) Naming.lookup(addServerURL);
-
             return addServerIntf.getpraia();
             /* Need to turn the email lowercase */
 

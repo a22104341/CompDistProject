@@ -180,9 +180,10 @@ public class Consumer {
 
 			String inputParaAfuncao = input + "," + password;
 
-			OutputStream os = conn.getOutputStream();
-			os.write(inputParaAfuncao.getBytes());
-			os.flush();
+			try (OutputStream os = conn.getOutputStream()) {
+				os.write(inputParaAfuncao.getBytes());
+				os.flush();
+			}
 
 			Scanner scanner;
 			String response = "";
@@ -202,12 +203,13 @@ public class Consumer {
 			return response;
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
+			// Log or return a more informative message
 		} catch (IOException e) {
 			e.printStackTrace();
+			// Log or return a more informative message
 		}
 		return "Failed";
 	}
-
 
 	public static String getPraia() {
 		try {
@@ -1562,8 +1564,9 @@ public class Consumer {
 										if (input != null) {
 											if (input.equals(password)) {
 												/* Locale Root is good practice */
-												System.out.println(password);
+
 												criaFileUser(email, password);
+												System.out.println(password);
 												criaFileUser1(email, password);
 												reaskPw = false;
 												break;
