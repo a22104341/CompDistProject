@@ -30,18 +30,21 @@ public class Consumer {
 			os.flush();
 
 			Scanner scanner;
-			String response;
+			String response = "";
+
 			if (conn.getResponseCode() != 200) {
 				scanner = new Scanner(conn.getErrorStream());
-				response = "Error From Server \n\n";
 			} else {
 				scanner = new Scanner(conn.getInputStream());
-				response = "Response From Server \n\n";
 			}
-			scanner.useDelimiter("\\Z");
-			System.out.println(response + scanner.next());
+
+			while (scanner.hasNext()) {
+				response += scanner.nextLine();
+			}
+
 			scanner.close();
 			conn.disconnect();
+
 			return response;
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -66,18 +69,21 @@ public class Consumer {
 			os.flush();
 
 			Scanner scanner;
-			String response;
+			String response = "";
+
 			if (conn.getResponseCode() != 200) {
 				scanner = new Scanner(conn.getErrorStream());
-				response = "Error From Server \n\n";
 			} else {
 				scanner = new Scanner(conn.getInputStream());
-				response = "Response From Server \n\n";
 			}
-			scanner.useDelimiter("\\Z");
-			System.out.println(response + scanner.next());
+
+			while (scanner.hasNext()) {
+				response += scanner.nextLine();
+			}
+
 			scanner.close();
 			conn.disconnect();
+			System.out.println("Response: " + response);
 			return response;
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -86,6 +92,7 @@ public class Consumer {
 		}
 		return "Failed";
 	}
+
 
 	public static String verificaLogin(String input, String password) {
 		try {
@@ -102,18 +109,21 @@ public class Consumer {
 			os.flush();
 
 			Scanner scanner;
-			String response;
+			String response = "";
+
 			if (conn.getResponseCode() != 200) {
 				scanner = new Scanner(conn.getErrorStream());
-				response = "Error From Server \n\n";
 			} else {
 				scanner = new Scanner(conn.getInputStream());
-				response = "Response From Server \n\n";
 			}
-			scanner.useDelimiter("\\Z");
-			System.out.println(response + scanner.next());
+
+			while (scanner.hasNext()) {
+				response += scanner.nextLine();
+			}
+
 			scanner.close();
 			conn.disconnect();
+			System.out.println("Response: " + response);
 			return response;
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -204,16 +214,18 @@ public class Consumer {
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Content-Type", "application/json");
 			Scanner scanner;
-			String response;
+			String response = "";
+
 			if (conn.getResponseCode() != 200) {
 				scanner = new Scanner(conn.getErrorStream());
-				response = "Error From Server \n\n";
 			} else {
 				scanner = new Scanner(conn.getInputStream());
-				response = "Response From Server \n\n";
 			}
-			scanner.useDelimiter("\\Z");
-			System.out.println(response + scanner.next());
+
+			while (scanner.hasNext()) {
+				response += scanner.nextLine();
+			}
+
 			scanner.close();
 			conn.disconnect();
 			return response;
@@ -233,16 +245,18 @@ public class Consumer {
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Content-Type", "application/json");
 			Scanner scanner;
-			String response;
+			String response = "";
+
 			if (conn.getResponseCode() != 200) {
 				scanner = new Scanner(conn.getErrorStream());
-				response = "Error From Server \n\n";
 			} else {
 				scanner = new Scanner(conn.getInputStream());
-				response = "Response From Server \n\n";
 			}
-			scanner.useDelimiter("\\Z");
-			System.out.println(response + scanner.next());
+
+			while (scanner.hasNext()) {
+				response += scanner.nextLine();
+			}
+
 			scanner.close();
 			conn.disconnect();
 			return response;
@@ -253,6 +267,7 @@ public class Consumer {
 		}
 		return "Failed";
 	}
+
 
 	public static String getMonth() {
 		try {
@@ -262,16 +277,18 @@ public class Consumer {
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Content-Type", "application/json");
 			Scanner scanner;
-			String response;
+			String response = "";
+
 			if (conn.getResponseCode() != 200) {
 				scanner = new Scanner(conn.getErrorStream());
-				response = "Error From Server \n\n";
 			} else {
 				scanner = new Scanner(conn.getInputStream());
-				response = "Response From Server \n\n";
 			}
-			scanner.useDelimiter("\\Z");
-			System.out.println(response + scanner.next());
+
+			while (scanner.hasNext()) {
+				response += scanner.nextLine();
+			}
+
 			scanner.close();
 			conn.disconnect();
 			return response;
@@ -282,7 +299,6 @@ public class Consumer {
 		}
 		return "Failed";
 	}
-
 	public static String getYear() {
 		try {
 			URL url = new URL("http://localhost:8080/rest_webservice1.0/rest/getYear");
@@ -291,16 +307,18 @@ public class Consumer {
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Content-Type", "application/json");
 			Scanner scanner;
-			String response;
+			String response = "";
+
 			if (conn.getResponseCode() != 200) {
 				scanner = new Scanner(conn.getErrorStream());
-				response = "Error From Server \n\n";
 			} else {
 				scanner = new Scanner(conn.getInputStream());
-				response = "Response From Server \n\n";
 			}
-			scanner.useDelimiter("\\Z");
-			System.out.println(response + scanner.next());
+
+			while (scanner.hasNext()) {
+				response += scanner.nextLine();
+			}
+
 			scanner.close();
 			conn.disconnect();
 			return response;
@@ -311,7 +329,6 @@ public class Consumer {
 		}
 		return "Failed";
 	}
-
 	public static String getStartHour() {
 		try {
 			URL url = new URL("http://localhost:8080/rest_webservice1.0/rest/getStartHour");
@@ -320,16 +337,18 @@ public class Consumer {
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Content-Type", "application/json");
 			Scanner scanner;
-			String response;
+			String response = "";
+
 			if (conn.getResponseCode() != 200) {
 				scanner = new Scanner(conn.getErrorStream());
-				response = "Error From Server \n\n";
 			} else {
 				scanner = new Scanner(conn.getInputStream());
-				response = "Response From Server \n\n";
 			}
-			scanner.useDelimiter("\\Z");
-			System.out.println(response + scanner.next());
+
+			while (scanner.hasNext()) {
+				response += scanner.nextLine();
+			}
+
 			scanner.close();
 			conn.disconnect();
 			return response;
@@ -349,16 +368,18 @@ public class Consumer {
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Content-Type", "application/json");
 			Scanner scanner;
-			String response;
+			String response = "";
+
 			if (conn.getResponseCode() != 200) {
 				scanner = new Scanner(conn.getErrorStream());
-				response = "Error From Server \n\n";
 			} else {
 				scanner = new Scanner(conn.getInputStream());
-				response = "Response From Server \n\n";
 			}
-			scanner.useDelimiter("\\Z");
-			System.out.println(response + scanner.next());
+
+			while (scanner.hasNext()) {
+				response += scanner.nextLine();
+			}
+
 			scanner.close();
 			conn.disconnect();
 			return response;
@@ -378,16 +399,18 @@ public class Consumer {
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Content-Type", "application/json");
 			Scanner scanner;
-			String response;
+			String response = "";
+
 			if (conn.getResponseCode() != 200) {
 				scanner = new Scanner(conn.getErrorStream());
-				response = "Error From Server \n\n";
 			} else {
 				scanner = new Scanner(conn.getInputStream());
-				response = "Response From Server \n\n";
 			}
-			scanner.useDelimiter("\\Z");
-			System.out.println(response + scanner.next());
+
+			while (scanner.hasNext()) {
+				response += scanner.nextLine();
+			}
+
 			scanner.close();
 			conn.disconnect();
 			return response;
@@ -398,7 +421,6 @@ public class Consumer {
 		}
 		return "Failed";
 	}
-
 	public static String getEmail1() {
 		try {
 			URL url = new URL("http://localhost:8080/rest_webservice1.0/rest/getEmail1");
@@ -407,16 +429,18 @@ public class Consumer {
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Content-Type", "application/json");
 			Scanner scanner;
-			String response;
+			String response = "";
+
 			if (conn.getResponseCode() != 200) {
 				scanner = new Scanner(conn.getErrorStream());
-				response = "Error From Server \n\n";
 			} else {
 				scanner = new Scanner(conn.getInputStream());
-				response = "Response From Server \n\n";
 			}
-			scanner.useDelimiter("\\Z");
-			System.out.println(response + scanner.next());
+
+			while (scanner.hasNext()) {
+				response += scanner.nextLine();
+			}
+
 			scanner.close();
 			conn.disconnect();
 			return response;
@@ -427,7 +451,6 @@ public class Consumer {
 		}
 		return "Failed";
 	}
-
 	public static String getUser() {
 		try {
 			URL url = new URL("http://localhost:8080/rest_webservice1.0/rest/getUser");
@@ -436,16 +459,18 @@ public class Consumer {
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Content-Type", "application/json");
 			Scanner scanner;
-			String response;
+			String response = "";
+
 			if (conn.getResponseCode() != 200) {
 				scanner = new Scanner(conn.getErrorStream());
-				response = "Error From Server \n\n";
 			} else {
 				scanner = new Scanner(conn.getInputStream());
-				response = "Response From Server \n\n";
 			}
-			scanner.useDelimiter("\\Z");
-			System.out.println(response + scanner.next());
+
+			while (scanner.hasNext()) {
+				response += scanner.nextLine();
+			}
+
 			scanner.close();
 			conn.disconnect();
 			return response;
@@ -466,16 +491,18 @@ public class Consumer {
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Content-Type", "application/json");
 			Scanner scanner;
-			String response;
+			String response = "";
+
 			if (conn.getResponseCode() != 200) {
 				scanner = new Scanner(conn.getErrorStream());
-				response = "Error From Server \n\n";
 			} else {
 				scanner = new Scanner(conn.getInputStream());
-				response = "Response From Server \n\n";
 			}
-			scanner.useDelimiter("\\Z");
-			System.out.println(response + scanner.next());
+
+			while (scanner.hasNext()) {
+				response += scanner.nextLine();
+			}
+
 			scanner.close();
 			conn.disconnect();
 			return response;
@@ -495,16 +522,18 @@ public class Consumer {
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Content-Type", "application/json");
 			Scanner scanner;
-			String response;
+			String response = "";
+
 			if (conn.getResponseCode() != 200) {
 				scanner = new Scanner(conn.getErrorStream());
-				response = "Error From Server \n\n";
 			} else {
 				scanner = new Scanner(conn.getInputStream());
-				response = "Response From Server \n\n";
 			}
-			scanner.useDelimiter("\\Z");
-			System.out.println(response + scanner.next());
+
+			while (scanner.hasNext()) {
+				response += scanner.nextLine();
+			}
+
 			scanner.close();
 			conn.disconnect();
 			return response;
@@ -524,16 +553,18 @@ public class Consumer {
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Content-Type", "application/json");
 			Scanner scanner;
-			String response;
+			String response = "";
+
 			if (conn.getResponseCode() != 200) {
 				scanner = new Scanner(conn.getErrorStream());
-				response = "Error From Server \n\n";
 			} else {
 				scanner = new Scanner(conn.getInputStream());
-				response = "Response From Server \n\n";
 			}
-			scanner.useDelimiter("\\Z");
-			System.out.println(response + scanner.next());
+
+			while (scanner.hasNext()) {
+				response += scanner.nextLine();
+			}
+
 			scanner.close();
 			conn.disconnect();
 			return response;
@@ -553,16 +584,18 @@ public class Consumer {
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Content-Type", "application/json");
 			Scanner scanner;
-			String response;
+			String response = "";
+
 			if (conn.getResponseCode() != 200) {
 				scanner = new Scanner(conn.getErrorStream());
-				response = "Error From Server \n\n";
 			} else {
 				scanner = new Scanner(conn.getInputStream());
-				response = "Response From Server \n\n";
 			}
-			scanner.useDelimiter("\\Z");
-			System.out.println(response + scanner.next());
+
+			while (scanner.hasNext()) {
+				response += scanner.nextLine();
+			}
+
 			scanner.close();
 			conn.disconnect();
 			return response;
@@ -582,16 +615,18 @@ public class Consumer {
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Content-Type", "application/json");
 			Scanner scanner;
-			String response;
+			String response = "";
+
 			if (conn.getResponseCode() != 200) {
 				scanner = new Scanner(conn.getErrorStream());
-				response = "Error From Server \n\n";
 			} else {
 				scanner = new Scanner(conn.getInputStream());
-				response = "Response From Server \n\n";
 			}
-			scanner.useDelimiter("\\Z");
-			System.out.println(response + scanner.next());
+
+			while (scanner.hasNext()) {
+				response += scanner.nextLine();
+			}
+
 			scanner.close();
 			conn.disconnect();
 			return response;
@@ -611,16 +646,18 @@ public class Consumer {
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Content-Type", "application/json");
 			Scanner scanner;
-			String response;
+			String response = "";
+
 			if (conn.getResponseCode() != 200) {
 				scanner = new Scanner(conn.getErrorStream());
-				response = "Error From Server \n\n";
 			} else {
 				scanner = new Scanner(conn.getInputStream());
-				response = "Response From Server \n\n";
 			}
-			scanner.useDelimiter("\\Z");
-			System.out.println(response + scanner.next());
+
+			while (scanner.hasNext()) {
+				response += scanner.nextLine();
+			}
+
 			scanner.close();
 			conn.disconnect();
 			return response;
@@ -640,16 +677,18 @@ public class Consumer {
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Content-Type", "application/json");
 			Scanner scanner;
-			String response;
+			String response = "";
+
 			if (conn.getResponseCode() != 200) {
 				scanner = new Scanner(conn.getErrorStream());
-				response = "Error From Server \n\n";
 			} else {
 				scanner = new Scanner(conn.getInputStream());
-				response = "Response From Server \n\n";
 			}
-			scanner.useDelimiter("\\Z");
-			System.out.println(response + scanner.next());
+
+			while (scanner.hasNext()) {
+				response += scanner.nextLine();
+			}
+
 			scanner.close();
 			conn.disconnect();
 			return response;
@@ -669,16 +708,18 @@ public class Consumer {
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Content-Type", "application/json");
 			Scanner scanner;
-			String response;
+			String response = "";
+
 			if (conn.getResponseCode() != 200) {
 				scanner = new Scanner(conn.getErrorStream());
-				response = "Error From Server \n\n";
 			} else {
 				scanner = new Scanner(conn.getInputStream());
-				response = "Response From Server \n\n";
 			}
-			scanner.useDelimiter("\\Z");
-			System.out.println(response + scanner.next());
+
+			while (scanner.hasNext()) {
+				response += scanner.nextLine();
+			}
+
 			scanner.close();
 			conn.disconnect();
 			return response;
@@ -689,7 +730,6 @@ public class Consumer {
 		}
 		return "Failed";
 	}
-
 
 	public static String praia_quantidadePessoasSombrinha(String input) {
 		try {
@@ -706,13 +746,16 @@ public class Consumer {
 			os.flush();
 
 			Scanner scanner;
-			String response;
+			String response="";
 			if (conn.getResponseCode() != 200) {
 				scanner = new Scanner(conn.getErrorStream());
-				response = "Error From Server \n\n";
+
 			} else {
 				scanner = new Scanner(conn.getInputStream());
-				response = "Response From Server \n\n";
+
+			}
+			while (scanner.hasNext()) {
+				response += scanner.nextLine();
 			}
 			scanner.useDelimiter("\\Z");
 			System.out.println(response + scanner.next());
@@ -1236,6 +1279,7 @@ public class Consumer {
 			/* Define variables that won't change */
 
 			String praia = getPraia();
+
 			int day1 = Integer.parseInt(getDay());
 			int month1 = Integer.parseInt(getMonth());
 			int year1 = Integer.parseInt(getYear());
