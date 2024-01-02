@@ -77,20 +77,22 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         return this.praia;
     }
     @Override
-    public void changepraia(String value) throws RemoteException {
+    public String changepraia(String value) throws RemoteException {
         this.praia = value;
+        return String.valueOf(value);
     }
     @Override
-    public int getday() throws RemoteException {
-        return this.day;
+    public String getday() throws RemoteException {
+        return String.valueOf(this.day);
+
     }
     @Override
-    public int getmonth() throws RemoteException {
-        return this.month;
+    public String getmonth() throws RemoteException {
+        return String.valueOf(this.month);
     }
     @Override
-    public int getyear() throws RemoteException {
-        return this.year;
+    public String getyear() throws RemoteException {
+        return String.valueOf(this.year);
     }
     @Override
     public void changedia(int value) throws RemoteException {
@@ -114,91 +116,55 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
     }
 
     @Override
-    public int getstartHour() throws RemoteException {
-        return this.startHour;
+    public String getstartHour() throws RemoteException {
+        return String.valueOf(this.startHour);
     }
     @Override
-    public int getendHour() throws RemoteException {
-        return this.endHour;
+    public String getendHour() throws RemoteException {
+        return String.valueOf(this.endHour);
     }
     @Override
-    public int getidSombra() throws RemoteException {
-        return this.idSombra;
+    public String getidSombra() throws RemoteException {
+        return String.valueOf(this.idSombra);
     }
     @Override
-    public int getemail1() throws RemoteException {
-        return this.email;
-    }
-    @Override
-    public int[] getmax2A() throws RemoteException {
-        return this.max2A;
-    }
-    @Override
-    public int[] getmax3A() throws RemoteException {
-        return this.max3A;
-    }
-    @Override
-    public int[] getmax4A() throws RemoteException {
-        return this.max4A;
+    public String getemail1() throws RemoteException {
+        return String.valueOf(this.email);
     }
 
-    @Override
-    public int[] getmax2B() throws RemoteException {
-        return this.max2B;
-    }
-    @Override
-    public int[] getmax3B() throws RemoteException {
-        return this.max3B;
-    }
-    @Override
-    public int[] getmax4B() throws RemoteException {
-        return this.max4B;
-    }
-
-    @Override
-    public int[] getmax2C() throws RemoteException {
-        return this.max2C;
-    }
     @Override
     public String getuser() throws RemoteException {
         return this.user;
     }
     @Override
-    public int getdia() throws RemoteException {
-        return this.dia;
+    public String getdia() throws RemoteException {
+        return String.valueOf(this.dia);
     }
     @Override
-    public int getmes() throws RemoteException {
-        return this.mes;
+    public String getmes() throws RemoteException {
+        return String.valueOf(this.mes);
     }
     @Override
-    public int getano() throws RemoteException {
-        return this.ano;
+    public String getano() throws RemoteException {
+        return String.valueOf(this.ano);
     }
     @Override
-    public int gethoradeInicio() throws RemoteException {
-        return this.horadeInicio;
+    public String gethoradeInicio() throws RemoteException {
+        return String.valueOf(this.horadeInicio);
     }
     @Override
-    public int gethoraFim() throws RemoteException {
-        return this.horaFim;
+    public String gethoraFim() throws RemoteException {
+        return String.valueOf(this.horaFim);
     }
     @Override
     public String getidSombrinha() throws RemoteException {
         return this.idSombrinha;
     }
     @Override
-    public int getmaxPessoas() throws RemoteException {
-        return this.maxPessoas;
+    public String getmaxPessoas() throws RemoteException {
+        return String.valueOf(this.maxPessoas);
     }
-    @Override
-    public boolean getloggedIn() throws RemoteException {
-        return this.loggedIn=false;
-    }
-    @Override
-    public void changeloggedIn(boolean value) throws RemoteException {
-        this.loggedIn=value;
-    }
+
 
     @Override
     public void lerUser(String nomeDoFicheiro, String user) throws RemoteException {
@@ -264,7 +230,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
     }
 
     @Override
-    public void start() throws RemoteException {
+    public String start() throws RemoteException {
         // Existing code...
 
 
@@ -278,6 +244,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         this.praia = "";
         this.maxPessoas = 0;
         this.loggedIn = false;
+        return "";
     }
 
     @Override
