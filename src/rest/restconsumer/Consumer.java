@@ -821,7 +821,6 @@ public class Consumer {
 				response += scanner.nextLine();
 			}
 			scanner.useDelimiter("\\Z");
-			System.out.println(response + scanner.next());
 			scanner.close();
 			conn.disconnect();
 			return response;
@@ -918,7 +917,6 @@ public class Consumer {
 			conn.setDoOutput(true);
 			conn.setRequestMethod("POST");
 			conn.setRequestProperty("Content-Type", "application/json");
-
 			String inputParaAfuncao = input;
 
 			OutputStream os = conn.getOutputStream();
@@ -1102,13 +1100,20 @@ public class Consumer {
 	}
 
 
-	public static String praia_umbrellasNr() {
+	public static String praia_umbrellasNr(String input) {
 		try {
-			URL url = new URL("http://localhost:8080/rest_webservice/rest/praia_umbrellasNr");
+			URL url = new URL("http://localhost:8080/rest_webservice1.0/rest/praia_umbrellasNr");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
-			conn.setRequestMethod("GET");
+			conn.setRequestMethod("POST");
 			conn.setRequestProperty("Content-Type", "application/json");
+
+			String inputParaAfuncao = input;
+
+			OutputStream os = conn.getOutputStream();
+			os.write(inputParaAfuncao.getBytes());
+			os.flush();
+
 			Scanner scanner;
 			String response = "";
 
@@ -1132,6 +1137,7 @@ public class Consumer {
 		}
 		return "Failed";
 	}
+
 
 	public static String write_combiner(String day, String month, String year, String startHour, String endHour, String praiaIdsombra) {
 		try {
@@ -1181,22 +1187,23 @@ public class Consumer {
 			conn.setRequestProperty("Content-Type", "application/json");
 
 			String inputParaAfuncao = file + "," + input;
-
 			OutputStream os = conn.getOutputStream();
 			os.write(inputParaAfuncao.getBytes());
 			os.flush();
 
 			Scanner scanner;
-			String response;
+			String response = "";
+
 			if (conn.getResponseCode() != 200) {
 				scanner = new Scanner(conn.getErrorStream());
-				response = "Error From Server \n\n";
 			} else {
 				scanner = new Scanner(conn.getInputStream());
-				response = "Response From Server \n\n";
 			}
-			scanner.useDelimiter("\\Z");
-			System.out.println(response + scanner.next());
+
+			while (scanner.hasNext()) {
+				response += scanner.nextLine();
+			}
+
 			scanner.close();
 			conn.disconnect();
 			return response;
@@ -1684,7 +1691,6 @@ public class Consumer {
 								System.out.println("How many people will be going to the beach with you?");
 								input = reader.readLine().trim();
 								if (Character.isDigit(input.charAt(0))) {
-									System.out.println(input);
 									praia_quantidadePessoasSombrinha(String.valueOf(input));
 									break;
 								} else {
@@ -1751,14 +1757,17 @@ public class Consumer {
 							int theFileNr = -1;
 							String oArray;
 
-							oArray = praia_umbrellasNr();
+							oArray = praia_umbrellasNr(praia);
+							System.out.println(oArray);
+
 							String[] resultList = oArray.split(",");
 
 
 							if (resultList != null) {
 								for (int i = 0; i < resultList.length; i++) {
-									String fileName = praia + Integer.parseInt(resultList[i]);
-									if (praia_verificarDisponibilidade(fileName).equals("true")) {
+									String fileName = praia + resultList[i];
+									String verdade=praia_verificarDisponibilidade(fileName).trim();
+									if (verdade.equals("true")) {
 										theFileNr = Integer.parseInt(resultList[i]);
 
 
@@ -1820,7 +1829,7 @@ public class Consumer {
 
 							/* List umbrella's on beach */
 							int count1 = 0;
-							while (count1 != 0) {
+							while (count1 == 0) {
 								System.out.println("What is the beach you want to go to?\nA\nB\nC");
 								input = reader.readLine().trim();
 								switch (input) {
@@ -1849,7 +1858,7 @@ public class Consumer {
 							changeano(year);
 							int start1 = 0;
 							count1 = 0;
-							while (count1 != 0) {
+							while (count1 == 0) {
 								System.out.println("At what time do you wish to go? Opening times: 8-20");
 								startHour = reader.readLine().trim();
 								changestarthour(startHour);
@@ -1863,7 +1872,7 @@ public class Consumer {
 							}
 							int end1 = 0;
 							count1 = 0;
-							while (count1 != 0) {
+							while (count1 == 0) {
 								System.out.println("When do you want to leave the beach? 8-20");
 								endHour = reader.readLine().trim();
 								changeendhour(endHour);
