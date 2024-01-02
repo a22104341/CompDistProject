@@ -198,7 +198,7 @@ public class Consumer {
 
 	public static String getPraia() {
 		try {
-			URL url = new URL("http://localhost:8080/rest_webservice/rest/getPraia");
+			URL url = new URL("http://localhost:8080/rest_webservice1.0/rest/getPraia");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("GET");
@@ -227,7 +227,7 @@ public class Consumer {
 
 	public static String getDay() {
 		try {
-			URL url = new URL("http://localhost:8080/rest_webservice/rest/getDay");
+			URL url = new URL("http://localhost:8080/rest_webservice1.0/rest/getDay");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("GET");
@@ -256,7 +256,7 @@ public class Consumer {
 
 	public static String getMonth() {
 		try {
-			URL url = new URL("http://localhost:8080/rest_webservice/rest/getMonth");
+			URL url = new URL("http://localhost:8080/rest_webservice1.0/rest/getMonth");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("GET");
@@ -285,7 +285,7 @@ public class Consumer {
 
 	public static String getYear() {
 		try {
-			URL url = new URL("http://localhost:8080/rest_webservice/rest/getYear");
+			URL url = new URL("http://localhost:8080/rest_webservice1.0/rest/getYear");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("GET");
@@ -314,7 +314,7 @@ public class Consumer {
 
 	public static String getStartHour() {
 		try {
-			URL url = new URL("http://localhost:8080/rest_webservice/rest/getStartHour");
+			URL url = new URL("http://localhost:8080/rest_webservice1.0/rest/getStartHour");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("GET");
@@ -343,7 +343,7 @@ public class Consumer {
 
 	public static String getEndHour() {
 		try {
-			URL url = new URL("http://localhost:8080/rest_webservice/rest/getEndHour");
+			URL url = new URL("http://localhost:8080/rest_webservice1.0/rest/getEndHour");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("GET");
@@ -372,7 +372,7 @@ public class Consumer {
 
 	public static String getIdSombra() {
 		try {
-			URL url = new URL("http://localhost:8080/rest_webservice/rest/getIdSombra");
+			URL url = new URL("http://localhost:8080/rest_webservice1.0/rest/getIdSombra");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("GET");
@@ -401,7 +401,7 @@ public class Consumer {
 
 	public static String getEmail1() {
 		try {
-			URL url = new URL("http://localhost:8080/rest_webservice/rest/getEmail1");
+			URL url = new URL("http://localhost:8080/rest_webservice1.0/rest/getEmail1");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("GET");
@@ -430,7 +430,7 @@ public class Consumer {
 
 	public static String getUser() {
 		try {
-			URL url = new URL("http://localhost:8080/rest_webservice/rest/getUser");
+			URL url = new URL("http://localhost:8080/rest_webservice1.0/rest/getUser");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("GET");
@@ -460,7 +460,7 @@ public class Consumer {
 
 	public static String getDia() {
 		try {
-			URL url = new URL("http://localhost:8080/rest_webservice/rest/getDia");
+			URL url = new URL("http://localhost:8080/rest_webservice1.0/rest/getDia");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("GET");
@@ -489,7 +489,7 @@ public class Consumer {
 
 	public static String getMes() {
 		try {
-			URL url = new URL("http://localhost:8080/rest_webservice/rest/getMes");
+			URL url = new URL("http://localhost:8080/rest_webservice1.0/rest/getMes");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("GET");
@@ -518,7 +518,7 @@ public class Consumer {
 
 	public static String getAno() {
 		try {
-			URL url = new URL("http://localhost:8080/rest_webservice/rest/getAno");
+			URL url = new URL("http://localhost:8080/rest_webservice1.0/rest/getAno");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("GET");
@@ -547,7 +547,7 @@ public class Consumer {
 
 	public static String getHoradeInicio() {
 		try {
-			URL url = new URL("http://localhost:8080/rest_webservice/rest/getHoradeInicio");
+			URL url = new URL("http://localhost:8080/rest_webservice1.0/rest/getHoradeInicio");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("GET");
@@ -576,7 +576,7 @@ public class Consumer {
 
 	public static String getHoraFim() {
 		try {
-			URL url = new URL("http://localhost:8080/rest_webservice/rest/getHoraFim");
+			URL url = new URL("http://localhost:8080/rest_webservice1.0/rest/getHoraFim");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("GET");
@@ -605,7 +605,7 @@ public class Consumer {
 
 	public static String getIdSombrinha() {
 		try {
-			URL url = new URL("http://localhost:8080/rest_webservice/rest/getIdSombrinha");
+			URL url = new URL("http://localhost:8080/rest_webservice1.0/rest/getIdSombrinha");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("GET");
@@ -634,7 +634,7 @@ public class Consumer {
 
 	public static String getMaxPessoas() {
 		try {
-			URL url = new URL("http://localhost:8080/rest_webservice/rest/getMaxPessoas");
+			URL url = new URL("http://localhost:8080/rest_webservice1.0/rest/getMaxPessoas");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("GET");
@@ -663,7 +663,7 @@ public class Consumer {
 
 	public static String start() {
 		try {
-			URL url = new URL("http://localhost:8080/rest_webservice/rest/start");
+			URL url = new URL("http://localhost:8080/rest_webservice1.0/rest/start");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("GET");
@@ -1151,6 +1151,42 @@ public class Consumer {
 		}
 		return "Failed";
 	}
+	public static String user_cancelarSombrinha(String linha,String email) {
+		try {
+			URL url = new URL("http://localhost:8080/rest_webservice1.0/rest/user_cancelarSombrinha");
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setDoOutput(true);
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Content-Type", "application/json");
+
+			String inputParaAfuncao = linha+","+email;
+
+			OutputStream os = conn.getOutputStream();
+			os.write(inputParaAfuncao.getBytes());
+			os.flush();
+
+			Scanner scanner;
+			String response;
+			if (conn.getResponseCode() != 200) {
+				scanner = new Scanner(conn.getErrorStream());
+				response = "Error From Server \n\n";
+			} else {
+				scanner = new Scanner(conn.getInputStream());
+				response = "Response From Server \n\n";
+			}
+			scanner.useDelimiter("\\Z");
+			System.out.println(response + scanner.next());
+			scanner.close();
+			conn.disconnect();
+			return response;
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "Failed";
+	}
+
 
 	public static String praia_listarSombrinhas(String date, String start1, String end1) {
 		try {
@@ -1606,7 +1642,6 @@ public class Consumer {
 						String firstCharAsString = String.valueOf(originalString.charAt(0));
 						int firstCharAsInt = Integer.parseInt(firstCharAsString);
 						String newString = originalString.substring(1);
-						System.out.println(newString);
 						if (resposta.equals("")) {
 							System.out.println("You dont have any reservations.");
 							break;
@@ -1627,10 +1662,9 @@ public class Consumer {
 						}
 
 
-						String id = thisUserFile[Integer.parseInt(input) - 1][idSombra];
 						int line = Integer.parseInt(input) - 1;
 						String linha = String.valueOf(line);
-						user_cancelarSombrinha(linha, thisUserFile, email);
+						user_cancelarSombrinha(linha, email);
 
 						/* check if its a valid option */
 						break;

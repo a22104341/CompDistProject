@@ -256,19 +256,19 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
 
             switch (filename.charAt(0)) {
                 case 'A':
-                    path = "/home/miguel/Desktop/plswork/FolderDeTudo/BeachA/" + filename;
+                    path = "/home/miguel/Desktop/plsworkrest/FolderDeTudo/BeachA/" + filename;
                     return path;
 
                 case 'B':
-                    path = "/home/miguel/Desktop/plswork/FolderDeTudo/BeachB/" + filename;
+                    path = "/home/miguel/Desktop/plsworkrest/FolderDeTudo/BeachB/" + filename;
                     return path;
 
                 case 'C':
-                    path = "/home/miguel/Desktop/plswork/FolderDeTudo/BeachC/" + filename;
+                    path = "/home/miguel/Desktop/plsworkrest/FolderDeTudo/BeachC/" + filename;
                     return path;
 
                 default:
-                    path = "/home/miguel/Desktop/plswork/FolderDeTudo/Users/" + filename;
+                    path = "/home/miguel/Desktop/plsworkrest/FolderDeTudo/Users/" + filename;
                     return path;
             }
         }
@@ -470,7 +470,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
     public void user_cria(String email, String password) {
         // Ensure that the directory path exists
         try {
-            String filePath ="/home/miguel/Desktop/plswork/FolderDeTudo/Users/" + email.toLowerCase(Locale.ROOT) + ".txt";
+            String filePath ="/home/miguel/Desktop/plsworkrest/FolderDeTudo/Users/" + email.toLowerCase(Locale.ROOT) + ".txt";
             BufferedWriter writer = new BufferedWriter(new FileWriter(new File(filePath)));
             writer.write(password + "\n");
             // Close the writer to flush and release resources
@@ -756,9 +756,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
         }
         return null;
     }
-    public void eachHour() throws RemoteException{
-        // (Passa por cada Praia e sombrinha, para ver a horaFim, se a hora fim for igual à hora atual, usa cancelarSombrinha(praia + user))
-    }
+
     /*
      * start()                  (starts everything just like before)
      *
