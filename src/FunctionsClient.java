@@ -397,7 +397,7 @@ public class FunctionsClient {
                             while (true) {
                                 System.out.println("At what time do you wish to go? Opening times: 8-20");
                                 startHour = reader.readLine().trim();
-                                addServerIntf.changestarthour(Integer.parseInt(year));
+                                addServerIntf.changestarthour(Integer.parseInt(startHour));
                                 int start = Integer.parseInt(startHour);
                                 if (!(start >= 8 && start < 20)) {
                                     System.out.println("Invalid Option");
@@ -520,7 +520,7 @@ public class FunctionsClient {
                             while (count1 != 0) {
                                 System.out.println("At what time do you wish to go? Opening times: 8-20");
                                 startHour = reader.readLine().trim();
-                                addServerIntf.changestarthour(Integer.parseInt(year));
+                                addServerIntf.changestarthour(Integer.parseInt(startHour));
                                 start1 = Integer.parseInt(startHour);
                                 if (!(start1 >= 8 && start1 < 20)) {
                                     System.out.println("Invalid Option");
