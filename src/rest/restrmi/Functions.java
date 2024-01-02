@@ -1,11 +1,9 @@
-package rest.restrmi;
-
 import java.io.*;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Locale;
 
-public class Functions extends UnicastRemoteObject implements FunctionsInterface1 {
+public class Functions extends UnicastRemoteObject implements FunctionsInterface {
     // Existing code...
     /* Array com os numeros das sombrinhas */
     int day = 0;

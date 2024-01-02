@@ -872,7 +872,7 @@ public class UmbrellaDetailsImpl implements UmbrellaDetails   {
 
     @POST
     @Path("/praia_umbrellasNr")
-    public String praia_umbrellasNr() {
+    public String praia_umbrellasNr(String input) {
 
 
         // (criar novo ficheiro - Filename: "email", conteúdo:"Password")
@@ -880,16 +880,11 @@ public class UmbrellaDetailsImpl implements UmbrellaDetails   {
 
         try {
             String addServerURL = "rmi://192.168.56.101/FunctionsServer";
-            FunctionsInterface addServerIntf = null;
-            addServerIntf = (FunctionsInterface) Naming.lookup(addServerURL);
-            String retorno="";
-            int[] thisArray =addServerIntf.praia_umbrellasNr();
-            for (int i =0 ;i<thisArray.length;i++) {
-                retorno=retorno+Integer.toString(thisArray[i]).trim()+",";
+            FunctionsInterface addServerIntf = (FunctionsInterface) Naming.lookup(addServerURL);
 
 
-            }
-            return retorno;
+
+            return addServerIntf.praia_umbrellasNr();
 
 
             // System.out.println("Write successful!");
