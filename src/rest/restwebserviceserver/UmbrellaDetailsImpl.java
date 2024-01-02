@@ -699,7 +699,7 @@ public class UmbrellaDetailsImpl implements UmbrellaDetails   {
         try {
             String addServerURL = "rmi://192.168.56.101/FunctionsServer";
             FunctionsInterface addServerIntf = (FunctionsInterface) Naming.lookup(addServerURL);
-            ;
+
             int dia = Integer.parseInt(input);
 
             addServerIntf.changedia(dia);
@@ -719,7 +719,7 @@ public class UmbrellaDetailsImpl implements UmbrellaDetails   {
         return "Failed";
     }
     @POST
-    @Path("/changedia")
+    @Path("/changemes")
     public String changemes(String input) {
 
 
@@ -870,7 +870,7 @@ public class UmbrellaDetailsImpl implements UmbrellaDetails   {
     }
 
 
-    @GET
+    @POST
     @Path("/praia_umbrellasNr")
     public String praia_umbrellasNr() {
 
@@ -881,17 +881,13 @@ public class UmbrellaDetailsImpl implements UmbrellaDetails   {
         try {
             String addServerURL = "rmi://192.168.56.101/FunctionsServer";
             FunctionsInterface addServerIntf = null;
-            try {
-                addServerIntf = (FunctionsInterface) Naming.lookup(addServerURL);
-            } catch (NotBoundException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-
+            addServerIntf = (FunctionsInterface) Naming.lookup(addServerURL);
             String retorno="";
             int[] thisArray =addServerIntf.praia_umbrellasNr();
             for (int i =0 ;i<thisArray.length;i++) {
-                retorno=retorno+Integer.toString(thisArray[i])+",";
+                retorno=retorno+Integer.toString(thisArray[i]).trim()+",";
+
+
             }
             return retorno;
 
@@ -902,6 +898,9 @@ public class UmbrellaDetailsImpl implements UmbrellaDetails   {
         } catch (IOException e) {
             //   System.out.println("something messed up");
             System.exit(1);
+        } catch (NotBoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
         return "Failed";
     }
@@ -1015,8 +1014,8 @@ public class UmbrellaDetailsImpl implements UmbrellaDetails   {
                 retorno=retorno+count1 + "- " + Arrays.toString(line)+"\n";
                 count1++;
             }
-
-            return count1+retorno;
+            retorno=count1+retorno;
+            return retorno;
 
 
             // System.out.println("Write successful!");

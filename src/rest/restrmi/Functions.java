@@ -702,7 +702,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
             String[] currentLine = thisUmbrella[i];
             if (currentLine[this.email].equals(email)){
                 if (currentLine[this.day].equals(info[this.day]) && currentLine[this.month].equals(info[this.month]) &&
-                        currentLine[this.year].equals(info[this.year]) && currentLine[this.endHour].equals(info[this.endHour])){
+                        currentLine[this.year].equals(info[this.year]) && currentLine[4].equals(info[4])){
                     removeThisLine = i;
                     System.out.println(i);
                     break;
@@ -725,36 +725,72 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
 
     }
 
-    public int[] praia_umbrellasNr() throws RemoteException{
+    public String praia_umbrellasNr() throws RemoteException{
+        String retorno="";
         if (this.praia.equals("A")) {
             if (this.maxPessoas <= 2) {
-                return this.max2A;
+                int[] thisArray =this.max2A;
+                for (int i =0 ;i<thisArray.length;i++) {
+                    retorno=retorno+Integer.toString(thisArray[i]).trim()+",";
+                }
+                String stringWithoutLastChar = retorno.substring(0, retorno.length() - 1);
+                return stringWithoutLastChar;
             }
             if (this.maxPessoas <= 3) {
-                return this.max3A;
+                int[] thisArray =this.max3A;
+                for (int i =0 ;i<thisArray.length;i++) {
+                    retorno=retorno+Integer.toString(thisArray[i]).trim()+",";
+                }
+                String stringWithoutLastChar = retorno.substring(0, retorno.length() - 1);
+                return stringWithoutLastChar;
             }
             if (this.maxPessoas <= 4) {
-                return this.max4A;
+                int[] thisArray =this.max4A;
+                for (int i =0 ;i<thisArray.length;i++) {
+                    retorno=retorno+Integer.toString(thisArray[i]).trim()+",";
+                }
+                String stringWithoutLastChar = retorno.substring(0, retorno.length() - 1);
+                return stringWithoutLastChar;
             }
 
         } else if (this.praia.equals("B")) {
             if (this.maxPessoas <= 2) {
-                return this.max2B;
+                int[] thisArray =this.max2B;
+                for (int i =0 ;i<thisArray.length;i++) {
+                    retorno=retorno+Integer.toString(thisArray[i]).trim()+",";
+                }
+                String stringWithoutLastChar = retorno.substring(0, retorno.length() - 1);
+                return stringWithoutLastChar;
             }
             if (this.maxPessoas <= 3) {
-                return this.max3B;
+                int[] thisArray =this.max3B;
+                for (int i =0 ;i<thisArray.length;i++) {
+                    retorno=retorno+Integer.toString(thisArray[i]).trim()+",";
+                }
+                String stringWithoutLastChar = retorno.substring(0, retorno.length() - 1);
+                return stringWithoutLastChar;
             }
             if (this.maxPessoas <= 4) {
-                return this.max4B;
+                int[] thisArray =this.max4B;
+                for (int i =0 ;i<thisArray.length;i++) {
+                    retorno=retorno+Integer.toString(thisArray[i]).trim()+",";
+                }
+                String stringWithoutLastChar = retorno.substring(0, retorno.length() - 1);
+                return stringWithoutLastChar;
             }
         } else {
             if (this.maxPessoas <= 2) {
-                return this.max2C;
+                int[] thisArray =this.max2C;
+                for (int i =0 ;i<thisArray.length;i++) {
+                    retorno=retorno+Integer.toString(thisArray[i]).trim()+",";
+                }
+                String stringWithoutLastChar = retorno.substring(0, retorno.length() - 1);
+                return stringWithoutLastChar;
 
 
             }
         }
-        return null;
+        return retorno;
     }
 
     /*

@@ -733,7 +733,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
             String[] currentLine = thisUmbrella[i];
             if (currentLine[this.email].equals(email)){
                 if (currentLine[this.day].equals(info[this.day]) && currentLine[this.month].equals(info[this.month]) &&
-                        currentLine[this.year].equals(info[this.year]) && currentLine[this.endHour].equals(info[this.endHour])){
+                        currentLine[this.year].equals(info[this.year]) && currentLine[4].equals(info[4])){
                     removeThisLine = i;
                     System.out.println(i);
                     break;

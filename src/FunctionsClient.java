@@ -12,10 +12,12 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.Locale;
 
+import javax.jws.WebService;
 
 import java.util.Arrays;
 
 
+@WebService(targetNamespace = "http://default_package/", portName = "FunctionsClientPort", serviceName = "FunctionsClientService")
 public class FunctionsClient {
 
     public void comeca() throws Exception {
@@ -488,7 +490,7 @@ public class FunctionsClient {
 
                             /* List umbrella's on beach */
                             int count1 = 0;
-                            while (count1 != 0) {
+                            while (count1 == 0) {
                                 System.out.println("What is the beach you want to go to?\nA\nB\nC");
                                 input = reader.readLine().trim();
                                 switch (input) {
@@ -517,7 +519,7 @@ public class FunctionsClient {
                             addServerIntf.changeano(Integer.parseInt(year));
                             int start1 = 0;
                             count1 = 0;
-                            while (count1 != 0) {
+                            while (count1 == 0) {
                                 System.out.println("At what time do you wish to go? Opening times: 8-20");
                                 startHour = reader.readLine().trim();
                                 addServerIntf.changestarthour(Integer.parseInt(startHour));
@@ -531,7 +533,7 @@ public class FunctionsClient {
                             }
                             int end1 = 0;
                             count1 = 0;
-                            while (count1 != 0) {
+                            while (count1 == 0) {
                                 System.out.println("When do you want to leave the beach? 8-20");
                                 endHour = reader.readLine().trim();
                                 addServerIntf.changeendhour(Integer.parseInt(endHour));
