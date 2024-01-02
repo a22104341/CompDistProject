@@ -64,7 +64,7 @@ public class FunctionsClient {
                 int horaFim = addServerIntf.gethoraFim();
                 String idSombrinha = addServerIntf.getidSombrinha();
                 int maxPessoas = addServerIntf.getmaxPessoas();
-                boolean loggedIn = addServerIntf.getloggedIn();
+                boolean loggedIn = false;
 
 
 
