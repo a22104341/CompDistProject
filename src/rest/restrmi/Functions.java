@@ -601,7 +601,7 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
 
         /* Go through each file with the file_reader , then check if the sombrinha is occupied during those times */
         String beach = this.praia;
-        String devolver = "";
+        String devolver = " ";
 
         int amntUmbrellas = 0;
         switch (beach){
@@ -648,13 +648,14 @@ public class Functions extends UnicastRemoteObject implements FunctionsInterface
 
             /* if there was no problems with the date and time of the requested booking, the umbrella gets printed */
             if (isFine){
-                devolver +=beach+i+"\n";
+                devolver +=beach+i+",";
 
                 System.out.println(beach + i);
             }
         }
         System.out.println(devolver);
-        return devolver;
+        String stringWithoutLastChar = devolver.substring(0, devolver.length() - 1);
+        return stringWithoutLastChar;
     }
     public void praia_reservarSombrinha(String file, String input) throws RemoteException {
         // (guarda no user newLine:-Dia/Mes/Ano/HoraInicio/HoraFim/IDSOMBRINHA   input = call write_combiner()      Esse chama o mesmo mas das funcoes da praia)

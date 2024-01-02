@@ -3,7 +3,7 @@ package rest.restrmi;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface FunctionsInterface1 extends Remote {
+public interface FunctionsInterface extends Remote {
 
     String getpraia() throws RemoteException;
     String changepraia(String value) throws RemoteException;
