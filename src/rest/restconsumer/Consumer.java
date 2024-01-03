@@ -15,12 +15,13 @@ import java.util.Scanner;
 import java.util.Arrays;
 
 public class Consumer {
+
 	public static void user_register(String email, String password) throws RemoteException {
 		// (criar novo ficheiro - Filename: "email", conteúdo:"Password")
 		/* go into the user Folder and then do this */
 		try {
 			/* Need to turn the email lowercase */
-			String filePath = "C:\\Users\\Administrador\\eclipse-workspace\\soapserver2.0\\src\\plswork\\Users\\" + email + ".txt";
+			String filePath = "C:\\Users\\Administrador\\eclipse-workspace\\rest_webservice1.0\\src\\plsworkrest\\Users\\" + email + ".txt";
 			BufferedWriter writer = new BufferedWriter(new FileWriter(new File(filePath)));
 			writer.write(password + "\n");
 			// Close the writer to flush and release resources
@@ -39,7 +40,7 @@ public class Consumer {
 		// (email already being used?)
 		/* go into the user Folder and then do this */
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(new File("C:\\Users\\Administrador\\eclipse-workspace\\soapserver2.0\\src\\plswork\\Users\\" + email + ".txt")));
+			BufferedReader reader = new BufferedReader(new FileReader(new File("C:\\Users\\Administrador\\eclipse-workspace\\rest_webservice1.0\\src\\plsworkrest\\Users\\" + email + ".txt")));
 			return false;
 		} catch (FileNotFoundException e) {
 			//System.out.println("File Not Found");
@@ -52,7 +53,7 @@ public class Consumer {
 		/* go into the user Folder and then do this */
 		try {
 
-			BufferedReader reader = new BufferedReader(new FileReader(new File("C:\\Users\\Administrador\\eclipse-workspace\\soapserver2.0\\src\\plswork\\Users\\" + email + ".txt")));
+			BufferedReader reader = new BufferedReader(new FileReader(new File("C:\\Users\\Administrador\\eclipse-workspace\\rest_webservice1.0\\src\\plsworkrest\\Users\\" + email + ".txt")));
 			//System.out.println("File open successful!");
 			/* Check if password is correct */
 			if (password.equals(reader.readLine().trim())) {
@@ -154,45 +155,6 @@ public class Consumer {
 	public static String verificaLogin(String input, String password) {
 		try {
 			URL url = new URL("http://localhost:8080/rest_webservice1.0/rest/verificaLogin");
-			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-			conn.setDoOutput(true);
-			conn.setRequestMethod("POST");
-			conn.setRequestProperty("Content-Type", "application/json");
-
-			String inputParaAfuncao = input + "," + password;
-
-			OutputStream os = conn.getOutputStream();
-			os.write(inputParaAfuncao.getBytes());
-			os.flush();
-
-			Scanner scanner;
-			String response = "";
-
-			if (conn.getResponseCode() != 200) {
-				scanner = new Scanner(conn.getErrorStream());
-			} else {
-				scanner = new Scanner(conn.getInputStream());
-			}
-
-			while (scanner.hasNext()) {
-				response += scanner.nextLine();
-			}
-
-			scanner.close();
-			conn.disconnect();
-			return response;
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return "Failed";
-	}
-
-
-	public static String criaFileUser(String input, String password) {
-		try {
-			URL url = new URL("http://localhost:8080/rest_webservice1.0/rest/criaFileUser");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("POST");
@@ -1636,7 +1598,8 @@ public class Consumer {
 											if (input != null) {
 												if (input.equals(password)) {
 													/* Locale Root is good practice */
-													criaFileUser(email, password);
+													System.out.println(password);
+													user_register(email, password);
 													criaFileUser1(email, password);
 													reaskPw = false;
 													break;
@@ -1661,6 +1624,7 @@ public class Consumer {
 					} /* reaskEmail */
 					loggedIn = true;
 				}
+
 
 				/* After Login Steps */
 				boolean stayLoggedIn = true;
