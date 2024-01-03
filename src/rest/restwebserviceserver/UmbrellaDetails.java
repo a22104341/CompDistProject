@@ -1,9 +1,5 @@
-package rest.restwebserviceserver;
 
 public interface UmbrellaDetails {
-	String input(String input);
-	String user_verificarDisponibilidade(String email);
-	String user_verifyLogin(String emailepassword);
 	String user_register(String emailepassword);
 	String user_cria(String emailepassword);
 	String getPraia();
@@ -31,7 +27,7 @@ public interface UmbrellaDetails {
 	String changestarthour(String input);
 	String changeendhour(String input);
 	String praia_verificarDisponibilidade(String input);
-	String praia_umbrellasNr();
+	String praia_umbrellasNr(String input);
 	String write_combiner(String input);
 	String praia_reservarSombrinha(String input);
 	String user_reservarSombrinha(String input);

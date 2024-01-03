@@ -23,68 +23,6 @@ import java.util.Arrays;
 public class UmbrellaDetailsImpl implements UmbrellaDetails   {
 
     @POST
-    @Path("/input")
-    public String input(String input) {
-        char thisInput='0';
-        if (input != null) {
-            thisInput = input.trim().charAt(0);
-
-            /* Check if input is correct */
-            if (!(thisInput == '1' || thisInput == '2')) {
-                return "Invalid input";
-            }
-            return "Valid Input";
-
-        } else {
-            return "Invalid input";
-        }
-    }
-
-    @POST
-    @Path("/disponivel")
-    public String user_verificarDisponibilidade(String email)  {
-        // (email already being used?)
-        /* go into the user Folder and then do this */
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File("C:\\Users\\Administrador\\eclipse-workspace\\rest_webservice1.0\\src\\plsworkrest\\Users\\" + email + ".txt")));
-            return "false";
-        } catch (FileNotFoundException e) {
-            //System.out.println("File Not Found");
-            return "true";
-        }
-    }
-    @POST
-    @Path("/verificaLogin")
-    public String user_verifyLogin(String emailepassword)  {
-        // (emailExiste?PasswordCorreta?)
-        /* go into the user Folder and then do this */
-        try {
-            String[] resultList = emailepassword.split(",");
-            String email = resultList[0];
-            String password = resultList[1];
-
-
-            BufferedReader reader = new BufferedReader(new FileReader(new File("C:\\Users\\Administrador\\eclipse-workspace\\rest_webservice1.0\\src\\plsworkrest\\Users\\" + email + ".txt")));
-            //System.out.println("File open successful!");
-            /* Check if password is correct */
-            if (password.equals(reader.readLine().trim())) {
-                /* print that the user is logged in */
-                reader.close();
-                return "true";
-            }
-            reader.close();
-            /* print that the password is wrong */
-            return "false";
-        } catch (FileNotFoundException e) {
-            //  System.out.println("File Not Found");
-            return "false";
-        } catch (IOException e) {
-            // System.out.println("File I/O error!");
-            /* print (that the email is wrong) */
-            return "false";
-        }
-    }
-    @POST
     @Path("/criaFileUser")
     public String user_register(String emailepassword) {
         BufferedWriter writer = null;
